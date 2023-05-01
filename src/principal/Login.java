@@ -11,14 +11,14 @@ public class Login extends JFrame implements MouseListener {
     ImageIcon img2 = new ImageIcon("./src/imagenes/nota.png");
 
     /* Fondo blanco que abarca todo el JFrame */
-    Panel background = new Panel();
+    Panel background = new Panel(null);
 
     /* JPanel izquierdo (color negro) */
-    JPanel izquierda = new JPanel();
+    JPanel izquierda = new JPanel(null);
     /* JPanel derecho (color blanco) */
-    JPanel derecha = new JPanel();
+    JPanel derecha = new JPanel(null);
     /* JPanel del logo chiquito */
-    JPanel logo = new JPanel();
+    JPanel logo = new JPanel(null);
 
     JLabel imgIzquierda = new JLabel();
     JLabel imgLogo = new JLabel();
@@ -36,12 +36,9 @@ public class Login extends JFrame implements MouseListener {
     public Login() {
         setIconImage(new ImageIcon("./src/imagenes/DiscoLogo.png").getImage());
         this.setUndecorated(true);
-        background.setLayout(null);
         background.setBackground(Color.WHITE);
-        background.setSize(800, 500);
         add(background);
 
-        izquierda.setLayout(null);
         izquierda.setBounds(0, 0, 290, 500);
         izquierda.setBackground(new Color(23, 23, 23));
 
@@ -59,11 +56,9 @@ public class Login extends JFrame implements MouseListener {
         titulo2.setText("Musical");
         titulo2.setBounds(90, 260, 350, 150);
 
-        derecha.setLayout(null);
         derecha.setBounds(290, 0, 510, 500);
         derecha.setBackground(new Color(255, 255, 255));
 
-        logo.setLayout(null);
         logo.setBounds(120, 50, 50, 50);
         logo.setBackground(new Color(255, 255, 255));
 
