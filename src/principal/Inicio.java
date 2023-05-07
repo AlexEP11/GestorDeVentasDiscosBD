@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;;
 
-public class Gestor extends JFrame implements MouseListener {
+public class Inicio extends JFrame implements MouseListener {
     // Imagenes
     ImageIcon imgL = new ImageIcon("./src/imagenes/DiscoPeque.png");
     ImageIcon imgV = new ImageIcon("./src/imagenes/vender.png"); // 45 x 45
@@ -47,7 +47,7 @@ public class Gestor extends JFrame implements MouseListener {
     Color negroP = new Color(23, 23, 23);
     Color cremaP = new Color(251, 205, 131);
 
-    public Gestor() {
+    public Inicio() {
 
         setIconImage(new ImageIcon("./src/imagenes/DiscoLogo.png").getImage());
         this.setUndecorated(true);
@@ -222,6 +222,6 @@ public class Gestor extends JFrame implements MouseListener {
     }
 
     public static void main(String[] args) {
-        new Gestor();
+        new Inicio();
     }
 }

@@ -143,6 +143,10 @@ public class Login extends JFrame implements MouseListener {
         if (e.getSource() == salir) {
             System.exit(0);
         }
+        
+        if (e.getSource() == entrar ) {
+            new Inicio();
+        }
     }
 
     @Override
