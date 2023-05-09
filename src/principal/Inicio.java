@@ -12,6 +12,7 @@ public class Inicio extends JFrame implements MouseListener {
     ImageIcon imgD = new ImageIcon("./src/imagenes/disco.png"); 
     ImageIcon imgE = new ImageIcon("./src/imagenes/empleado.png"); 
     ImageIcon imgP = new ImageIcon("./src/imagenes/proveedor.png");
+    ImageIcon imgPues = new ImageIcon("./src/imagenes/puesto.png");
     ImageIcon imgS = new ImageIcon("./src/imagenes/salir.png");
     
     // Panel principal
@@ -27,6 +28,7 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel botonDiscos = new JPanel(null);
     JPanel botonEmpleado = new JPanel(null);
     JPanel botonProveedor = new JPanel(null);
+    JPanel botonPuestos = new JPanel(null);
 
     // JLabels de botones/imagenes
     JLabel imgVentas = new JLabel();
@@ -39,6 +41,8 @@ public class Inicio extends JFrame implements MouseListener {
     JLabel txtEmpleado = new JLabel("Gestionar Empleados");
     JLabel imgProveedor = new JLabel();
     JLabel txtProveedor = new JLabel("Gestionar Proveedores");
+    JLabel imgPuestos = new JLabel();
+    JLabel txtPuetos = new JLabel("Gestionar Puestos");
 
     JLabel logo = new JLabel();
     JLabel imgSalir = new JLabel();
@@ -66,6 +70,7 @@ public class Inicio extends JFrame implements MouseListener {
         // Bara crema superior
         horizontalArriba.setBackground(cremaP);
         horizontalArriba.setBounds(240, 0, 1000, 100);
+        
 
         // Boton ventas
         botonVentas.setBackground(negroP);
@@ -122,6 +127,18 @@ public class Inicio extends JFrame implements MouseListener {
         txtProveedor.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtProveedor.setBounds(70, 0, 180,50);
 
+        // Boton puestos
+        botonPuestos.setBackground(negroP);
+        botonPuestos.setBounds(0, 500, 240, 50);
+        botonPuestos.addMouseListener(this);
+        botonPuestos.setCursor(new Cursor(HAND_CURSOR));
+        imgPuestos.setBounds(5,0,50,50);
+        imgPuestos.setIcon(imgPues);
+        txtPuetos.setForeground(Color.WHITE);
+        txtPuetos.setFont(new Font("Roboto Black", Font.BOLD, 15));
+        txtPuetos.setBounds(70, 0, 180,50);
+
+
         // Boton salir
         imgSalir.setBounds(170,640,45,45);
         imgSalir.setIcon(imgS);
@@ -159,6 +176,11 @@ public class Inicio extends JFrame implements MouseListener {
         botonProveedor.add(imgProveedor);
         botonProveedor.add(txtProveedor);
         verticalIzquierda.add(botonProveedor);
+
+        // Añadiendo el boton puestos
+        botonPuestos.add(imgPuestos);
+        botonPuestos.add(txtPuetos);
+        verticalIzquierda.add(botonPuestos);
 
         // Añadiendo el menu izquierdo y borde superior
         background.add(horizontalArriba);
@@ -203,6 +225,8 @@ public class Inicio extends JFrame implements MouseListener {
             botonEmpleado.setBackground(Color.BLACK);
         } else if (e.getSource() == botonProveedor) {
             botonProveedor.setBackground(Color.BLACK);
+        } else if (e.getSource() == botonPuestos) {
+            botonPuestos.setBackground(Color.BLACK);
         }
     }
 
@@ -218,6 +242,8 @@ public class Inicio extends JFrame implements MouseListener {
             botonEmpleado.setBackground(negroP);
         } else if (e.getSource() == botonProveedor) {
             botonProveedor.setBackground(negroP);
+        } else if (e.getSource() == botonPuestos) {
+            botonPuestos.setBackground(negroP);
         }
     }
 
