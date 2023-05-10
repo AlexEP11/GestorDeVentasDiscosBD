@@ -254,7 +254,6 @@ public class Inicio extends JFrame implements MouseListener {
         pEmpleados.add(new JLabel("Empleados"));
         principal.add(pEmpleados, "Empleados");
         pProveedores.add(new JLabel("Proveedores"));
-        ;
         principal.add(pProveedores, "Proveedores");
         pPuestos.add(new JLabel("Puestos"));
         principal.add(pPuestos, "Puestos");
@@ -301,6 +300,12 @@ public class Inicio extends JFrame implements MouseListener {
                 botonProveedor.setBackground(Color.black);
                 anterior = botonProveedor;
                 clPrincipal.show(principal, "Proveedores");
+            }else if (e.getSource() == botonPuestos) {
+                clPrincipal.show(principal, "Puestos");
+            } else if (e.getSource() == botonDetallesCompras) {
+                clPrincipal.show(principal, "DCompras");
+            } else if (e.getSource() == botonDetallesVentas) {
+                clPrincipal.show(principal, "DVentas");
             }
         }
     }
