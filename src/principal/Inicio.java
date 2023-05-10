@@ -8,13 +8,15 @@ public class Inicio extends JFrame implements MouseListener {
     // Imagenes
     ImageIcon imgL = new ImageIcon("./src/imagenes/DiscoPeque.png");
     ImageIcon imgV = new ImageIcon("./src/imagenes/vender.png"); // 45 x 45
-    ImageIcon imgC = new ImageIcon("./src/imagenes/comprar.png"); 
-    ImageIcon imgD = new ImageIcon("./src/imagenes/disco.png"); 
-    ImageIcon imgE = new ImageIcon("./src/imagenes/empleado.png"); 
+    ImageIcon imgC = new ImageIcon("./src/imagenes/comprar.png");
+    ImageIcon imgD = new ImageIcon("./src/imagenes/disco.png");
+    ImageIcon imgE = new ImageIcon("./src/imagenes/empleado.png");
     ImageIcon imgP = new ImageIcon("./src/imagenes/proveedor.png");
     ImageIcon imgPues = new ImageIcon("./src/imagenes/puesto.png");
+    ImageIcon imgDetC = new ImageIcon("./src/imagenes/detallesCom.png");
+    ImageIcon imgDetV = new ImageIcon("./src/imagenes/detallesVent.png");
     ImageIcon imgS = new ImageIcon("./src/imagenes/salir.png");
-    
+
     // Panel principal
     Panel background = new Panel(null);
 
@@ -29,6 +31,8 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel botonEmpleado = new JPanel(null);
     JPanel botonProveedor = new JPanel(null);
     JPanel botonPuestos = new JPanel(null);
+    JPanel botonDetallesCompras = new JPanel(null);
+    JPanel botonDetallesVentas = new JPanel(null);
 
     // JLabels de botones/imagenes
     JLabel imgVentas = new JLabel();
@@ -43,11 +47,15 @@ public class Inicio extends JFrame implements MouseListener {
     JLabel txtProveedor = new JLabel("Gestionar Proveedores");
     JLabel imgPuestos = new JLabel();
     JLabel txtPuetos = new JLabel("Gestionar Puestos");
+    JLabel imgDetallesCompras = new JLabel();
+    JLabel txtDetallesCompras = new JLabel("Detalles Compras");
+    JLabel imgDetallesVentas = new JLabel();
+    JLabel txtDetallesVentas = new JLabel("Detalles Ventas");
 
     JLabel logo = new JLabel();
     JLabel imgSalir = new JLabel();
 
-    // Colores 
+    // Colores
     Color negroP = new Color(23, 23, 23);
     Color cremaP = new Color(251, 205, 131);
 
@@ -61,23 +69,22 @@ public class Inicio extends JFrame implements MouseListener {
         // Barra negra con logo
         verticalIzquierda.setBackground(negroP);
         verticalIzquierda.setBounds(0, 0, 240, 700);
-        logo.setBounds(80,10,80,80);
+        logo.setBounds(80, 10, 80, 80);
         logo.setIcon(imgL);
-        logo.setCursor(new Cursor(HAND_CURSOR));
+        logo.setCursor(new Cursor(12));
         logo.setToolTipText("Cerrar sesion");
         logo.addMouseListener(this);
 
         // Bara crema superior
         horizontalArriba.setBackground(cremaP);
         horizontalArriba.setBounds(240, 0, 1000, 100);
-        
 
         // Boton ventas
         botonVentas.setBackground(negroP);
         botonVentas.setBounds(0, 100, 240, 50);
         botonVentas.addMouseListener(this);
-        botonVentas.setCursor(new Cursor(HAND_CURSOR));
-        imgVentas.setBounds(0,0,50,50);
+        botonVentas.setCursor(new Cursor(12));
+        imgVentas.setBounds(0, 0, 50, 50);
         imgVentas.setIcon(imgV);
         txtVentas.setForeground(Color.WHITE);
         txtVentas.setFont(new Font("Roboto Black", Font.BOLD, 15));
@@ -87,8 +94,8 @@ public class Inicio extends JFrame implements MouseListener {
         botonCompras.setBackground(negroP);
         botonCompras.setBounds(0, 180, 240, 50);
         botonCompras.addMouseListener(this);
-        botonCompras.setCursor(new Cursor(HAND_CURSOR));
-        imgCompras.setBounds(5,0,50,50);
+        botonCompras.setCursor(new Cursor(12));
+        imgCompras.setBounds(5, 0, 50, 50);
         imgCompras.setIcon(imgC);
         txtCompras.setForeground(Color.WHITE);
         txtCompras.setFont(new Font("Roboto Black", Font.BOLD, 15));
@@ -98,64 +105,79 @@ public class Inicio extends JFrame implements MouseListener {
         botonDiscos.setBackground(negroP);
         botonDiscos.setBounds(0, 260, 240, 50);
         botonDiscos.addMouseListener(this);
-        botonDiscos.setCursor(new Cursor(HAND_CURSOR));
-        imgDiscos.setBounds(5,0,50,50);
+        botonDiscos.setCursor(new Cursor(12));
+        imgDiscos.setBounds(5, 0, 50, 50);
         imgDiscos.setIcon(imgD);
         txtDiscos.setForeground(Color.WHITE);
         txtDiscos.setFont(new Font("Roboto Black", Font.BOLD, 15));
-        txtDiscos.setBounds(70, 0, 180,50);
+        txtDiscos.setBounds(70, 0, 180, 50);
 
         // Boton empleado
         botonEmpleado.setBackground(negroP);
         botonEmpleado.setBounds(0, 340, 240, 50);
         botonEmpleado.addMouseListener(this);
-        botonEmpleado.setCursor(new Cursor(HAND_CURSOR));
-        imgEmpleado.setBounds(5,0,50,50);
+        botonEmpleado.setCursor(new Cursor(12));
+        imgEmpleado.setBounds(5, 0, 50, 50);
         imgEmpleado.setIcon(imgE);
         txtEmpleado.setForeground(Color.WHITE);
         txtEmpleado.setFont(new Font("Roboto Black", Font.BOLD, 15));
-        txtEmpleado.setBounds(70, 0, 180,50);
+        txtEmpleado.setBounds(70, 0, 180, 50);
 
         // Boton proveedor
         botonProveedor.setBackground(negroP);
         botonProveedor.setBounds(0, 420, 240, 50);
         botonProveedor.addMouseListener(this);
-        botonProveedor.setCursor(new Cursor(HAND_CURSOR));
-        imgProveedor.setBounds(5,0,50,50);
+        botonProveedor.setCursor(new Cursor(12));
+        imgProveedor.setBounds(5, 0, 50, 50);
         imgProveedor.setIcon(imgP);
         txtProveedor.setForeground(Color.WHITE);
         txtProveedor.setFont(new Font("Roboto Black", Font.BOLD, 15));
-        txtProveedor.setBounds(70, 0, 180,50);
+        txtProveedor.setBounds(70, 0, 180, 50);
 
         // Boton puestos
         botonPuestos.setBackground(negroP);
         botonPuestos.setBounds(0, 500, 240, 50);
         botonPuestos.addMouseListener(this);
-        botonPuestos.setCursor(new Cursor(HAND_CURSOR));
-        imgPuestos.setBounds(5,0,50,50);
+        botonPuestos.setCursor(new Cursor(12));
+        imgPuestos.setBounds(5, 0, 50, 50);
         imgPuestos.setIcon(imgPues);
         txtPuetos.setForeground(Color.WHITE);
         txtPuetos.setFont(new Font("Roboto Black", Font.BOLD, 15));
-        txtPuetos.setBounds(70, 0, 180,50);
+        txtPuetos.setBounds(70, 0, 180, 50);
 
-        JPanel tamanio = new JPanel(null);
-        tamanio.setBackground(Color.BLUE);
-        tamanio.setBounds(240,100,960,600);
-        background.add(tamanio);
+        // Boton detalles compras
+        botonDetallesCompras.setBackground(negroP);
+        botonDetallesCompras.setBounds(0, 580, 240, 50);
+        botonDetallesCompras.addMouseListener(this);
+        botonDetallesCompras.setCursor(new Cursor(12));
+        imgDetallesCompras.setBounds(5, 0, 50, 50);
+        imgDetallesCompras.setIcon(imgDetC);
+        txtDetallesCompras.setForeground(Color.WHITE);
+        txtDetallesCompras.setFont(new Font("Roboto Black", Font.BOLD, 15));
+        txtDetallesCompras.setBounds(70, 0, 180, 50);
 
+        // Boton detalles ventas
+        botonDetallesVentas.setBackground(negroP);
+        botonDetallesVentas.setBounds(0, 655, 240, 50);
+        botonDetallesVentas.addMouseListener(this);
+        botonDetallesVentas.setCursor(new Cursor(12));
+        imgDetallesVentas.setBounds(5, 0, 50, 50);
+        imgDetallesVentas.setIcon(imgDetV);
+        txtDetallesVentas.setForeground(Color.WHITE);
+        txtDetallesVentas.setFont(new Font("Roboto Black", Font.BOLD, 15));
+        txtDetallesVentas.setBounds(70, 0, 180, 50);
 
         // Boton salir
-        imgSalir.setBounds(170,640,45,45);
+        imgSalir.setBounds(850, 25, 45, 45);
         imgSalir.setIcon(imgS);
-        imgSalir.setCursor(new Cursor(HAND_CURSOR));
+        imgSalir.setCursor(new Cursor(12));
         imgSalir.addMouseListener(this);
-
 
         // Añadiendo logo
         verticalIzquierda.add(logo);
 
         // Añadiendo el boton salir
-        verticalIzquierda.add(imgSalir);
+        horizontalArriba.add(imgSalir);
 
         // Añadiendo el boton de ventas
         botonVentas.add(imgVentas);
@@ -186,6 +208,16 @@ public class Inicio extends JFrame implements MouseListener {
         botonPuestos.add(imgPuestos);
         botonPuestos.add(txtPuetos);
         verticalIzquierda.add(botonPuestos);
+
+        // Añadiendo el boton detalles compras
+        botonDetallesCompras.add(imgDetallesCompras);
+        botonDetallesCompras.add(txtDetallesCompras);
+        verticalIzquierda.add(botonDetallesCompras);
+
+        // Añadiendo el boton detalles ventas
+        botonDetallesVentas.add(imgDetallesVentas);
+        botonDetallesVentas.add(txtDetallesVentas);
+        verticalIzquierda.add(botonDetallesVentas);
 
         // Añadiendo el menu izquierdo y borde superior
         background.add(horizontalArriba);
@@ -221,7 +253,7 @@ public class Inicio extends JFrame implements MouseListener {
     @Override
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() == botonVentas) {
-            botonVentas.setBackground(Color.BLACK);                
+            botonVentas.setBackground(Color.BLACK);
         } else if (e.getSource() == botonCompras) {
             botonCompras.setBackground(Color.BLACK);
         } else if (e.getSource() == botonDiscos) {
@@ -232,13 +264,17 @@ public class Inicio extends JFrame implements MouseListener {
             botonProveedor.setBackground(Color.BLACK);
         } else if (e.getSource() == botonPuestos) {
             botonPuestos.setBackground(Color.BLACK);
+        } else if (e.getSource() == botonDetallesCompras) {
+            botonDetallesCompras.setBackground(Color.BLACK);
+        } else if (e.getSource() == botonDetallesVentas) {
+            botonDetallesVentas.setBackground(Color.BLACK);
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         if (e.getSource() == botonVentas) {
-            botonVentas.setBackground(negroP);                
+            botonVentas.setBackground(negroP);
         } else if (e.getSource() == botonCompras) {
             botonCompras.setBackground(negroP);
         } else if (e.getSource() == botonDiscos) {
@@ -249,6 +285,10 @@ public class Inicio extends JFrame implements MouseListener {
             botonProveedor.setBackground(negroP);
         } else if (e.getSource() == botonPuestos) {
             botonPuestos.setBackground(negroP);
+        } else if (e.getSource() == botonDetallesCompras) {
+            botonDetallesCompras.setBackground(negroP);
+        } else if (e.getSource() == botonDetallesVentas) {
+            botonDetallesVentas.setBackground(negroP);
         }
     }
 
