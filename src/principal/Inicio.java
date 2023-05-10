@@ -138,6 +138,11 @@ public class Inicio extends JFrame implements MouseListener {
         txtPuetos.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtPuetos.setBounds(70, 0, 180,50);
 
+        JPanel tamanio = new JPanel(null);
+        tamanio.setBackground(Color.BLUE);
+        tamanio.setBounds(240,100,960,600);
+        background.add(tamanio);
+
 
         // Boton salir
         imgSalir.setBounds(170,640,45,45);
