@@ -24,6 +24,18 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel verticalIzquierda = new JPanel(null);
     JPanel horizontalArriba = new JPanel(null);
 
+    // Panel principal y card layout principal
+    JPanel principal = new JPanel(null);
+    CardLayout clPrincipal = new CardLayout();
+    JPanel pVentas = new JPanel();
+    JPanel pCompras = new JPanel();
+    JPanel pDiscos = new JPanel();
+    JPanel pEmpleados = new JPanel();
+    JPanel pProveedores = new JPanel();
+    JPanel pPuestos = new JPanel();
+    JPanel pDVentas = new JPanel();
+    JPanel pDCompras = new JPanel();
+
     // Paneles botones
     JPanel botonVentas = new JPanel(null);
     JPanel botonCompras = new JPanel(null);
@@ -33,6 +45,7 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel botonPuestos = new JPanel(null);
     JPanel botonDetallesCompras = new JPanel(null);
     JPanel botonDetallesVentas = new JPanel(null);
+    JPanel anterior = new JPanel();
 
     // JLabels de botones/imagenes
     JLabel imgVentas = new JLabel();
@@ -80,7 +93,7 @@ public class Inicio extends JFrame implements MouseListener {
         horizontalArriba.setBounds(240, 0, 1000, 100);
 
         // Boton ventas
-        botonVentas.setBackground(negroP);
+        botonVentas.setBackground(Color.black);
         botonVentas.setBounds(0, 100, 240, 50);
         botonVentas.addMouseListener(this);
         botonVentas.setCursor(new Cursor(12));
@@ -89,6 +102,7 @@ public class Inicio extends JFrame implements MouseListener {
         txtVentas.setForeground(Color.WHITE);
         txtVentas.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtVentas.setBounds(70, 0, 180, 50);
+        anterior = botonVentas;
 
         // Boton compras
         botonCompras.setBackground(negroP);
@@ -101,7 +115,7 @@ public class Inicio extends JFrame implements MouseListener {
         txtCompras.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtCompras.setBounds(70, 0, 180, 50);
 
-        // Boton discos
+        // Boton discosz
         botonDiscos.setBackground(negroP);
         botonDiscos.setBounds(0, 260, 240, 50);
         botonDiscos.addMouseListener(this);
@@ -117,6 +131,7 @@ public class Inicio extends JFrame implements MouseListener {
         botonEmpleado.setBounds(0, 340, 240, 50);
         botonEmpleado.addMouseListener(this);
         botonEmpleado.setCursor(new Cursor(12));
+        botonEmpleado.setCursor(new Cursor(HAND_CURSOR));
         imgEmpleado.setBounds(5, 0, 50, 50);
         imgEmpleado.setIcon(imgE);
         txtEmpleado.setForeground(Color.WHITE);
@@ -166,6 +181,9 @@ public class Inicio extends JFrame implements MouseListener {
         txtDetallesVentas.setForeground(Color.WHITE);
         txtDetallesVentas.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtDetallesVentas.setBounds(70, 0, 180, 50);
+
+        // Boton salir
+        imgSalir.setBounds(850, 25, 45, 45);
 
         // Boton salir
         imgSalir.setBounds(850, 25, 45, 45);
@@ -223,6 +241,30 @@ public class Inicio extends JFrame implements MouseListener {
         background.add(horizontalArriba);
         background.add(verticalIzquierda);
 
+        // Principal
+        principal.setBounds(240, 100, 960, 600);
+        principal.setLayout(clPrincipal);
+        // Agregar los paneles correspondientes
+        pVentas.add(new JLabel("Ventas"));
+        principal.add(pVentas, "Ventas");
+        pCompras.add(new JLabel("Compras"));
+        principal.add(pCompras, "Compras");
+        pDiscos.add(new JLabel("Discos"));
+        principal.add(pDiscos, "Discos");
+        pEmpleados.add(new JLabel("Empleados"));
+        principal.add(pEmpleados, "Empleados");
+        pProveedores.add(new JLabel("Proveedores"));
+        ;
+        principal.add(pProveedores, "Proveedores");
+        pPuestos.add(new JLabel("Puestos"));
+        principal.add(pPuestos, "Puestos");
+        pDCompras.add(new JLabel("Detalles compras"));
+        principal.add(pDCompras, "DCompras");
+        pDVentas.add(new JLabel("Detalles ventas"));
+        principal.add(pDVentas, "DVentas");
+        background.add(principal);
+
+        // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -237,6 +279,29 @@ public class Inicio extends JFrame implements MouseListener {
             dispose();
         } else if (e.getSource() == imgSalir) {
             System.exit(0);
+        } else {
+            anterior.setBackground(negroP);
+            if (e.getSource() == botonVentas) {
+                botonVentas.setBackground(Color.black);
+                anterior = botonVentas;
+                clPrincipal.show(principal, "Ventas");
+            } else if (e.getSource() == botonCompras) {
+                botonCompras.setBackground(Color.black);
+                anterior = botonCompras;
+                clPrincipal.show(principal, "Compras");
+            } else if (e.getSource() == botonDiscos) {
+                botonDiscos.setBackground(Color.black);
+                anterior = botonDiscos;
+                clPrincipal.show(principal, "Discos");
+            } else if (e.getSource() == botonEmpleado) {
+                botonEmpleado.setBackground(Color.black);
+                anterior = botonEmpleado;
+                clPrincipal.show(principal, "Empleados");
+            } else if (e.getSource() == botonProveedor) {
+                botonProveedor.setBackground(Color.black);
+                anterior = botonProveedor;
+                clPrincipal.show(principal, "Proveedores");
+            }
         }
     }
 
@@ -273,6 +338,9 @@ public class Inicio extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+        if(e.getSource() == anterior){
+            return;
+        }
         if (e.getSource() == botonVentas) {
             botonVentas.setBackground(negroP);
         } else if (e.getSource() == botonCompras) {
