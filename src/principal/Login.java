@@ -99,7 +99,7 @@ public class Login extends JFrame implements MouseListener {
         entrar.setBounds(240, 370, 120, 40);
         entrar.setBackground(new Color(251, 208, 131));
         entrar.setFont(new Font("Roboto Black", Font.BOLD, 20));
-        entrar.setCursor(new Cursor(HAND_CURSOR));
+        entrar.setCursor(new Cursor(12));
         entrar.setHorizontalAlignment(SwingConstants.CENTER);
         entrar.addMouseListener(this);
 
@@ -107,7 +107,7 @@ public class Login extends JFrame implements MouseListener {
         salir.setBounds(100, 370, 120, 40);
         salir.setBackground(new Color(251, 208, 131));
         salir.setFont(new Font("Roboto Black", Font.BOLD, 20));
-        salir.setCursor(new Cursor(HAND_CURSOR));
+        salir.setCursor(new Cursor(12));
         salir.setHorizontalAlignment(SwingConstants.CENTER);
         salir.addMouseListener(this);
 
