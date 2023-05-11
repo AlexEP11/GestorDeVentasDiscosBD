@@ -16,6 +16,9 @@ public class Inicio extends JFrame implements MouseListener {
     ImageIcon imgDetC = new ImageIcon("./src/imagenes/detallesCom.png");
     ImageIcon imgDetV = new ImageIcon("./src/imagenes/detallesVent.png");
     ImageIcon imgS = new ImageIcon("./src/imagenes/salir.png");
+    ImageIcon imgAgreg = new ImageIcon("./src/imagenes/agregar.png");
+    ImageIcon imgMod = new ImageIcon("./src/imagenes/cambiar.png");
+    ImageIcon imgElim = new ImageIcon("./src/imagenes/eliminar.png");
 
     // Panel principal
     Panel background = new Panel(null);
@@ -45,6 +48,9 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel botonPuestos = new JPanel(null);
     JPanel botonDetallesCompras = new JPanel(null);
     JPanel botonDetallesVentas = new JPanel(null);
+    JPanel botonAgregar = new JPanel(null);
+    JPanel botonModificar = new JPanel(null);
+    JPanel botonEliminar = new JPanel(null);
     JPanel anterior = new JPanel();
 
     // JLabels de botones/imagenes
@@ -64,6 +70,12 @@ public class Inicio extends JFrame implements MouseListener {
     JLabel txtDetallesCompras = new JLabel("Detalles Compras");
     JLabel imgDetallesVentas = new JLabel();
     JLabel txtDetallesVentas = new JLabel("Detalles Ventas");
+    JLabel imgAgregar = new JLabel();
+    JLabel txtAgregar = new JLabel("Agregar");
+    JLabel imgModificar = new JLabel();
+    JLabel txtModificar = new JLabel("Modificar");
+    JLabel imgEliminar = new JLabel();
+    JLabel txtEliminar = new JLabel("Eliminar");
 
     JLabel logo = new JLabel();
     JLabel imgSalir = new JLabel();
@@ -71,6 +83,7 @@ public class Inicio extends JFrame implements MouseListener {
     // Colores
     Color negroP = new Color(23, 23, 23);
     Color cremaP = new Color(251, 205, 131);
+    Color cremaHov = new Color(242,190,107);
 
     public Inicio() {
 
@@ -91,6 +104,39 @@ public class Inicio extends JFrame implements MouseListener {
         // Bara crema superior
         horizontalArriba.setBackground(cremaP);
         horizontalArriba.setBounds(240, 0, 1000, 100);
+
+        // Boton Agregar
+        botonAgregar.setBackground(cremaP);
+        botonAgregar.setBounds(40, 25, 180, 50);
+        botonAgregar.addMouseListener(this);
+        botonAgregar.setCursor(new Cursor(12));
+        imgAgregar.setBounds(10,0,50,50);
+        imgAgregar.setIcon(imgAgreg);
+        txtAgregar.setForeground(Color.BLACK);
+        txtAgregar.setFont(new Font("Roboto Black", Font.BOLD, 18));
+        txtAgregar.setBounds(80,0,120,50);
+
+        // Boton Modificar
+        botonModificar.setBackground(cremaP);
+        botonModificar.setBounds(300, 25, 180, 50);
+        botonModificar.addMouseListener(this);
+        botonModificar.setCursor(new Cursor(12));
+        imgModificar.setBounds(10,0,50,50);
+        imgModificar.setIcon(imgMod);
+        txtModificar.setForeground(Color.BLACK);
+        txtModificar.setFont(new Font("Roboto Black", Font.BOLD, 18));
+        txtModificar.setBounds(80,0,120,50);
+
+        // Boton Eliminar
+        botonEliminar.setBackground(cremaP);
+        botonEliminar.setBounds(560, 25, 180, 50);
+        botonEliminar.addMouseListener(this);
+        botonEliminar.setCursor(new Cursor(12));
+        imgEliminar.setBounds(10,0,50,50);
+        imgEliminar.setIcon(imgElim);
+        txtEliminar.setForeground(Color.BLACK);
+        txtEliminar.setFont(new Font("Roboto Black", Font.BOLD, 18));
+        txtEliminar.setBounds(80,0,120,50);
 
         // Boton ventas
         botonVentas.setBackground(Color.black);
@@ -131,7 +177,7 @@ public class Inicio extends JFrame implements MouseListener {
         botonEmpleado.setBounds(0, 340, 240, 50);
         botonEmpleado.addMouseListener(this);
         botonEmpleado.setCursor(new Cursor(12));
-        botonEmpleado.setCursor(new Cursor(HAND_CURSOR));
+        botonEmpleado.setCursor(new Cursor(12));
         imgEmpleado.setBounds(5, 0, 50, 50);
         imgEmpleado.setIcon(imgE);
         txtEmpleado.setForeground(Color.WHITE);
@@ -184,15 +230,30 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Boton salir
         imgSalir.setBounds(850, 25, 45, 45);
-
-        // Boton salir
-        imgSalir.setBounds(850, 25, 45, 45);
         imgSalir.setIcon(imgS);
         imgSalir.setCursor(new Cursor(12));
         imgSalir.addMouseListener(this);
 
+
+////////////////////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL /////////////////////////////////////////////////////
+    
         // Añadiendo logo
         verticalIzquierda.add(logo);
+
+        // Añadiendo el boton agregar
+        botonAgregar.add(imgAgregar);
+        botonAgregar.add(txtAgregar);
+        horizontalArriba.add(botonAgregar);
+
+        // Añadiendo el boton modificar
+        botonModificar.add(imgModificar);
+        botonModificar.add(txtModificar);
+        horizontalArriba.add(botonModificar);
+
+        // Añadiendo el boton modificar
+        botonEliminar.add(imgEliminar);
+        botonEliminar.add(txtEliminar);
+        horizontalArriba.add(botonEliminar);
 
         // Añadiendo el boton salir
         horizontalArriba.add(imgSalir);
@@ -300,7 +361,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonProveedor.setBackground(Color.black);
                 anterior = botonProveedor;
                 clPrincipal.show(principal, "Proveedores");
-            }else if (e.getSource() == botonPuestos) {
+            } else if (e.getSource() == botonPuestos) {
                 clPrincipal.show(principal, "Puestos");
             } else if (e.getSource() == botonDetallesCompras) {
                 clPrincipal.show(principal, "DCompras");
@@ -338,12 +399,18 @@ public class Inicio extends JFrame implements MouseListener {
             botonDetallesCompras.setBackground(Color.BLACK);
         } else if (e.getSource() == botonDetallesVentas) {
             botonDetallesVentas.setBackground(Color.BLACK);
+        } else if (e.getSource() == botonAgregar) {
+            botonAgregar.setBackground(cremaHov);
+        } else if (e.getSource() == botonModificar) {
+            botonModificar.setBackground(cremaHov);
+        } else if (e.getSource() == botonEliminar) {
+            botonEliminar.setBackground(cremaHov);
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if(e.getSource() == anterior){
+        if (e.getSource() == anterior) {
             return;
         }
         if (e.getSource() == botonVentas) {
@@ -362,6 +429,12 @@ public class Inicio extends JFrame implements MouseListener {
             botonDetallesCompras.setBackground(negroP);
         } else if (e.getSource() == botonDetallesVentas) {
             botonDetallesVentas.setBackground(negroP);
+        } else if (e.getSource() == botonAgregar) {
+            botonAgregar.setBackground(cremaP);
+        } else if (e.getSource() == botonModificar) {
+            botonModificar.setBackground(cremaP);
+        } else if (e.getSource() == botonEliminar) {
+            botonEliminar.setBackground(cremaP);
         }
     }
 
