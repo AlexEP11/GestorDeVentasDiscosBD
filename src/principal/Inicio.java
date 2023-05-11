@@ -2,7 +2,8 @@ package principal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;;
+import java.awt.event.*;
+import opciones.Consulta.*;
 
 public class Inicio extends JFrame implements MouseListener {
     // Imagenes
@@ -306,7 +307,10 @@ public class Inicio extends JFrame implements MouseListener {
         principal.setBounds(240, 100, 960, 600);
         principal.setLayout(clPrincipal);
         // Agregar los paneles correspondientes
-        pVentas.add(new JLabel("Ventas"));
+        JPanel a = new Plantilla();
+        pVentas.setLayout(null);
+        pVentas.setBounds(240,100,960, 600);
+        pVentas.add(a);
         principal.add(pVentas, "Ventas");
         pCompras.add(new JLabel("Compras"));
         principal.add(pCompras, "Compras");
