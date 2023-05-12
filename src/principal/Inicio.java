@@ -362,7 +362,7 @@ public class Inicio extends JFrame implements MouseListener {
         // Aqui colocar los respectivos jPaneles modificados
         // Ventas
         // Consultas
-        JPanel cVentas = new Plantilla();
+        JPanel cVentas = new ConsultarVenta();
         pVentas.add(cVentas, "Consulta");
         // Agregar
         JPanel aVentas = new JPanel();
