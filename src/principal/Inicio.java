@@ -3,6 +3,8 @@ package principal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
 
 public class Inicio extends JFrame implements MouseListener {
@@ -307,7 +309,7 @@ public class Inicio extends JFrame implements MouseListener {
         principal.setBounds(240, 100, 960, 600);
         principal.setLayout(clPrincipal);
         // Agregar los paneles correspondientes
-        JPanel a = new Plantilla();
+        JPanel a = new AgregarVenta();
         pVentas.setLayout(null);
         pVentas.setBounds(240,100,960, 600);
         pVentas.add(a);
