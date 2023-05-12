@@ -67,6 +67,20 @@ public class AgregarDisco extends JPanel implements MouseListener{
         nomAlbum.setForeground(Color.GRAY);
         nomAlbum.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
 
+        // Campo Existencia 
+        txtExistencia.setBounds(20,240,120,20);
+        txtExistencia.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        existencia.setBounds(130,237,270,25);
+        existencia.setForeground(Color.GRAY);
+        existencia.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+
+        // Campo Genero 
+        txtGenero.setBounds(20,330,120,20);
+        txtGenero.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        genero.setBounds(130,327,270,25);
+        genero.setForeground(Color.GRAY);
+        genero.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+
 
         // Campo boton Agregar
         agregar.setBackground(cremaHov);
@@ -100,7 +114,14 @@ public class AgregarDisco extends JPanel implements MouseListener{
         // Añadiendo el campo Nom. Album
         add(nomAlbum);
         add(txtNomAlbum);
+
+         // Añadiendo el campo Existenncia
+         add(existencia);
+         add(txtExistencia);
         
+          // Añadiendo el campo Genero
+          add(genero);
+          add(txtGenero);
 
 
         // Añadiendo el boton Agregar (disquito)
