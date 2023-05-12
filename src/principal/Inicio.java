@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import opciones.Agregar.AgregarCompra;
+import opciones.Agregar.AgregarDisco;
 import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
 
@@ -403,7 +404,7 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cDiscos = new Plantilla();
         pDiscos.add(cDiscos, "Consulta");
         // Agregar
-        JPanel aDiscos = new JPanel();
+        JPanel aDiscos = new AgregarDisco();
         aDiscos.add(new JLabel("aDiscos"));
         pDiscos.add(aDiscos, "Agregar");
         // Modificar
