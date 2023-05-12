@@ -64,6 +64,7 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel botonModificar = new JPanel(null);
     JPanel botonEliminar = new JPanel(null);
     JPanel anterior = new JPanel();
+    JPanel anterior2 = new JPanel();
 
     // JLabels de botones/imagenes
     JLabel imgVentas = new JLabel();
@@ -338,6 +339,7 @@ public class Inicio extends JFrame implements MouseListener {
         principal.add(pDVentas, "DVentas");
         background.add(principal);
         iniClSecundario();
+        anterior2 = botonAgregar;
         // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
@@ -504,6 +506,7 @@ public class Inicio extends JFrame implements MouseListener {
             System.exit(0);
         } else {
             anterior.setBackground(negroP);
+            anterior2.setBackground(cremaP);
             if (e.getSource() == botonVentas) {
                 botonVentas.setBackground(Color.black);
                 anterior = botonVentas;
@@ -564,10 +567,16 @@ public class Inicio extends JFrame implements MouseListener {
                 anterior.setBackground(Color.black);
                 if (e.getSource() == botonAgregar) {
                     clSecundario.show(actual, "Agregar");
+                    anterior2 = botonAgregar;
+                    botonAgregar.setBackground(cremaHov);
                 } else if (e.getSource() == botonModificar) {
                     clSecundario.show(actual, "Modificar");
+                    anterior2 = botonModificar;
+                    botonModificar.setBackground(cremaHov);
                 } else if (e.getSource() == botonEliminar) {
                     clSecundario.show(actual, "Eliminar");
+                    anterior2 = botonEliminar;
+                    botonEliminar.setBackground(cremaHov);
                 }
             }
         }
@@ -612,7 +621,7 @@ public class Inicio extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == anterior) {
+        if (e.getSource() == anterior || e.getSource() == anterior2) {
             return;
         }
         if (e.getSource() == botonVentas) {
