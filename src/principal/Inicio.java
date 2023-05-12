@@ -321,10 +321,8 @@ public class Inicio extends JFrame implements MouseListener {
         principal.setBounds(240, 100, 960, 600);
         principal.setLayout(clPrincipal);
         // Agregar los paneles correspondientes
-        JPanel a = new AgregarVenta();
         pVentas.setLayout(null);
         pVentas.setBounds(240,100,960, 600);
-        pVentas.add(a);
         principal.add(pVentas, "Ventas");
         actual = pVentas;
         clSecundario = clVentas;
@@ -370,7 +368,7 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cVentas = new Plantilla();
         pVentas.add(cVentas, "Consulta");
         // Agregar
-        JPanel aVentas = new JPanel();
+        JPanel aVentas = new AgregarVenta();
         aVentas.add(new JLabel("aVentas"));
         pVentas.add(aVentas, "Agregar");
         // Modificar
