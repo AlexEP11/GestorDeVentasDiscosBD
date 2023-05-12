@@ -1,10 +1,13 @@
 package opciones.Agregar;
 
 import javax.swing.*;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class AgregarVenta extends JPanel implements MouseListener{ 
+    // Colores
+    Color cremaHov = new Color(242,190,107);
 
     // Componentes id Empleado
     JLabel txtIdEmpleado = new JLabel("Id Empleado");
@@ -22,6 +25,28 @@ public class AgregarVenta extends JPanel implements MouseListener{
     JLabel txtCantidad = new JLabel("Cantidad");
     JTextField cantidad = new JTextField();
 
+    // Componente Tabla
+    JTable tabla = new JTable(0,3);
+
+
+    // Boton Agregar
+    JPanel agregar = new JPanel(null);
+    JLabel txtAgregar = new JLabel("Agregar");
+    JLabel imgAgregar = new JLabel();
+    ImageIcon discoAgregar = new ImageIcon("./src/imagenes/discoAgregar.png");
+
+    // Boton Finaliar 
+    JPanel finalizar = new JPanel(null);
+    JLabel txtFinalizar = new JLabel("Finalizar");
+    JLabel imgFinalizar = new JLabel();
+    ImageIcon carroFinalizar = new ImageIcon("./src/imagenes/finalizar.png");
+
+    // Boton Cancelar
+    JPanel cancelar = new JPanel(null);
+    JLabel txtCancelar = new JLabel("Cancelar");
+    JLabel imgCancelar = new JLabel();
+    ImageIcon equisCancelar = new ImageIcon("./src/imagenes/cancelar.png");
+
 
     public AgregarVenta() {  
         setLayout(null);
@@ -33,7 +58,6 @@ public class AgregarVenta extends JPanel implements MouseListener{
         idEmpleado.setBounds(135,57,270,25);
         idEmpleado.setForeground(Color.GRAY);
         idEmpleado.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
-        idEmpleado.setAlignmentX(15);
 
         // Campo Fecha
         txtFecha.setBounds(500, 60, 120, 20);
@@ -41,7 +65,6 @@ public class AgregarVenta extends JPanel implements MouseListener{
         fecha.setBounds(575,57,270,25);
         fecha.setForeground(Color.GRAY);
         fecha.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
-        fecha.setHorizontalAlignment(JTextField.CENTER);
 
         // Campo Id Disco
         txtIdDisco.setBounds(40, 200, 120, 20);
@@ -49,7 +72,6 @@ public class AgregarVenta extends JPanel implements MouseListener{
         idDisco.setBounds(135,197,270,25);
         idDisco.setForeground(Color.GRAY);
         idDisco.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
-        idDisco.setHorizontalAlignment(JTextField.CENTER);
 
         // Campo Cantidad
         txtCantidad.setBounds(40, 340, 120, 20);
@@ -57,8 +79,46 @@ public class AgregarVenta extends JPanel implements MouseListener{
         cantidad.setBounds(135,337,270,25);
         cantidad.setForeground(Color.GRAY);
         cantidad.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
-        cantidad.setHorizontalAlignment(JTextField.CENTER);
 
+        // Campo Tabla
+        
+
+
+
+
+
+        // Campo boton Agregar
+        agregar.setBackground(cremaHov);
+        agregar.setBounds(30,420,160,60);
+        agregar.addMouseListener(this);
+        agregar.setCursor(new Cursor(12));
+        imgAgregar.setBounds(10,5,50,50);
+        imgAgregar.setIcon(discoAgregar);
+        txtAgregar.setForeground(Color.BLACK);
+        txtAgregar.setFont(new Font("Roboto Black", Font.BOLD, 18));
+        txtAgregar.setBounds(70,5,120,50);
+
+        // Campo boton Finalizar
+        finalizar.setBackground(cremaHov);
+        finalizar.setBounds(245,420,160,60);
+        finalizar.addMouseListener(this);
+        finalizar.setCursor(new Cursor(12));
+        imgFinalizar.setBounds(10,5,50,50);
+        imgFinalizar.setIcon(carroFinalizar);
+        txtFinalizar.setForeground(Color.BLACK);
+        txtFinalizar.setFont(new Font("Roboto Black", Font.BOLD, 18));
+        txtFinalizar.setBounds(70,5,120,50);
+
+        // Campo boton Cancelar
+        cancelar.setBackground(cremaHov);
+        cancelar.setBounds(140,510,160,60);
+        cancelar.addMouseListener(this);
+        cancelar.setCursor(new Cursor(12));
+        imgCancelar.setBounds(10,5,50,50);
+        imgCancelar.setIcon(equisCancelar);
+        txtCancelar.setForeground(Color.BLACK);
+        txtCancelar.setFont(new Font("Roboto Black", Font.BOLD, 18));
+        txtCancelar.setBounds(70,5,120,50);
         
         //////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL //////////////////////////////////////////////
 
@@ -77,6 +137,26 @@ public class AgregarVenta extends JPanel implements MouseListener{
         // Añadiendo el campo cantidad
         add(cantidad);
         add(txtCantidad);
+
+        // Añadiendo la tabla
+        
+
+
+
+        // Añadiendo el boton Agregar (disquito)
+        agregar.add(imgAgregar);
+        agregar.add(txtAgregar);
+        add(agregar);
+
+        // Añadiendo el boton Finalizar
+        finalizar.add(imgFinalizar);
+        finalizar.add(txtFinalizar);
+        add(finalizar);
+
+        // Añadiendo el boton Cancelar
+        cancelar.add(imgCancelar);
+        cancelar.add(txtCancelar);
+        add(cancelar);
 
         setBounds(0,0,960,600);
         setVisible(true);
