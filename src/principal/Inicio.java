@@ -370,7 +370,6 @@ public class Inicio extends JFrame implements MouseListener {
         pVentas.add(cVentas, "Consulta");
         // Agregar
         JPanel aVentas = new AgregarVenta();
-        aVentas.add(new JLabel("aVentas"));
         pVentas.add(aVentas, "Agregar");
         // Modificar
         JPanel mVentas = new JPanel();
@@ -383,7 +382,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Compras
         // Consultas
-        JPanel cCompras = new Plantilla();
+        JPanel cCompras = new ConsultarCompra();
         pCompras.add(cCompras, "Consulta");
         // Agregar
         JPanel aCompras = new AgregarCompra();
@@ -400,7 +399,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Discos
         // Consultas
-        JPanel cDiscos = new Plantilla();
+        JPanel cDiscos = new ConsultarDiscos();
         pDiscos.add(cDiscos, "Consulta");
         // Agregar
         JPanel aDiscos = new JPanel();
@@ -417,7 +416,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Empleados
         // Consultas
-        JPanel cEmpleados = new Plantilla();
+        JPanel cEmpleados = new ConsultarEmpleados();
         pEmpleados.add(cEmpleados, "Consulta");
         // Agregar
         JPanel aEmpleados = new JPanel();
@@ -434,7 +433,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Proeedores
         // Consultas
-        JPanel cProveedores = new Plantilla();
+        JPanel cProveedores = new ConsultarProveedores();
         pProveedores.add(cProveedores, "Consulta");
         // Agregar
         JPanel aProveedores = new JPanel();
@@ -451,7 +450,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Puestos
         // Consultas
-        JPanel cPuestos = new Plantilla();
+        JPanel cPuestos = new ConsultarPuestos();
         pPuestos.add(cPuestos, "Consulta");
         // Agregar
         JPanel aPuestos = new JPanel();
@@ -468,7 +467,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // DCompras
         // Consultas
-        JPanel cDCompras = new Plantilla();
+        JPanel cDCompras = new ConsultarDCompra();
         pDCompras.add(cDCompras, "Consulta");
         // Agregar
         JPanel aDCompras = new JPanel();
@@ -485,7 +484,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // DVentas
         // Consultas
-        JPanel cDVentas = new Plantilla();
+        JPanel cDVentas = new ConsultarDVenta();
         pDVentas.add(cDVentas, "Consulta");
         // Agregar
         JPanel aDVentas = new JPanel();
