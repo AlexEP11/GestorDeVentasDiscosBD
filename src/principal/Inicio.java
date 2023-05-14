@@ -6,6 +6,9 @@ import java.awt.event.*;
 
 import opciones.Agregar.AgregarCompra;
 import opciones.Agregar.AgregarDisco;
+import opciones.Agregar.AgregarEmpleado;
+import opciones.Agregar.AgregarProveedor;
+import opciones.Agregar.AgregarPuesto;
 import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
 
@@ -423,7 +426,7 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cEmpleados = new ConsultarEmpleados();
         pEmpleados.add(cEmpleados, "Consulta");
         // Agregar
-        JPanel aEmpleados = new JPanel();
+        JPanel aEmpleados = new AgregarEmpleado();
         aEmpleados.add(new JLabel("aEmpleados"));
         pEmpleados.add(aEmpleados, "Agregar");
         // Modificar
@@ -440,7 +443,7 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cProveedores = new ConsultarProveedores();
         pProveedores.add(cProveedores, "Consulta");
         // Agregar
-        JPanel aProveedores = new JPanel();
+        JPanel aProveedores = new AgregarProveedor();
         aProveedores.add(new JLabel("aProveedores"));
         pProveedores.add(aProveedores, "Agregar");
         // Modificar
@@ -457,7 +460,7 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cPuestos = new ConsultarPuestos();
         pPuestos.add(cPuestos, "Consulta");
         // Agregar
-        JPanel aPuestos = new JPanel();
+        JPanel aPuestos = new AgregarPuesto();
         aPuestos.add(new JLabel("aPuestos"));
         pPuestos.add(aPuestos, "Agregar");
         // Modificar
