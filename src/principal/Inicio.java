@@ -344,6 +344,9 @@ public class Inicio extends JFrame implements MouseListener {
         background.add(principal);
         iniClSecundario();
         anterior2 = botonAgregar;
+        botonModificar.setVisible(false);
+        botonEliminar.setVisible(false);
+        botonAgregar.setVisible(true);
         // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
@@ -514,17 +517,26 @@ public class Inicio extends JFrame implements MouseListener {
                 botonVentas.setBackground(Color.black);
                 anterior = botonVentas;
                 actual = pVentas;
+                botonModificar.setVisible(false);
+                botonEliminar.setVisible(false);
+                botonAgregar.setVisible(true);
                 clSecundario = clVentas;
                 clPrincipal.show(principal, "Ventas");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonCompras) {
                 botonCompras.setBackground(Color.black);
+                botonModificar.setVisible(false);
+                botonEliminar.setVisible(false);
+                botonAgregar.setVisible(true);
                 anterior = botonCompras;
                 actual = pCompras;
                 clSecundario = clCompras;
                 clPrincipal.show(principal, "Compras");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDiscos) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonDiscos.setBackground(Color.black);
                 anterior = botonDiscos;
                 actual = pDiscos;
@@ -532,6 +544,9 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Discos");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonEmpleado) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonEmpleado.setBackground(Color.black);
                 anterior = botonEmpleado;
                 actual = pEmpleados;
@@ -539,6 +554,9 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Empleados");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonProveedor) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonProveedor.setBackground(Color.black);
                 anterior = botonProveedor;
                 actual = pProveedores;
@@ -546,6 +564,9 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Proveedores");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonPuestos) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonPuestos.setBackground(Color.black);
                 anterior = botonPuestos;
                 actual = pPuestos;
@@ -553,6 +574,9 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Puestos");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDetallesCompras) {
+                botonModificar.setVisible(false);
+                botonAgregar.setVisible(false);
+                botonEliminar.setVisible(false);
                 botonDetallesCompras.setBackground(Color.black);
                 anterior = botonDetallesCompras;
                 actual = pDCompras;
@@ -560,6 +584,9 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "DCompras");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDetallesVentas) {
+                botonModificar.setVisible(false);
+                botonAgregar.setVisible(false);
+                botonEliminar.setVisible(false);
                 botonDetallesVentas.setBackground(Color.black);
                 anterior = botonDetallesVentas;
                 actual = pDVentas;
