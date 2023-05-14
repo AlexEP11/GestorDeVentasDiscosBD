@@ -375,13 +375,13 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel aVentas = new AgregarVenta();
         pVentas.add(aVentas, "Agregar");
         // Modificar
-        JPanel mVentas = new JPanel();
-        mVentas.add(new JLabel("mVentas"));
-        pVentas.add(mVentas, "Modificar");
+        // JPanel mVentas = new JPanel();
+        // mVentas.add(new JLabel("mVentas"));
+        // pVentas.add(mVentas, "Modificar");
         // Eliminar
-        JPanel eVentas = new JPanel();
-        eVentas.add(new JLabel("eVentas"));
-        pVentas.add(eVentas, "Eliminar");
+        // JPanel eVentas = new JPanel();
+        // eVentas.add(new JLabel("eVentas"));
+        // pVentas.add(eVentas, "Eliminar");
 
         // Compras
         // Consultas
@@ -392,13 +392,13 @@ public class Inicio extends JFrame implements MouseListener {
         aCompras.add(new JLabel("aCompras"));
         pCompras.add(aCompras, "Agregar");
         // Modificar
-        JPanel mCompras = new JPanel();
-        mCompras.add(new JLabel("mCompras"));
-        pCompras.add(mCompras, "Modificar");
+        // JPanel mCompras = new JPanel();
+        // mCompras.add(new JLabel("mCompras"));
+        // pCompras.add(mCompras, "Modificar");
         // Eliminar
-        JPanel eCompras = new JPanel();
-        eCompras.add(new JLabel("eCompras"));
-        pCompras.add(eCompras, "Eliminar");
+        // JPanel eCompras = new JPanel();
+        // eCompras.add(new JLabel("eCompras"));
+        // pCompras.add(eCompras, "Eliminar");
 
         // Discos
         // Consultas
@@ -473,34 +473,34 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cDCompras = new ConsultarDCompra();
         pDCompras.add(cDCompras, "Consulta");
         // Agregar
-        JPanel aDCompras = new JPanel();
-        aDCompras.add(new JLabel("aDCompras"));
-        pDCompras.add(aDCompras, "Agregar");
-        // Modificar
-        JPanel mDCompras = new JPanel();
-        mDCompras.add(new JLabel("mDCompras"));
-        pDCompras.add(mDCompras, "Modificar");
-        // Eliminar
-        JPanel eDCompras = new JPanel();
-        eDCompras.add(new JLabel("eDCompras"));
-        pDCompras.add(eDCompras, "Eliminar");
+        // JPanel aDCompras = new JPanel();
+        // aDCompras.add(new JLabel("aDCompras"));
+        // pDCompras.add(aDCompras, "Agregar");
+        // // Modificar
+        // JPanel mDCompras = new JPanel();
+        // mDCompras.add(new JLabel("mDCompras"));
+        // pDCompras.add(mDCompras, "Modificar");
+        // // Eliminar
+        // JPanel eDCompras = new JPanel();
+        // eDCompras.add(new JLabel("eDCompras"));
+        // pDCompras.add(eDCompras, "Eliminar");
 
         // DVentas
         // Consultas
         JPanel cDVentas = new ConsultarDVenta();
         pDVentas.add(cDVentas, "Consulta");
-        // Agregar
-        JPanel aDVentas = new JPanel();
-        aDVentas.add(new JLabel("aDVentas"));
-        pDVentas.add(aDVentas, "Agregar");
-        // Modificar
-        JPanel mDVentas = new JPanel();
-        mDVentas.add(new JLabel("mDVentas"));
-        pDVentas.add(mDVentas, "Modificar");
-        // Eliminar
-        JPanel eDVentas = new JPanel();
-        eDVentas.add(new JLabel("eDVentas"));
-        pDVentas.add(eDVentas, "Eliminar");
+        // // Agregar
+        // JPanel aDVentas = new JPanel();
+        // aDVentas.add(new JLabel("aDVentas"));
+        // pDVentas.add(aDVentas, "Agregar");
+        // // Modificar
+        // JPanel mDVentas = new JPanel();
+        // mDVentas.add(new JLabel("mDVentas"));
+        // pDVentas.add(mDVentas, "Modificar");
+        // // Eliminar
+        // JPanel eDVentas = new JPanel();
+        // eDVentas.add(new JLabel("eDVentas"));
+        // pDVentas.add(eDVentas, "Eliminar");
     }
 
     @Override
