@@ -11,6 +11,10 @@ import opciones.Agregar.AgregarProveedor;
 import opciones.Agregar.AgregarPuesto;
 import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
+import opciones.Modificar.ModificarDisco;
+import opciones.Modificar.ModificarEmpleado;
+import opciones.Modificar.ModificarProveedor;
+import opciones.Modificar.ModificarPuesto;
 
 public class Inicio extends JFrame implements MouseListener {
     // Imagenes
@@ -413,7 +417,7 @@ public class Inicio extends JFrame implements MouseListener {
         aDiscos.add(new JLabel("aDiscos"));
         pDiscos.add(aDiscos, "Agregar");
         // Modificar
-        JPanel mDiscos = new JPanel();
+        JPanel mDiscos = new ModificarDisco();
         mDiscos.add(new JLabel("mDiscos"));
         pDiscos.add(mDiscos, "Modificar");
         // Eliminar
@@ -430,7 +434,7 @@ public class Inicio extends JFrame implements MouseListener {
         aEmpleados.add(new JLabel("aEmpleados"));
         pEmpleados.add(aEmpleados, "Agregar");
         // Modificar
-        JPanel mEmpleados = new JPanel();
+        JPanel mEmpleados = new ModificarEmpleado();
         mEmpleados.add(new JLabel("mEmpleados"));
         pEmpleados.add(mEmpleados, "Modificar");
         // Eliminar
@@ -447,7 +451,7 @@ public class Inicio extends JFrame implements MouseListener {
         aProveedores.add(new JLabel("aProveedores"));
         pProveedores.add(aProveedores, "Agregar");
         // Modificar
-        JPanel mProveedores = new JPanel();
+        JPanel mProveedores = new ModificarProveedor();
         mProveedores.add(new JLabel("mProveedores"));
         pProveedores.add(mProveedores, "Modificar");
         // Eliminar
@@ -464,7 +468,7 @@ public class Inicio extends JFrame implements MouseListener {
         aPuestos.add(new JLabel("aPuestos"));
         pPuestos.add(aPuestos, "Agregar");
         // Modificar
-        JPanel mPuestos = new JPanel();
+        JPanel mPuestos = new ModificarPuesto();
         mPuestos.add(new JLabel("mPuestos"));
         pPuestos.add(mPuestos, "Modificar");
         // Eliminar
