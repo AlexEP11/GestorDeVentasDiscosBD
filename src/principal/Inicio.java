@@ -11,6 +11,10 @@ import opciones.Agregar.AgregarProveedor;
 import opciones.Agregar.AgregarPuesto;
 import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
+import opciones.Eliminar.EliminarDisco;
+import opciones.Eliminar.EliminarEmpleado;
+import opciones.Eliminar.EliminarProveedor;
+import opciones.Eliminar.EliminarPuesto;
 import opciones.Modificar.ModificarDisco;
 import opciones.Modificar.ModificarEmpleado;
 import opciones.Modificar.ModificarProveedor;
@@ -421,7 +425,7 @@ public class Inicio extends JFrame implements MouseListener {
         mDiscos.add(new JLabel("mDiscos"));
         pDiscos.add(mDiscos, "Modificar");
         // Eliminar
-        JPanel eDiscos = new JPanel();
+        JPanel eDiscos = new EliminarDisco();
         eDiscos.add(new JLabel("eDiscos"));
         pDiscos.add(eDiscos, "Eliminar");
 
@@ -438,7 +442,7 @@ public class Inicio extends JFrame implements MouseListener {
         mEmpleados.add(new JLabel("mEmpleados"));
         pEmpleados.add(mEmpleados, "Modificar");
         // Eliminar
-        JPanel eEmpleados = new JPanel();
+        JPanel eEmpleados = new EliminarEmpleado();
         eEmpleados.add(new JLabel("eEmpleados"));
         pEmpleados.add(eEmpleados, "Eliminar");
 
@@ -455,7 +459,7 @@ public class Inicio extends JFrame implements MouseListener {
         mProveedores.add(new JLabel("mProveedores"));
         pProveedores.add(mProveedores, "Modificar");
         // Eliminar
-        JPanel eProveedores = new JPanel();
+        JPanel eProveedores = new EliminarProveedor();
         eProveedores.add(new JLabel("eProveedores"));
         pProveedores.add(eProveedores, "Eliminar");
 
@@ -472,7 +476,7 @@ public class Inicio extends JFrame implements MouseListener {
         mPuestos.add(new JLabel("mPuestos"));
         pPuestos.add(mPuestos, "Modificar");
         // Eliminar
-        JPanel ePuestos = new JPanel();
+        JPanel ePuestos = new EliminarPuesto();
         ePuestos.add(new JLabel("ePuestos"));
         pPuestos.add(ePuestos, "Eliminar");
 
