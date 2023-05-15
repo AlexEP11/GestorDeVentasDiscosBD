@@ -7,17 +7,17 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
-public class AgregarVenta extends JPanel implements MouseListener{ 
+public class AgregarCompra extends JPanel implements MouseListener{ 
     // Colores
     Color cremaHov = new Color(242,190,107);
     Color gris = new Color(237, 238, 239);
-    // Componentes id Empleado
-    JLabel txtIdEmpleado = new JLabel("Id Empleado");
-    JTextField idEmpleado = new JTextField();
+    // Componentes id Proveedor
+    JLabel txtIdProveedor = new JLabel("Id Proveedor");
+    JTextField idProveedor = new JTextField();
 
     // Componente Fecha
-    JLabel txtFecha = new JLabel("Fecha");
-    JTextField fecha = new JTextField();
+    JLabel txtFechaC = new JLabel("Fecha C.");
+    JTextField fechaC = new JTextField();
 
     // Componente id Disco
     JLabel txtIdDisco = new JLabel("Id Disco");
@@ -50,23 +50,23 @@ public class AgregarVenta extends JPanel implements MouseListener{
     ImageIcon equisCancelar = new ImageIcon("./src/imagenes/cancelar.png");
 
 
-    public AgregarVenta() {  
+    public AgregarCompra() {  
         setLayout(null);
         setBackground(Color.WHITE);
 
         // Campo Id Empleado
-        txtIdEmpleado.setBounds(25, 60, 120, 20);
-        txtIdEmpleado.setFont(new Font("Roboto Black", Font.BOLD, 16));
-        idEmpleado.setBounds(135,57,270,25);
-        idEmpleado.setForeground(Color.GRAY);
-        idEmpleado.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        txtIdProveedor.setBounds(25, 60, 120, 20);
+        txtIdProveedor.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        idProveedor.setBounds(135,57,270,25);
+        idProveedor.setForeground(Color.GRAY);
+        idProveedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Fecha
-        txtFecha.setBounds(500, 60, 120, 20);
-        txtFecha.setFont(new Font("Roboto Black", Font.BOLD, 16));
-        fecha.setBounds(575,57,270,25);
-        fecha.setForeground(Color.GRAY);
-        fecha.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        txtFechaC.setBounds(500, 60, 120, 20);
+        txtFechaC.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        fechaC.setBounds(575,57,270,25);
+        fechaC.setForeground(Color.GRAY);
+        fechaC.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Id Disco
         txtIdDisco.setBounds(40, 200, 120, 20);
@@ -94,6 +94,7 @@ public class AgregarVenta extends JPanel implements MouseListener{
         contenedorTabla.setBounds(450,100,500, 400);
         table.setBackground(gris);
         add(contenedorTabla);
+
 
 
 
@@ -134,12 +135,12 @@ public class AgregarVenta extends JPanel implements MouseListener{
         //////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL //////////////////////////////////////////////
 
         // Añadiendo el campo id Empleado
-        add(idEmpleado);
-        add(txtIdEmpleado);
+        add(idProveedor);
+        add(txtIdProveedor);
 
         // Añadiendo el campo Fecha
-        add(fecha);
-        add(txtFecha);
+        add(fechaC);
+        add(txtFechaC);
 
         // Añadiendo el campo id Disco
         add(idDisco);
@@ -202,7 +203,6 @@ public class AgregarVenta extends JPanel implements MouseListener{
     public void mouseExited(MouseEvent e) {
        
     }
-
     class MyTableModel extends AbstractTableModel {
         private String[] columnNames = {"IdDisco","Cantidad","Subtotal"};
         private Object[][] data = {
