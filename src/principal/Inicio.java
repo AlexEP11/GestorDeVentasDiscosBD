@@ -5,8 +5,20 @@ import java.awt.*;
 import java.awt.event.*;
 
 import opciones.Agregar.AgregarCompra;
+import opciones.Agregar.AgregarDisco;
+import opciones.Agregar.AgregarEmpleado;
+import opciones.Agregar.AgregarProveedor;
+import opciones.Agregar.AgregarPuesto;
 import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
+import opciones.Eliminar.EliminarDisco;
+import opciones.Eliminar.EliminarEmpleado;
+import opciones.Eliminar.EliminarProveedor;
+import opciones.Eliminar.EliminarPuesto;
+import opciones.Modificar.ModificarDisco;
+import opciones.Modificar.ModificarEmpleado;
+import opciones.Modificar.ModificarProveedor;
+import opciones.Modificar.ModificarPuesto;
 
 public class Inicio extends JFrame implements MouseListener {
     // Imagenes
@@ -405,15 +417,15 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cDiscos = new ConsultarDiscos();
         pDiscos.add(cDiscos, "Consulta");
         // Agregar
-        JPanel aDiscos = new JPanel();
+        JPanel aDiscos = new AgregarDisco();
         aDiscos.add(new JLabel("aDiscos"));
         pDiscos.add(aDiscos, "Agregar");
         // Modificar
-        JPanel mDiscos = new JPanel();
+        JPanel mDiscos = new ModificarDisco();
         mDiscos.add(new JLabel("mDiscos"));
         pDiscos.add(mDiscos, "Modificar");
         // Eliminar
-        JPanel eDiscos = new JPanel();
+        JPanel eDiscos = new EliminarDisco();
         eDiscos.add(new JLabel("eDiscos"));
         pDiscos.add(eDiscos, "Eliminar");
 
@@ -422,15 +434,15 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cEmpleados = new ConsultarEmpleados();
         pEmpleados.add(cEmpleados, "Consulta");
         // Agregar
-        JPanel aEmpleados = new JPanel();
+        JPanel aEmpleados = new AgregarEmpleado();
         aEmpleados.add(new JLabel("aEmpleados"));
         pEmpleados.add(aEmpleados, "Agregar");
         // Modificar
-        JPanel mEmpleados = new JPanel();
+        JPanel mEmpleados = new ModificarEmpleado();
         mEmpleados.add(new JLabel("mEmpleados"));
         pEmpleados.add(mEmpleados, "Modificar");
         // Eliminar
-        JPanel eEmpleados = new JPanel();
+        JPanel eEmpleados = new EliminarEmpleado();
         eEmpleados.add(new JLabel("eEmpleados"));
         pEmpleados.add(eEmpleados, "Eliminar");
 
@@ -439,15 +451,15 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cProveedores = new ConsultarProveedores();
         pProveedores.add(cProveedores, "Consulta");
         // Agregar
-        JPanel aProveedores = new JPanel();
+        JPanel aProveedores = new AgregarProveedor();
         aProveedores.add(new JLabel("aProveedores"));
         pProveedores.add(aProveedores, "Agregar");
         // Modificar
-        JPanel mProveedores = new JPanel();
+        JPanel mProveedores = new ModificarProveedor();
         mProveedores.add(new JLabel("mProveedores"));
         pProveedores.add(mProveedores, "Modificar");
         // Eliminar
-        JPanel eProveedores = new JPanel();
+        JPanel eProveedores = new EliminarProveedor();
         eProveedores.add(new JLabel("eProveedores"));
         pProveedores.add(eProveedores, "Eliminar");
 
@@ -456,15 +468,15 @@ public class Inicio extends JFrame implements MouseListener {
         JPanel cPuestos = new ConsultarPuestos();
         pPuestos.add(cPuestos, "Consulta");
         // Agregar
-        JPanel aPuestos = new JPanel();
+        JPanel aPuestos = new AgregarPuesto();
         aPuestos.add(new JLabel("aPuestos"));
         pPuestos.add(aPuestos, "Agregar");
         // Modificar
-        JPanel mPuestos = new JPanel();
+        JPanel mPuestos = new ModificarPuesto();
         mPuestos.add(new JLabel("mPuestos"));
         pPuestos.add(mPuestos, "Modificar");
         // Eliminar
-        JPanel ePuestos = new JPanel();
+        JPanel ePuestos = new EliminarPuesto();
         ePuestos.add(new JLabel("ePuestos"));
         pPuestos.add(ePuestos, "Eliminar");
 
