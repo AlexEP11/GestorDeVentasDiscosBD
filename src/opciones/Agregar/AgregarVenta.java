@@ -59,28 +59,28 @@ public class AgregarVenta extends JPanel implements MouseListener{
         txtIdEmpleado.setFont(new Font("Roboto Black", Font.BOLD, 16));
         idEmpleado.setBounds(135,57,270,25);
         idEmpleado.setForeground(Color.GRAY);
-        idEmpleado.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+        idEmpleado.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Fecha
         txtFecha.setBounds(500, 60, 120, 20);
         txtFecha.setFont(new Font("Roboto Black", Font.BOLD, 16));
         fecha.setBounds(575,57,270,25);
         fecha.setForeground(Color.GRAY);
-        fecha.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+        fecha.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Id Disco
         txtIdDisco.setBounds(40, 200, 120, 20);
         txtIdDisco.setFont(new Font("Roboto Black", Font.BOLD, 16));
         idDisco.setBounds(135,197,270,25);
         idDisco.setForeground(Color.GRAY);
-        idDisco.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+        idDisco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Cantidad
         txtCantidad.setBounds(40, 340, 120, 20);
         txtCantidad.setFont(new Font("Roboto Black", Font.BOLD, 16));
         cantidad.setBounds(135,337,270,25);
         cantidad.setForeground(Color.GRAY);
-        cantidad.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+        cantidad.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Tabla
         table = new JTable(new MyTableModel());
