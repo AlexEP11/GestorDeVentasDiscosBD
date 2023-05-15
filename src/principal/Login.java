@@ -85,7 +85,7 @@ public class Login extends JFrame implements MouseListener {
         username.setForeground(Color.GRAY);
         username.setFont(new Font("Roboto", Font.PLAIN, 12));
         username.setText("Ingrese su nombre de usuario");
-        username.selectAll();;
+        username.selectAll();
         username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
         username.addMouseListener(this);
 

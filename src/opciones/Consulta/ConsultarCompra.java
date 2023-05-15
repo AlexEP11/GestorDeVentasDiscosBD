@@ -6,18 +6,18 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
-public class ConsultarVenta extends Plantilla {
+public class ConsultarCompra extends Plantilla {
     //Configuraciones de la tabla
     JRadioButton botones[] = new JRadioButton[4];
     Color gris = new Color(237, 238, 239);
     //Tabla 
     JTable table;
-    public ConsultarVenta(){
+    public ConsultarCompra(){
         super();
         //Botones de radio y su configuracion
-        botones[0] = new JRadioButton("IdVenta");
-        botones[1] = new JRadioButton("IdEmpleado");
-        botones[2] = new JRadioButton("Fecha venta");
+        botones[0] = new JRadioButton("IdCompra");
+        botones[1] = new JRadioButton("IdProveedor");
+        botones[2] = new JRadioButton("Fecha Compra");
         botones[3] = new JRadioButton("Total");
         opciones.setLayout(new GridLayout(4, 0, 0, 0));
         for (int i = 0; i < botones.length; i++) {
@@ -52,8 +52,8 @@ public class ConsultarVenta extends Plantilla {
     }
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"IdVenta","IdEmp","Fecha Venta", "Total"};
-        private Object[][] data = {{"V1","E1","30/03/2023",100.0f},{"V2","E2","31/03/2023",200.0f},{"V3","E1","01/04/2023",300.0f},{"V4","E4","01/04/2023",500f}};
+        private String[] columnNames = {"IdCompra","IdProv","Fecha Compra", "Total"};
+        private Object[][] data = {{"C1","P1","26/03/2023",200.0f},{"C2","P2","27/03/2023",300.0f},{"C3","P1","28/03/2023",100.0f},{"C4","P2","01/04/2023",500f}};
     
         public int getColumnCount() {
             return columnNames.length;

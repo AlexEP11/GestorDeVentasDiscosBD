@@ -6,26 +6,34 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 
-public class ConsultarVenta extends Plantilla {
+public class ConsultarDiscos extends Plantilla {
     //Configuraciones de la tabla
-    JRadioButton botones[] = new JRadioButton[4];
+    JRadioButton botoneso[] = new JRadioButton[8];
     Color gris = new Color(237, 238, 239);
     //Tabla 
     JTable table;
-    public ConsultarVenta(){
+    public ConsultarDiscos(){
         super();
+        tabla.setBounds(25, 20, 910, 400);
+        opciones.setBounds(40, 420, 500, 190);
+        entrada.setBounds(620, 450, 250, 30);
+        botones.setBounds(660, 510, 180, 60);
         //Botones de radio y su configuracion
-        botones[0] = new JRadioButton("IdVenta");
-        botones[1] = new JRadioButton("IdEmpleado");
-        botones[2] = new JRadioButton("Fecha venta");
-        botones[3] = new JRadioButton("Total");
-        opciones.setLayout(new GridLayout(4, 0, 0, 0));
-        for (int i = 0; i < botones.length; i++) {
-            botones[i].setText("Buscar por " + botones[i].getText());
-            botones[i].setBackground(Color.white);
-            botones[i].setFont(new Font("Roboto Black", Font.BOLD, 18));
-            grupo.add(botones[i]);
-            opciones.add(botones[i]);
+        botoneso[0] = new JRadioButton("IdDisco");
+        botoneso[1] = new JRadioButton("Genero");
+        botoneso[2] = new JRadioButton("Formato");
+        botoneso[3] = new JRadioButton("Artista");
+        botoneso[4] = new JRadioButton("NAlbum");
+        botoneso[5] = new JRadioButton("AñoL");
+        botoneso[6] = new JRadioButton("Existencia");
+        botoneso[7] = new JRadioButton("Costo");
+        opciones.setLayout(new GridLayout(0, 3, 0, 0));
+        for (int i = 0; i < botoneso.length; i++) {
+            botoneso[i].setText("Buscar por " + botoneso[i].getText());
+            botoneso[i].setBackground(Color.white);
+            botoneso[i].setFont(new Font("Roboto Black", Font.BOLD, 14));
+            grupo.add(botoneso[i]);
+            opciones.add(botoneso[i]);
         }
 
         //Tabla
@@ -38,7 +46,7 @@ public class ConsultarVenta extends Plantilla {
         DefaultTableCellRenderer renderizador = new DefaultTableCellRenderer();
         renderizador.setHorizontalAlignment(SwingConstants.CENTER);
         table.setDefaultRenderer(Object.class, renderizador);
-        contenedorTabla.setSize(550, 500);
+        contenedorTabla.setSize(910, 400);
         table.setBackground(gris);
         tabla.add(contenedorTabla);
         
@@ -52,8 +60,13 @@ public class ConsultarVenta extends Plantilla {
     }
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"IdVenta","IdEmp","Fecha Venta", "Total"};
-        private Object[][] data = {{"V1","E1","30/03/2023",100.0f},{"V2","E2","31/03/2023",200.0f},{"V3","E1","01/04/2023",300.0f},{"V4","E4","01/04/2023",500f}};
+        private String[] columnNames = {"IdDisco","Genero","Formato","Artista","NAlbum","DiaL","MesL","AñoL","Existencia","Costo"};
+        private Object[][] data = {
+            {"D1","Hip-Hop","Vinil","2Pac","Weird",1,10,2010,4,100f},
+            {"D1","Hip-Hop","Vinil","2Pac","Weird",1,10,2010,4,100f},
+            {"D1","Hip-Hop","Vinil","2Pac","Weird",1,10,2010,4,100f},
+            {"D1","Hip-Hop","Vinil","2Pac","Weird",1,10,2010,4,100f}
+        };
     
         public int getColumnCount() {
             return columnNames.length;

@@ -3,7 +3,22 @@ package principal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import opciones.Agregar.AgregarCompra;
+import opciones.Agregar.AgregarDisco;
+import opciones.Agregar.AgregarEmpleado;
+import opciones.Agregar.AgregarProveedor;
+import opciones.Agregar.AgregarPuesto;
+import opciones.Agregar.AgregarVenta;
 import opciones.Consulta.*;
+import opciones.Eliminar.EliminarDisco;
+import opciones.Eliminar.EliminarEmpleado;
+import opciones.Eliminar.EliminarProveedor;
+import opciones.Eliminar.EliminarPuesto;
+import opciones.Modificar.ModificarDisco;
+import opciones.Modificar.ModificarEmpleado;
+import opciones.Modificar.ModificarProveedor;
+import opciones.Modificar.ModificarPuesto;
 
 public class Inicio extends JFrame implements MouseListener {
     // Imagenes
@@ -31,7 +46,18 @@ public class Inicio extends JFrame implements MouseListener {
     // Panel principal y card layout principal
     JPanel principal = new JPanel(null);
     CardLayout clPrincipal = new CardLayout();
+    CardLayout clSecundario = new CardLayout();
+    CardLayout clVentas = new CardLayout();
+    CardLayout clCompras = new CardLayout();
+    CardLayout clDiscos = new CardLayout();
+    CardLayout clEmpleado = new CardLayout();
+    CardLayout clProveedores = new CardLayout();
+    CardLayout clPuestos = new CardLayout();
+    CardLayout clDVentas = new CardLayout();
+    CardLayout clDCompras = new CardLayout();
+
     JPanel pVentas = new JPanel();
+    JPanel actual = new JPanel();
     JPanel pCompras = new JPanel();
     JPanel pDiscos = new JPanel();
     JPanel pEmpleados = new JPanel();
@@ -53,6 +79,7 @@ public class Inicio extends JFrame implements MouseListener {
     JPanel botonModificar = new JPanel(null);
     JPanel botonEliminar = new JPanel(null);
     JPanel anterior = new JPanel();
+    JPanel anterior2 = new JPanel();
 
     // JLabels de botones/imagenes
     JLabel imgVentas = new JLabel();
@@ -84,7 +111,7 @@ public class Inicio extends JFrame implements MouseListener {
     // Colores
     Color negroP = new Color(23, 23, 23);
     Color cremaP = new Color(251, 205, 131);
-    Color cremaHov = new Color(242,190,107);
+    Color cremaHov = new Color(242, 190, 107);
 
     public Inicio() {
 
@@ -111,33 +138,33 @@ public class Inicio extends JFrame implements MouseListener {
         botonAgregar.setBounds(40, 25, 180, 50);
         botonAgregar.addMouseListener(this);
         botonAgregar.setCursor(new Cursor(12));
-        imgAgregar.setBounds(10,0,50,50);
+        imgAgregar.setBounds(10, 0, 50, 50);
         imgAgregar.setIcon(imgAgreg);
         txtAgregar.setForeground(Color.BLACK);
         txtAgregar.setFont(new Font("Roboto Black", Font.BOLD, 18));
-        txtAgregar.setBounds(80,0,120,50);
+        txtAgregar.setBounds(80, 0, 120, 50);
 
         // Boton Modificar
         botonModificar.setBackground(cremaP);
         botonModificar.setBounds(300, 25, 180, 50);
         botonModificar.addMouseListener(this);
         botonModificar.setCursor(new Cursor(12));
-        imgModificar.setBounds(10,0,50,50);
+        imgModificar.setBounds(10, 0, 50, 50);
         imgModificar.setIcon(imgMod);
         txtModificar.setForeground(Color.BLACK);
         txtModificar.setFont(new Font("Roboto Black", Font.BOLD, 18));
-        txtModificar.setBounds(80,0,120,50);
+        txtModificar.setBounds(80, 0, 120, 50);
 
         // Boton Eliminar
         botonEliminar.setBackground(cremaP);
         botonEliminar.setBounds(560, 25, 180, 50);
         botonEliminar.addMouseListener(this);
         botonEliminar.setCursor(new Cursor(12));
-        imgEliminar.setBounds(10,0,50,50);
+        imgEliminar.setBounds(10, 0, 50, 50);
         imgEliminar.setIcon(imgElim);
         txtEliminar.setForeground(Color.BLACK);
         txtEliminar.setFont(new Font("Roboto Black", Font.BOLD, 18));
-        txtEliminar.setBounds(80,0,120,50);
+        txtEliminar.setBounds(80, 0, 120, 50);
 
         // Boton ventas
         botonVentas.setBackground(Color.black);
@@ -235,9 +262,9 @@ public class Inicio extends JFrame implements MouseListener {
         imgSalir.setCursor(new Cursor(12));
         imgSalir.addMouseListener(this);
 
+        ////////////////////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL
+        ////////////////////////////////////////////////// /////////////////////////////////////////////////////
 
-////////////////////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL /////////////////////////////////////////////////////
-    
         // Añadiendo logo
         verticalIzquierda.add(logo);
 
@@ -307,33 +334,185 @@ public class Inicio extends JFrame implements MouseListener {
         principal.setBounds(240, 100, 960, 600);
         principal.setLayout(clPrincipal);
         // Agregar los paneles correspondientes
-        JPanel a = new Plantilla();
         pVentas.setLayout(null);
         pVentas.setBounds(240,100,960, 600);
-        pVentas.add(a);
         principal.add(pVentas, "Ventas");
-        pCompras.add(new JLabel("Compras"));
+        actual = pVentas;
+        clSecundario = clVentas;
+        pCompras.setBounds(240, 100, 960, 600);
         principal.add(pCompras, "Compras");
-        pDiscos.add(new JLabel("Discos"));
+        pDiscos.setBounds(240, 100, 960, 600);
         principal.add(pDiscos, "Discos");
-        pEmpleados.add(new JLabel("Empleados"));
+        pEmpleados.setBounds(240, 100, 960, 600);
         principal.add(pEmpleados, "Empleados");
-        pProveedores.add(new JLabel("Proveedores"));
+        pProveedores.setBounds(240, 100, 960, 600);
         principal.add(pProveedores, "Proveedores");
-        pPuestos.add(new JLabel("Puestos"));
+        pPuestos.setBounds(240, 100, 960, 600);
         principal.add(pPuestos, "Puestos");
-        pDCompras.add(new JLabel("Detalles compras"));
+        pDCompras.setBounds(240, 100, 960, 600);
         principal.add(pDCompras, "DCompras");
-        pDVentas.add(new JLabel("Detalles ventas"));
+        pDVentas.setBounds(240, 100, 960, 600);
         principal.add(pDVentas, "DVentas");
         background.add(principal);
-
+        iniClSecundario();
+        anterior2 = botonAgregar;
+        botonModificar.setVisible(false);
+        botonEliminar.setVisible(false);
+        botonAgregar.setVisible(true);
         // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    // Metodo de inicializacion de ClSecundario
+    public void iniClSecundario() {
+        pVentas.setLayout(clVentas);
+        pCompras.setLayout(clCompras);
+        pDiscos.setLayout(clDiscos);
+        pEmpleados.setLayout(clEmpleado);
+        pProveedores.setLayout(clProveedores);
+        pPuestos.setLayout(clPuestos);
+        pDCompras.setLayout(clDCompras);
+        pDVentas.setLayout(clDVentas);
+
+        // Aqui colocar los respectivos jPaneles modificados
+        // Ventas
+        // Consultas
+        JPanel cVentas = new ConsultarVenta();
+        pVentas.add(cVentas, "Consulta");
+        // Agregar
+        JPanel aVentas = new AgregarVenta();
+        pVentas.add(aVentas, "Agregar");
+        // Modificar
+        // JPanel mVentas = new JPanel();
+        // mVentas.add(new JLabel("mVentas"));
+        // pVentas.add(mVentas, "Modificar");
+        // Eliminar
+        // JPanel eVentas = new JPanel();
+        // eVentas.add(new JLabel("eVentas"));
+        // pVentas.add(eVentas, "Eliminar");
+
+        // Compras
+        // Consultas
+        JPanel cCompras = new ConsultarCompra();
+        pCompras.add(cCompras, "Consulta");
+        // Agregar
+        JPanel aCompras = new AgregarCompra();
+        aCompras.add(new JLabel("aCompras"));
+        pCompras.add(aCompras, "Agregar");
+        // Modificar
+        // JPanel mCompras = new JPanel();
+        // mCompras.add(new JLabel("mCompras"));
+        // pCompras.add(mCompras, "Modificar");
+        // Eliminar
+        // JPanel eCompras = new JPanel();
+        // eCompras.add(new JLabel("eCompras"));
+        // pCompras.add(eCompras, "Eliminar");
+
+        // Discos
+        // Consultas
+        JPanel cDiscos = new ConsultarDiscos();
+        pDiscos.add(cDiscos, "Consulta");
+        // Agregar
+        JPanel aDiscos = new AgregarDisco();
+        aDiscos.add(new JLabel("aDiscos"));
+        pDiscos.add(aDiscos, "Agregar");
+        // Modificar
+        JPanel mDiscos = new ModificarDisco();
+        mDiscos.add(new JLabel("mDiscos"));
+        pDiscos.add(mDiscos, "Modificar");
+        // Eliminar
+        JPanel eDiscos = new EliminarDisco();
+        eDiscos.add(new JLabel("eDiscos"));
+        pDiscos.add(eDiscos, "Eliminar");
+
+        // Empleados
+        // Consultas
+        JPanel cEmpleados = new ConsultarEmpleados();
+        pEmpleados.add(cEmpleados, "Consulta");
+        // Agregar
+        JPanel aEmpleados = new AgregarEmpleado();
+        aEmpleados.add(new JLabel("aEmpleados"));
+        pEmpleados.add(aEmpleados, "Agregar");
+        // Modificar
+        JPanel mEmpleados = new ModificarEmpleado();
+        mEmpleados.add(new JLabel("mEmpleados"));
+        pEmpleados.add(mEmpleados, "Modificar");
+        // Eliminar
+        JPanel eEmpleados = new EliminarEmpleado();
+        eEmpleados.add(new JLabel("eEmpleados"));
+        pEmpleados.add(eEmpleados, "Eliminar");
+
+        // Proeedores
+        // Consultas
+        JPanel cProveedores = new ConsultarProveedores();
+        pProveedores.add(cProveedores, "Consulta");
+        // Agregar
+        JPanel aProveedores = new AgregarProveedor();
+        aProveedores.add(new JLabel("aProveedores"));
+        pProveedores.add(aProveedores, "Agregar");
+        // Modificar
+        JPanel mProveedores = new ModificarProveedor();
+        mProveedores.add(new JLabel("mProveedores"));
+        pProveedores.add(mProveedores, "Modificar");
+        // Eliminar
+        JPanel eProveedores = new EliminarProveedor();
+        eProveedores.add(new JLabel("eProveedores"));
+        pProveedores.add(eProveedores, "Eliminar");
+
+        // Puestos
+        // Consultas
+        JPanel cPuestos = new ConsultarPuestos();
+        pPuestos.add(cPuestos, "Consulta");
+        // Agregar
+        JPanel aPuestos = new AgregarPuesto();
+        aPuestos.add(new JLabel("aPuestos"));
+        pPuestos.add(aPuestos, "Agregar");
+        // Modificar
+        JPanel mPuestos = new ModificarPuesto();
+        mPuestos.add(new JLabel("mPuestos"));
+        pPuestos.add(mPuestos, "Modificar");
+        // Eliminar
+        JPanel ePuestos = new EliminarPuesto();
+        ePuestos.add(new JLabel("ePuestos"));
+        pPuestos.add(ePuestos, "Eliminar");
+
+        // DCompras
+        // Consultas
+        JPanel cDCompras = new ConsultarDCompra();
+        pDCompras.add(cDCompras, "Consulta");
+        // Agregar
+        // JPanel aDCompras = new JPanel();
+        // aDCompras.add(new JLabel("aDCompras"));
+        // pDCompras.add(aDCompras, "Agregar");
+        // // Modificar
+        // JPanel mDCompras = new JPanel();
+        // mDCompras.add(new JLabel("mDCompras"));
+        // pDCompras.add(mDCompras, "Modificar");
+        // // Eliminar
+        // JPanel eDCompras = new JPanel();
+        // eDCompras.add(new JLabel("eDCompras"));
+        // pDCompras.add(eDCompras, "Eliminar");
+
+        // DVentas
+        // Consultas
+        JPanel cDVentas = new ConsultarDVenta();
+        pDVentas.add(cDVentas, "Consulta");
+        // // Agregar
+        // JPanel aDVentas = new JPanel();
+        // aDVentas.add(new JLabel("aDVentas"));
+        // pDVentas.add(aDVentas, "Agregar");
+        // // Modificar
+        // JPanel mDVentas = new JPanel();
+        // mDVentas.add(new JLabel("mDVentas"));
+        // pDVentas.add(mDVentas, "Modificar");
+        // // Eliminar
+        // JPanel eDVentas = new JPanel();
+        // eDVentas.add(new JLabel("eDVentas"));
+        // pDVentas.add(eDVentas, "Eliminar");
     }
 
     @Override
@@ -345,32 +524,102 @@ public class Inicio extends JFrame implements MouseListener {
             System.exit(0);
         } else {
             anterior.setBackground(negroP);
+            anterior2.setBackground(cremaP);
             if (e.getSource() == botonVentas) {
                 botonVentas.setBackground(Color.black);
                 anterior = botonVentas;
+                actual = pVentas;
+                botonModificar.setVisible(false);
+                botonEliminar.setVisible(false);
+                botonAgregar.setVisible(true);
+                clSecundario = clVentas;
                 clPrincipal.show(principal, "Ventas");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonCompras) {
                 botonCompras.setBackground(Color.black);
+                botonModificar.setVisible(false);
+                botonEliminar.setVisible(false);
+                botonAgregar.setVisible(true);
                 anterior = botonCompras;
+                actual = pCompras;
+                clSecundario = clCompras;
                 clPrincipal.show(principal, "Compras");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDiscos) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonDiscos.setBackground(Color.black);
                 anterior = botonDiscos;
+                actual = pDiscos;
+                clSecundario = clDiscos;
                 clPrincipal.show(principal, "Discos");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonEmpleado) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonEmpleado.setBackground(Color.black);
                 anterior = botonEmpleado;
+                actual = pEmpleados;
+                clSecundario = clEmpleado;
                 clPrincipal.show(principal, "Empleados");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonProveedor) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
                 botonProveedor.setBackground(Color.black);
                 anterior = botonProveedor;
+                actual = pProveedores;
+                clSecundario = clProveedores;
                 clPrincipal.show(principal, "Proveedores");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonPuestos) {
+                botonModificar.setVisible(true);
+                botonEliminar.setVisible(true);
+                botonAgregar.setVisible(true);
+                botonPuestos.setBackground(Color.black);
+                anterior = botonPuestos;
+                actual = pPuestos;
+                clSecundario = clPuestos;
                 clPrincipal.show(principal, "Puestos");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDetallesCompras) {
+                botonModificar.setVisible(false);
+                botonAgregar.setVisible(false);
+                botonEliminar.setVisible(false);
+                botonDetallesCompras.setBackground(Color.black);
+                anterior = botonDetallesCompras;
+                actual = pDCompras;
+                clSecundario = clDCompras;
                 clPrincipal.show(principal, "DCompras");
+                clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDetallesVentas) {
+                botonModificar.setVisible(false);
+                botonAgregar.setVisible(false);
+                botonEliminar.setVisible(false);
+                botonDetallesVentas.setBackground(Color.black);
+                anterior = botonDetallesVentas;
+                actual = pDVentas;
+                clSecundario = clDVentas;
                 clPrincipal.show(principal, "DVentas");
+                clSecundario.show(actual, "Consulta");
+            } else {
+                anterior.setBackground(Color.black);
+                if (e.getSource() == botonAgregar) {
+                    clSecundario.show(actual, "Agregar");
+                    anterior2 = botonAgregar;
+                    botonAgregar.setBackground(cremaHov);
+                } else if (e.getSource() == botonModificar) {
+                    clSecundario.show(actual, "Modificar");
+                    anterior2 = botonModificar;
+                    botonModificar.setBackground(cremaHov);
+                } else if (e.getSource() == botonEliminar) {
+                    clSecundario.show(actual, "Eliminar");
+                    anterior2 = botonEliminar;
+                    botonEliminar.setBackground(cremaHov);
+                }
             }
         }
     }
@@ -414,7 +663,7 @@ public class Inicio extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        if (e.getSource() == anterior) {
+        if (e.getSource() == anterior || e.getSource() == anterior2) {
             return;
         }
         if (e.getSource() == botonVentas) {
