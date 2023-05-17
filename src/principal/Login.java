@@ -3,6 +3,9 @@ package principal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Login extends JFrame implements MouseListener {
     /* Imagenen del panel izquierdo */
@@ -145,8 +148,11 @@ public class Login extends JFrame implements MouseListener {
         }
         
         if (e.getSource() == entrar ) {
-            new Inicio();
-            dispose();
+            try {
+                Statement sql = Conexion.getConexion().createStatement();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+            }
         }
     }
 
