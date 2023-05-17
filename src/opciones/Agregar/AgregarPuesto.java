@@ -1,8 +1,13 @@
 package opciones.Agregar;
 
 import javax.swing.*;
+
+import principal.Login;
+import principal.SQLDatabaseConnection;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class AgregarPuesto extends JPanel implements MouseListener {
     // Colores
@@ -95,7 +100,22 @@ public class AgregarPuesto extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == agregar) {
+            String Agregar = "INSERT INTO Puestos (NPuesto, Salario) VALUES (?, ?)";
+            try {
+                PreparedStatement statement = SQLDatabaseConnection.connection.prepareStatement(Agregar);
+                statement.setString(1, nombreP.getText());
+                statement.setFloat(2, Float.parseFloat(salario.getText()));
 
+                int pene = statement.executeUpdate();
+                if (pene > 0) {
+                    System.out.println("Pene jalo");
+                }
+            } catch (Exception s) {
+                System.out.println("No jalo " + s.getMessage());
+            }
+            
+        }
     }
 
     @Override

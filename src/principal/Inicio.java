@@ -3,6 +3,7 @@ package principal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 import opciones.Agregar.AgregarCompra;
 import opciones.Agregar.AgregarDisco;
@@ -690,6 +691,8 @@ public class Inicio extends JFrame implements MouseListener {
             botonEliminar.setBackground(cremaP);
         }
     }
+
+    
 
     public static void main(String[] args) {
         new Inicio();

@@ -3,8 +3,12 @@ package principal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class Login extends JFrame implements MouseListener {
+
+    /*Variable de conexion*/
+    public static Connection sql;
     /* Imagenen del panel izquierdo */
     ImageIcon img = new ImageIcon("./src/imagenes/InterfazDisco.png");
     /* Imagen del panel derecho (logo pequeño) */
@@ -145,8 +149,20 @@ public class Login extends JFrame implements MouseListener {
         }
         
         if (e.getSource() == entrar ) {
-            new Inicio();
-            dispose();
+            if ((username.getText().equals("admin")) && password.getText().equals("12345") || username.getText().equals("Empleado") && password.getText().equals("12345") ) {
+                sql = SQLDatabaseConnection.getConnection();
+                if(sql != null){
+                    System.out.println("CONEXION EXITOSA");
+                } else {
+                    System.out.println("CONEXION FALLIDA");
+                }
+                new Inicio();
+                dispose();
+            } else {
+                
+            }
+            
+
         }
     }
 
@@ -200,4 +216,6 @@ public class Login extends JFrame implements MouseListener {
     public static void main(String[] args) {
         new Login();
     }
+
+
 }
