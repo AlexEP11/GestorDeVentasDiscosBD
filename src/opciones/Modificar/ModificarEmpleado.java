@@ -203,7 +203,12 @@ public class ModificarEmpleado extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        if (e.getSource() == buscar) {
+            idEmpleado.setEditable(false);
+        }
+        if (e.getSource() == guardar || e.getSource() == cancelar) {
+            idEmpleado.setEditable(true);
+        }
     }
 
     @Override

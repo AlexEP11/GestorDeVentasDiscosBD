@@ -186,7 +186,12 @@ public class ModificarDisco extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == buscar) {
+            idDisco.setEditable(false);
+        }
+        if (e.getSource() == guardar || e.getSource() == cancelar) {
+            idDisco.setEditable(true);
+        }
     }
 
     @Override

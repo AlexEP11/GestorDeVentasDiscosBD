@@ -112,7 +112,12 @@ public class ModificarPuesto extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == buscar) {
+            nombreP.setEditable(false);
+        }
+        if (e.getSource() == guardar || e.getSource() == cancelar) {
+            nombreP.setEditable(true);
+        }
     }
 
     @Override

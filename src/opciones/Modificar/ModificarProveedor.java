@@ -173,7 +173,12 @@ public class ModificarProveedor extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (e.getSource() == buscar) {
+            idProveedor.setEditable(false);
+        }
+        if (e.getSource() == guardar || e.getSource() == cancelar) {
+            idProveedor.setEditable(true);
+        }
     }
 
     @Override
