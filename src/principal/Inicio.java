@@ -3,6 +3,7 @@ package principal;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 import opciones.Agregar.AgregarCompra;
 import opciones.Agregar.AgregarDisco;
