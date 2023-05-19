@@ -10,7 +10,7 @@
 --	NAlbum varchar (20),
 --	DiaL int,
 --	MesL int,
---	AñoL int,
+--	Aï¿½oL int,
 --	Exist int,
 --	Costo float
 --)
@@ -41,8 +41,11 @@
 --	Cant int,
 --	SubTotal float,
 --	primary key (idCompra,idDisco),
---	foreign key (idDisco) references Discos(idDisco)
+--	foreign key (idDisco) references Discos(idDisco),
+--	foreign key (idCompra) references Compras(idCompras)
 --)
+
+--drop table DetallesCompras
 
 --Empleados
 --create table Empleados (
@@ -79,8 +82,11 @@
 --	Cant int,
 --	Subtotal float,
 --	primary key (idVenta,idDisco),
---	foreign key (idDisco) references Discos(idDisco)
+--	foreign key (idDisco) references Discos(idDisco),
+--	foreign key (idVenta) references Ventas(idVenta)
 --)
+
+--drop table DetallesVentas
 
 select * from Proveedores
 select * from Discos
