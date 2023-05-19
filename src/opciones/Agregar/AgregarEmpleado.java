@@ -188,38 +188,41 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Connection connection = null; //se almacena la conexion
-        String bdname = "GestorVentasDiscos";//nombre  de la base de datos
-        String user = "admin";//usuario de la base de datos
-        String pass = "123456";//contraseña de usuario
+        if (e.getSource() == agregar) {
+            Connection connection = null; // se almacena la conexion
+            String bdname = "GestorVentasDiscos";// nombre de la base de datos
+            String user = "admin";// usuario de la base de datos
+            String pass = "123456";// contraseña de usuario
 
-        try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");//Se conecta al driver
-            String connectionBD = "jdbc:sqlserver://localhost;databaseName="
-            +bdname+";user="+user+";password="+pass+";"+ "encrypt=true; " + "trustServerCertificate=true;" + "loginTimeout=30;";//Parametros de la conexion a bd
-            String AgregarQuery = "INSERT INTO Empleados (idEmp, AP, AM, NOM, NPuesto, Turno, TelEC, TelEF) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            connection = DriverManager.getConnection(connectionBD);
-            PreparedStatement preparedStatement = connection.prepareStatement(AgregarQuery);
-            // Establecer los valores de los parámetros en la sentencia de inserción
-            preparedStatement.setString(1, idEmpleado.getText());
-            preparedStatement.setString(2, apellidoP.getText());
-            preparedStatement.setString(3, apellidoM.getText());
-            preparedStatement.setString(4, nombre.getText());
-            preparedStatement.setString(5, NPuesto.getText());
-            preparedStatement.setString(6, turno.getText());
-            preparedStatement.setString(7, telC.getText());
-            preparedStatement.setString(8, telF.getText());
-            // Ejecutar la sentencia de inserción
-            int rowsAffected = preparedStatement.executeUpdate();
-            System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-            // Se cierra la conexion en teoria xd
-            connection.close();
-        } catch(ClassNotFoundException s) {
-            System.out.println("Error: " + s.getMessage());
-        }catch(SQLException s) {
-            System.out.println("Error: " + s.getMessage());
-        }catch(Exception s) {
-            System.out.println("Error: " + s.getMessage());
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
+                String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                        + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                        + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
+                String AgregarQuery = "INSERT INTO Empleados (idEmp, AP, AM, NOM, NPuesto, Turno, TelEC, TelEF) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                connection = DriverManager.getConnection(connectionBD);
+                PreparedStatement preparedStatement = connection.prepareStatement(AgregarQuery);
+                // Establecer los valores de los parámetros en la sentencia de inserción
+                preparedStatement.setString(1, idEmpleado.getText());
+                preparedStatement.setString(2, apellidoP.getText());
+                preparedStatement.setString(3, apellidoM.getText());
+                preparedStatement.setString(4, nombre.getText());
+                preparedStatement.setString(5, NPuesto.getText());
+                preparedStatement.setString(6, turno.getText());
+                preparedStatement.setString(7, telC.getText());
+                preparedStatement.setString(8, telF.getText());
+                // Ejecutar la sentencia de inserción
+                int rowsAffected = preparedStatement.executeUpdate();
+                System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                // Se cierra la conexion en teoria xd
+                connection.close();
+            } catch (ClassNotFoundException s) {
+                System.out.println("Error: " + s.getMessage());
+            } catch (SQLException s) {
+                System.out.println("Error: " + s.getMessage());
+            } catch (Exception s) {
+                System.out.println("Error: " + s.getMessage());
+            }
         }
     }
 
