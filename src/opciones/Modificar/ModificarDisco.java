@@ -329,6 +329,7 @@ public class ModificarDisco extends JPanel implements MouseListener {
             numExt.setText("");
             costo.setText("");
         } else if (e.getSource() == cancelar){
+            idDisco.setEditable(true);
             idDisco.setText("");
             nomAlbum.setText("");
             genero.setText("");
