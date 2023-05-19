@@ -56,6 +56,16 @@ public class Inicio extends JFrame implements MouseListener {
     CardLayout clPuestos = new CardLayout();
     CardLayout clDVentas = new CardLayout();
     CardLayout clDCompras = new CardLayout();
+    
+    //Paneles de las consultas
+    ConsultarVenta cVentas;
+    ConsultarPuestos cPuestos;
+    ConsultarCompra cCompras;
+    ConsultarDCompra cDCompras;
+    ConsultarDiscos cDiscos;
+    ConsultarDVenta cDVentas;
+    ConsultarEmpleados cEmpleados;
+    ConsultarProveedores cProveedores;
 
     JPanel pVentas = new JPanel();
     JPanel actual = new JPanel();
@@ -382,7 +392,7 @@ public class Inicio extends JFrame implements MouseListener {
         // Aqui colocar los respectivos jPaneles modificados
         // Ventas
         // Consultas
-        JPanel cVentas = new ConsultarVenta();
+        cVentas = new ConsultarVenta();
         pVentas.add(cVentas, "Consulta");
         // Agregar
         JPanel aVentas = new AgregarVenta();
@@ -398,7 +408,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Compras
         // Consultas
-        JPanel cCompras = new ConsultarCompra();
+        cCompras = new ConsultarCompra();
         pCompras.add(cCompras, "Consulta");
         // Agregar
         JPanel aCompras = new AgregarCompra();
@@ -415,7 +425,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Discos
         // Consultas
-        JPanel cDiscos = new ConsultarDiscos();
+        cDiscos = new ConsultarDiscos();
         pDiscos.add(cDiscos, "Consulta");
         // Agregar
         JPanel aDiscos = new AgregarDisco();
@@ -432,7 +442,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Empleados
         // Consultas
-        JPanel cEmpleados = new ConsultarEmpleados();
+        cEmpleados = new ConsultarEmpleados();
         pEmpleados.add(cEmpleados, "Consulta");
         // Agregar
         JPanel aEmpleados = new AgregarEmpleado();
@@ -449,7 +459,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Proeedores
         // Consultas
-        JPanel cProveedores = new ConsultarProveedores();
+        cProveedores = new ConsultarProveedores();
         pProveedores.add(cProveedores, "Consulta");
         // Agregar
         JPanel aProveedores = new AgregarProveedor();
@@ -466,7 +476,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // Puestos
         // Consultas
-        JPanel cPuestos = new ConsultarPuestos();
+        cPuestos = new ConsultarPuestos();
         pPuestos.add(cPuestos, "Consulta");
         // Agregar
         JPanel aPuestos = new AgregarPuesto();
@@ -483,7 +493,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // DCompras
         // Consultas
-        JPanel cDCompras = new ConsultarDCompra();
+        cDCompras = new ConsultarDCompra();
         pDCompras.add(cDCompras, "Consulta");
         // Agregar
         // JPanel aDCompras = new JPanel();
@@ -500,7 +510,7 @@ public class Inicio extends JFrame implements MouseListener {
 
         // DVentas
         // Consultas
-        JPanel cDVentas = new ConsultarDVenta();
+        cDVentas = new ConsultarDVenta();
         pDVentas.add(cDVentas, "Consulta");
         // // Agregar
         // JPanel aDVentas = new JPanel();
@@ -530,6 +540,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonVentas.setBackground(Color.black);
                 anterior = botonVentas;
                 actual = pVentas;
+                cVentas.actualizarTabla("SELECT * FROM Ventas");
                 botonModificar.setVisible(false);
                 botonEliminar.setVisible(false);
                 botonAgregar.setVisible(true);
@@ -541,6 +552,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonModificar.setVisible(false);
                 botonEliminar.setVisible(false);
                 botonAgregar.setVisible(true);
+                cCompras.actualizarTabla("SELECT * FROM Compras");
                 anterior = botonCompras;
                 actual = pCompras;
                 clSecundario = clCompras;
@@ -551,6 +563,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonEliminar.setVisible(true);
                 botonAgregar.setVisible(true);
                 botonDiscos.setBackground(Color.black);
+                cDiscos.actualizarTabla("SELECT * FROM Discos");
                 anterior = botonDiscos;
                 actual = pDiscos;
                 clSecundario = clDiscos;
@@ -561,6 +574,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonEliminar.setVisible(true);
                 botonAgregar.setVisible(true);
                 botonEmpleado.setBackground(Color.black);
+                cEmpleados.actualizarTabla("SELECT * FROM Empleados");
                 anterior = botonEmpleado;
                 actual = pEmpleados;
                 clSecundario = clEmpleado;
@@ -571,6 +585,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonEliminar.setVisible(true);
                 botonAgregar.setVisible(true);
                 botonProveedor.setBackground(Color.black);
+                cProveedores.actualizarTabla("SELECT * FROM Proveedores");
                 anterior = botonProveedor;
                 actual = pProveedores;
                 clSecundario = clProveedores;
@@ -581,6 +596,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonEliminar.setVisible(true);
                 botonAgregar.setVisible(true);
                 botonPuestos.setBackground(Color.black);
+                cPuestos.actualizarTabla("SELECT * FROM Puestos");
                 anterior = botonPuestos;
                 actual = pPuestos;
                 clSecundario = clPuestos;
@@ -591,6 +607,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonAgregar.setVisible(false);
                 botonEliminar.setVisible(false);
                 botonDetallesCompras.setBackground(Color.black);
+                cDCompras.actualizarTabla("SELECT * FROM DetallesCompras");
                 anterior = botonDetallesCompras;
                 actual = pDCompras;
                 clSecundario = clDCompras;
@@ -601,6 +618,7 @@ public class Inicio extends JFrame implements MouseListener {
                 botonAgregar.setVisible(false);
                 botonEliminar.setVisible(false);
                 botonDetallesVentas.setBackground(Color.black);
+                cDVentas.actualizarTabla("SELECT * FROM DetallesVentas");
                 anterior = botonDetallesVentas;
                 actual = pDVentas;
                 clSecundario = clDVentas;

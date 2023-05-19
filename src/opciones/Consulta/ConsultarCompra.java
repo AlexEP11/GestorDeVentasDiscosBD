@@ -10,6 +10,7 @@ public class ConsultarCompra extends Plantilla {
     //Configuraciones de la tabla
     JRadioButton botones[] = new JRadioButton[4];
     Color gris = new Color(237, 238, 239);
+    String[] columnNames = {"IdCompra","IdProv","Fecha Compra", "Total"};
     //Tabla 
     JTable table;
     public ConsultarCompra(){
@@ -29,8 +30,8 @@ public class ConsultarCompra extends Plantilla {
         }
 
         //Tabla
-        
-        table = new JTable(new MyTableModel());
+        mtb = new MyTableModel(columnNames);
+        table = new JTable(mtb);
         JScrollPane contenedorTabla = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         table.setCellSelectionEnabled(false);
@@ -51,47 +52,4 @@ public class ConsultarCompra extends Plantilla {
         });
     }
 
-    class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"IdCompra","IdProv","Fecha Compra", "Total"};
-        private Object[][] data = {{"C1","P1","26/03/2023",200.0f},{"C2","P2","27/03/2023",300.0f},{"C3","P1","28/03/2023",100.0f},{"C4","P2","01/04/2023",500f}};
-    
-        public int getColumnCount() {
-            return columnNames.length;
-        }
-    
-        public int getRowCount() {
-            return data.length;
-        }
-    
-        public String getColumnName(int col) {
-            return columnNames[col];
-        }
-    
-        public Object getValueAt(int row, int col) {
-            return data[row][col];
-        }
-    
-        public Class getColumnClass(int c) {
-            return getValueAt(0, c).getClass();
-        }
-    
-        /*
-         * Don't need to implement this method unless your table's
-         * editable.
-         */
-        public boolean isCellEditable(int row, int col) {
-            //Note that the data/cell address is constant,
-            //no matter where the cell appears onscreen.
-            return false;
-        }
-    
-        /*
-         * Don't need to implement this method unless your table's
-         * data can change.
-         */
-        public void setValueAt(Object value, int row, int col) {
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
-        }
-    }
 }
