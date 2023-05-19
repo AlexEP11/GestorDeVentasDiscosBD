@@ -3,6 +3,7 @@ package opciones.Modificar;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class ModificarProveedor extends JPanel implements MouseListener {
     // Colores
@@ -173,11 +174,148 @@ public class ModificarProveedor extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        Connection connection = null; // Se almacena la conexion
+        Statement statement = null;
+        ResultSet resultSet = null;
+        PreparedStatement stmt = null;
+        String bdname = "GestorVentasDiscos";// Nombre de la base de datos
+        String user = "admin";// Usuario de la base de datos
+        String pass = "123456";// Contraseña de usuario
+        String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+        + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+        + "trustServerCertificate=true;" + "loginTimeout=30;";
+
         if (e.getSource() == buscar) {
             idProveedor.setEditable(false);
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");//Se conecta al driver
+                //Establecer la conexión
+                connection = DriverManager.getConnection(connectionBD);
+                // Crear el objeto Statement
+                statement = connection.createStatement();
+                // Consulta para verificar los datos antes de eliminar
+                String consultarVerificacion = "select Proveedores.* from Proveedores where idProv = '"+ idProveedor.getText()+"'";
+                // Ejecutar la consulta de verificación 
+                resultSet = statement.executeQuery(consultarVerificacion);
+
+                // Verificar si se encontró el dato
+            if (resultSet.next()) {
+                // Obtener el dato del resultado de la consulta
+                String datoIdProv = resultSet.getString("IdProv");
+                String datoNomP = resultSet.getString("NomP");
+                String datoCalle = resultSet.getString("Calle");
+                String datoNExterior = resultSet.getString("NExterior");
+                String datoTelPC = resultSet.getString("TelPC");
+                String datoTelPF = resultSet.getString("TelPF");
+                // Asignar el dato al segundo TextField
+                idProveedor.setText(datoIdProv);
+                nomProv.setText(datoNomP);
+                calle.setText(datoCalle);
+                numExt.setText(datoNExterior);
+                telC.setText(datoTelPC);
+                telF.setText(datoTelPF);
+            } else {
+                // No se encontró el dato, puedes mostrar un mensaje de error o limpiar el segundo TextField
+                idProveedor.setText("");
+                JOptionPane.showMessageDialog(this, "No se encontró el dato asociado al ID", "ID NO ENCONTRADO",JOptionPane.ERROR_MESSAGE);
+                idProveedor.setEditable(true);
+            }
+
+            } catch(ClassNotFoundException s) {
+                System.out.println("Error: " + s.getMessage());        
+            } catch (SQLException s) {
+                System.out.println("Error al buscar registros: " + s.getMessage());
+            } finally {
+                // Cerrar los recursos (ResultSet, Statement y conexión) en el bloque finally
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar el ResultSet: " + s.getMessage());
+                    }
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar el Statement: " + s.getMessage());
+                    }
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                    }
+                }
+            }
         }
-        if (e.getSource() == guardar || e.getSource() == cancelar) {
+        if (e.getSource() == guardar) {
             idProveedor.setEditable(true);
+            try {
+                // Establecer conexión con la base de datos
+                 connection = DriverManager.getConnection(connectionBD);
+    
+                // Definir la consulta SQL con parámetros
+                String modificarSQL = "update Proveedores set  NomP = ?, Calle = ?, NExterior = ?, TelPC = ?, TelPF = ? where idProv = '"+ idProveedor.getText()+"'";
+    
+                // Crear objeto PreparedStatement para enviar la consulta
+                stmt = connection.prepareStatement(modificarSQL);
+    
+                // Establecer los valores de los parámetros
+                stmt.setString(1, nomProv.getText());
+                stmt.setString(2, calle.getText());
+                stmt.setString(3, numExt.getText());
+                stmt.setString(4, telC.getText());
+                stmt.setString(5, telF.getText());
+                
+                // Ejecutar la consulta y obtener el número de filas afectadas
+                int filasAfectadas = stmt.executeUpdate();
+    
+                // Verificar si se actualizaron filas correctamente
+                if (filasAfectadas > 0) {
+                JOptionPane.showMessageDialog(this, "Los datos se actualizaron correctamente." , "CAMBIOS REALIZADOS",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                JOptionPane.showMessageDialog(this, "Los datos no se actualizaron" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Puesto no encontrado" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+            } finally {
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar el ResultSet: " + s.getMessage());
+                    }
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar el Statement: " + s.getMessage());
+                    }
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                    }
+                }
+            }
+            idProveedor.setText("");
+            nomProv.setText("");
+            calle.setText("");
+            numExt.setText("");
+            telC.setText("");
+            telF.setText("");
+        } else if (e.getSource() == cancelar){
+            idProveedor.setText("");
+            nomProv.setText("");
+            calle.setText("");
+            numExt.setText("");
+            telC.setText("");
+            telF.setText("");
         }
     }
 

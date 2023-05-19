@@ -85,10 +85,11 @@ public class ConsultarEmpleados extends Plantilla {
                 String AP = resultSet.getString("AP");
                 String AM = resultSet.getString("AM");
                 String nom = resultSet.getString("NOM");
+                String npuesto = resultSet.getString("NPuesto");
                 String turno = resultSet.getString("Turno");
                 String telEC = resultSet.getString("telEC");
                 String telEF = resultSet.getString("telEF");
-                Object[] dato = {idEmp,AP,AM,nom,turno,telEC,telEF};
+                Object[] dato = {idEmp,AP,AM,nom,npuesto,turno,telEC,telEF};
                 data.add(dato);
             }
         } catch(ClassNotFoundException s) {

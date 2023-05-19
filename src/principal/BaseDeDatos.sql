@@ -10,7 +10,7 @@
 --	NAlbum varchar (20),
 --	DiaL int,
 --	MesL int,
---	Aï¿½oL int,
+--	AñoL int,
 --	Exist int,
 --	Costo float
 --)
@@ -41,11 +41,8 @@
 --	Cant int,
 --	SubTotal float,
 --	primary key (idCompra,idDisco),
---	foreign key (idDisco) references Discos(idDisco),
---	foreign key (idCompra) references Compras(idCompras)
+--	foreign key (idDisco) references Discos(idDisco)
 --)
-
---drop table DetallesCompras
 
 --Empleados
 --create table Empleados (
@@ -82,11 +79,13 @@
 --	Cant int,
 --	Subtotal float,
 --	primary key (idVenta,idDisco),
---	foreign key (idDisco) references Discos(idDisco),
---	foreign key (idVenta) references Ventas(idVenta)
+--	foreign key (idDisco) references Discos(idDisco)
 --)
 
---drop table DetallesVentas
+insert into Discos values('D-0012','Bachata','V', 'Maluma','Otro Verano Sin Ti', 29,11,2002,15,105.50)
+insert into Empleados values ('E-0001','Estrada','Puchis','Episodio','Todologo','M','3421016969','3424216879')
+
+
 
 select * from Proveedores
 select * from Discos

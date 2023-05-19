@@ -351,6 +351,7 @@ public class ModificarEmpleado extends JPanel implements MouseListener {
             telC.setText("");
             telF.setText("");
         } else if (e.getSource() == cancelar){
+            idEmpleado.setEditable(true);
             idEmpleado.setText("");
             apellidoP.setText("");
             apellidoM.setText("");
