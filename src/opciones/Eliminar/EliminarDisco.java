@@ -4,6 +4,7 @@ package opciones.Eliminar;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class EliminarDisco extends JPanel implements MouseListener {
     // Colores
@@ -194,7 +195,144 @@ public class EliminarDisco extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        Connection connection = null; // Se almacena la conexion
+        Statement statement = null;
+        ResultSet resultSet = null;
+        String bdname = "GestorVentasDiscos";// Nombre de la base de datos
+        String user = "admin";// Usuario de la base de datos
+        String pass = "123456";// Contraseña de usuario
+        
+        if (e.getSource()==buscar) {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");//Se conecta al driver
+                String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                        + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                        + "trustServerCertificate=true;" + "loginTimeout=30;";//Parametros de la conexion a bd
+                //Establecer la conexión
+                connection = DriverManager.getConnection(connectionBD);
+                // Crear el objeto Statement
+                statement = connection.createStatement();
+                // Consulta para verificar los datos antes de eliminar
+                String consultaVerificacion = "select Discos.* from Discos where idDisco = '"+idDisco.getText()+"'";
+                // Ejecutar la consulta de verificación
+                resultSet = statement.executeQuery(consultaVerificacion);
+                // Verificar si se encontró el dato
+            if (resultSet.next()) {
+                // Obtener el dato del resultado de la consulta
+                String datoGenero = resultSet.getString("Genero");
+                String datoFormato = resultSet.getString("Formato");
+                String datoArtista = resultSet.getString("Artista");
+                String datoNAlbum = resultSet.getString("NAlbum");
+                String datoExist = resultSet.getString("Exist");
+                String datoCosto = resultSet.getString("Costo");
+                // Asignar el dato al segundo TextField
+                genero.setText(datoGenero);
+                formato.setText(datoFormato);
+                artista.setText(datoArtista);
+                nomAlbum.setText(datoNAlbum);
+                numExt.setText(datoExist);
+                costo.setText(datoCosto);
+            } else {
+                // No se encontró el dato, puedes mostrar un mensaje de error o limpiar el segundo TextField
+                genero.setText("");
+                formato.setText("");
+                artista.setText("");
+                nomAlbum.setText("");
+                numExt.setText("");
+                costo.setText("");
+                JOptionPane.showMessageDialog(this,"Error no se encontro el dato asociado a la id");
+            }
 
+            } catch(ClassNotFoundException s) {
+                System.out.println("Error: " + s.getMessage());        
+            } catch (SQLException s) {
+                JOptionPane.showMessageDialog(this,"Error al buscar registros");
+            } finally {
+                // Cerrar los recursos (ResultSet, Statement y conexión) en el bloque finally
+                if (resultSet != null) {
+                    try {
+                        resultSet.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar el ResultSet: " + s.getMessage());
+                    }
+                }
+                if (statement != null) {
+                    try {
+                        statement.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar el Statement: " + s.getMessage());
+                    }
+                }
+                if (connection != null) {
+                    try {
+                        connection.close();
+                    } catch (SQLException s) {
+                        System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                    }
+                }
+            }
+        }
+        if (e.getSource() == eliminar) {
+            try {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");//Se conecta al driver
+                String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                        + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                        + "trustServerCertificate=true;" + "loginTimeout=30;";//Parametros de la conexion a bd
+                //Establecer la conexión
+                connection = DriverManager.getConnection(connectionBD);
+                //Crear el objeto Statement
+                statement = connection.createStatement();
+                //Sentencia SQL para eliminar un registro
+                String EliminarQuery = "DELETE FROM Discos WHERE idDisco = '"+idDisco.getText()+"'";
+                //Ejecutar la sentencia
+                int rowsAffected = statement.executeUpdate(EliminarQuery);
+                //Verificar si se eliminaron registros
+                if (rowsAffected > 0) {
+                    System.out.println("Se eliminaron " + rowsAffected + " registros.");
+                    JOptionPane.showMessageDialog(this, "Se ha eliminado con exito el disco");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontraron registros para eliminar");
+                }
+            } catch(ClassNotFoundException s) {
+                System.out.println("Error: " + s.getMessage());        
+            } catch (SQLException s) {
+                System.out.println("Error al eliminar registros: " + s.getMessage());
+            } finally {
+                try {
+                    // Cerrar el Statement
+                    if (statement != null) {
+                        statement.close();
+                    }
+                } catch (SQLException s) {
+                    System.out.println("Error al cerrar el Statement: " + s.getMessage());
+                }
+                try {
+                    // Cerrar la conexión
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException s) {
+                    System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                }
+            }
+            idDisco.setText("");
+            genero.setText("");
+            formato.setText("");
+            artista.setText("");
+            nomAlbum.setText("");
+            numExt.setText("");
+            costo.setText("");
+        }
+        if (e.getSource()==cancelar) {
+            idDisco.setText("");
+            genero.setText("");
+            formato.setText("");
+            artista.setText("");
+            nomAlbum.setText("");
+            numExt.setText("");
+            costo.setText("");
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la eliminación");
+        }
     }
 
     @Override

@@ -27,7 +27,7 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
 
     // Componente nombre Puesto
     JLabel txtNPuesto = new JLabel("Id Puesto");
-    JTextField NPuesto = new JTextField();
+    JTextField nPuesto = new JTextField();
 
     // Componente Tel. F.
     JLabel txtTelF = new JLabel("Tel. F.");
@@ -89,9 +89,9 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
     // Campo Id Puesto
     txtNPuesto.setBounds(520, 60, 120, 20);
     txtNPuesto.setFont(new Font("Roboto Black", Font.BOLD, 16));
-    NPuesto.setBounds(630, 57, 270, 25);
-    NPuesto.setForeground(Color.GRAY);
-    NPuesto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+    nPuesto.setBounds(630, 57, 270, 25);
+    nPuesto.setForeground(Color.GRAY);
+    nPuesto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
     // Campo Tel. F.
     txtTelF.setBounds(520, 150, 120, 20);
@@ -156,7 +156,7 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
     add(txtApellidoM);
 
     // Añadiendo el campo id Puesto
-    add(NPuesto);
+    add(nPuesto);
     add(txtNPuesto);
 
     // Añadiendo el campo Tel. F.
@@ -207,21 +207,29 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
                 preparedStatement.setString(2, apellidoP.getText());
                 preparedStatement.setString(3, apellidoM.getText());
                 preparedStatement.setString(4, nombre.getText());
-                preparedStatement.setString(5, NPuesto.getText());
+                preparedStatement.setString(5, nPuesto.getText());
                 preparedStatement.setString(6, turno.getText());
                 preparedStatement.setString(7, telC.getText());
                 preparedStatement.setString(8, telF.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Se agregó el registro correctamente");
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-                // Se cierra la conexion en teoria xd
-                connection.close();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (Exception s) {
                 System.out.println("Error: " + s.getMessage());
+            } finally {
+                try {
+                    // Cerrar la conexión
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException s) {
+                    System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                }
             }
         }
     }

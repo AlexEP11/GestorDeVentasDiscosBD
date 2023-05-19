@@ -10,8 +10,8 @@ public class AgregarPuesto extends JPanel implements MouseListener {
     Color cremaHov = new Color(242, 190, 107);
 
     // Componente Nombre P.
-    JLabel txtNombreP = new JLabel("Nombre P.");
-    JTextField nombreP = new JTextField();
+    JLabel txtNPuesto = new JLabel("Nombre P.");
+    JTextField nPuesto = new JTextField();
 
     // Componente Salario
     JLabel txtSalario = new JLabel("Salario");
@@ -34,11 +34,11 @@ public class AgregarPuesto extends JPanel implements MouseListener {
         setBackground(Color.WHITE);
 
         // Campo Nombre P.
-        txtNombreP.setBounds(20, 60, 120, 20);
-        txtNombreP.setFont(new Font("Roboto Black", Font.BOLD, 16));
-        nombreP.setBounds(130, 57, 270, 25);
-        nombreP.setForeground(Color.GRAY);
-        nombreP.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        txtNPuesto.setBounds(20, 60, 120, 20);
+        txtNPuesto.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        nPuesto.setBounds(130, 57, 270, 25);
+        nPuesto.setForeground(Color.GRAY);
+        nPuesto.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Salario
         txtSalario.setBounds(30, 150, 120, 20);
@@ -73,8 +73,8 @@ public class AgregarPuesto extends JPanel implements MouseListener {
         //////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL ///////////////////////////////////////////////////////////////////
 
         // Añadiendo el campo Nombre P.
-        add(nombreP);
-        add(txtNombreP);
+        add(nPuesto);
+        add(txtNPuesto);
 
         // Añadiendo el campo Salario
         add(salario);
@@ -111,18 +111,27 @@ public class AgregarPuesto extends JPanel implements MouseListener {
                 connection = DriverManager.getConnection(connectionBD);
                 PreparedStatement preparedStatement = connection.prepareStatement(AgregarQuery);
                 // Establecer los valores de los parámetros en la sentencia de inserción
-                preparedStatement.setString(1, nombreP.getText());
+                preparedStatement.setString(1, nPuesto.getText());
                 preparedStatement.setString(2, salario.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Se agregó el registro correctamente");
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-                connection.close();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (Exception s) {
                 System.out.println("Error: " + s.getMessage());
+            } finally {
+                try {
+                    // Cerrar la conexión
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException s) {
+                    System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                }
             }
         }
         

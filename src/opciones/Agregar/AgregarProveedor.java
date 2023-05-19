@@ -182,15 +182,23 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 preparedStatement.setString(8, telF.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
+                JOptionPane.showMessageDialog(this,"Se agregó el registro correctamente");
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-                // Se cierra la conexion en teoria xd
-                connection.close();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (Exception s) {
                 System.out.println("Error: " + s.getMessage());
+            } finally {
+                try {
+                    // Cerrar la conexión
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException s) {
+                    System.out.println("Error al cerrar la conexión: " + s.getMessage());
+                }
             }
         }
     }
