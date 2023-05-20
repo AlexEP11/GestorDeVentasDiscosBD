@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "principal.Login",
+            "projectName": "GestorDeVentasDiscosBD_d40bfd1d"
+        },
+        {
+            "type": "java",
+            "name": "Inicio",
+            "request": "launch",
+            "mainClass": "principal.Inicio",
+            "projectName": "GestorDeVentasDiscosBD_d40bfd1d"
+        },
+        {
+            "type": "java",
+            "name": "Inicio",
+            "request": "launch",
+            "mainClass": "principal.Inicio",
+            "projectName": "GestorDeVentasDiscosBD_f6dd4ce0"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

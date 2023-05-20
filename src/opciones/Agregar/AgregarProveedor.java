@@ -55,6 +55,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
         idProveedor.setBounds(350, 57, 270, 25);
         idProveedor.setForeground(Color.GRAY);
         idProveedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        idProveedor.setEditable(false);
 
         // Campo Nom. Prov.
         txtNomProv.setBounds(20, 150, 120, 20);

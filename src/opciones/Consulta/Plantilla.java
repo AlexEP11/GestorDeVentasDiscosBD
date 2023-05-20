@@ -5,9 +5,17 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.sql.*;
 import javax.swing.*;
+import java.util.*;
 public class Plantilla extends JPanel implements ActionListener {
+    //Variables de la conexion
+    Connection connection = null; //se almacena la conexion
+    Statement statement = null;
+    ResultSet resultSet = null;
+    String bdname = "GestorVentasDiscos";//nombre  de la base de datos
+    String user = "admin";//usuario de la base de datos
+    String pass = "123456";//contraseña de usuario
     //Colores
     public Color cremaP = new Color(251, 205, 131);
 
@@ -21,6 +29,7 @@ public class Plantilla extends JPanel implements ActionListener {
     //Espacio de los radioButtons
     public JPanel opciones = new JPanel();
     public ButtonGroup grupo = new ButtonGroup();
+    public MyTableModel mtb;
 
     //Entrada
     public JTextField entrada = new JTextField("Buscar",20);
@@ -69,6 +78,7 @@ public class Plantilla extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == limpiar){
             grupo.clearSelection();
+            entrada.setText("Buscar");
         }
     }
 

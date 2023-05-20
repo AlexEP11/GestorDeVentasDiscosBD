@@ -82,6 +82,11 @@
 --	foreign key (idDisco) references Discos(idDisco)
 --)
 
+insert into Discos values('D-0012','Bachata','V', 'Maluma','Otro Verano Sin Ti', 29,11,2002,15,105.50)
+insert into Empleados values ('E-0001','Estrada','Puchis','Episodio','Todologo','M','3421016969','3424216879')
+
+
+
 select * from Proveedores
 select * from Discos
 select * from Compras

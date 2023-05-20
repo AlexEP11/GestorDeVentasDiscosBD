@@ -64,6 +64,7 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
     idEmpleado.setBounds(130, 57, 270, 25);
     idEmpleado.setForeground(Color.GRAY);
     idEmpleado.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+    idEmpleado.setEditable(false);
 
     // Campo Nombre
     txtNombre.setBounds(20, 150, 120, 20);

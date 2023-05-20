@@ -59,6 +59,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
         idDisco.setBounds(350, 57, 270, 25);
         idDisco.setForeground(Color.GRAY);
         idDisco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        idDisco.setEditable(false);
 
         // Campo Nom. Album
         txtNomAlbum.setBounds(20, 150, 120, 20);
