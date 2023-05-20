@@ -182,7 +182,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 preparedStatement.setString(8, telF.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Se agregó el registro correctamente");
+                JOptionPane.showMessageDialog(this,"Se agregó el registro del proveedor correctamente","Registro exitosor",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());

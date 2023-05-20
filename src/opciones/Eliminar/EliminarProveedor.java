@@ -270,9 +270,9 @@ public class EliminarProveedor extends JPanel implements MouseListener {
                 //Verificar si se eliminaron registros
                 if (rowsAffected > 0) {
                     System.out.println("Se eliminaron " + rowsAffected + " registros.");
-                    JOptionPane.showMessageDialog(this, "Se ha eliminado con exito el proveedor");
+                    JOptionPane.showMessageDialog(this, "Se ha eliminado con exito el proveedor","Eliminacion exitosa",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se encontraron registros para eliminar");
+                    JOptionPane.showMessageDialog(this, "No se encontraron registros para eliminar", "Informacion no encontrada",JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch(ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());        
@@ -310,7 +310,7 @@ public class EliminarProveedor extends JPanel implements MouseListener {
             numExt.setText("");
             telC.setText("");
             telF.setText("");
-            JOptionPane.showMessageDialog(this,"Se ha cancelado la eliminación");
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la eliminación", "Eliminacion cancelada",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

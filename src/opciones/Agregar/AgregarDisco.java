@@ -195,7 +195,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
                 preparedStatement.setFloat(10, Float.parseFloat(costo.getText()));
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Se agregó el registro correctamente");
+                JOptionPane.showMessageDialog(this,"Se agregó el registro del disco correctamente", "Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());

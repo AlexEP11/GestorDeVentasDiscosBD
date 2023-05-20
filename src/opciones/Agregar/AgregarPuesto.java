@@ -115,7 +115,7 @@ public class AgregarPuesto extends JPanel implements MouseListener {
                 preparedStatement.setString(2, salario.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Se agregó el registro correctamente");
+                JOptionPane.showMessageDialog(this,"Se agregó el registro del puesto correctamente", "Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());

@@ -195,9 +195,9 @@ public class EliminarPuesto extends JPanel implements MouseListener {
                 //Verificar si se eliminaron registros
                 if (rowsAffected > 0) {
                     System.out.println("Se eliminaron " + rowsAffected + " registros.");
-                    JOptionPane.showMessageDialog(this, "Se ha eliminado con exito el puesto");
+                    JOptionPane.showMessageDialog(this, "Se ha eliminado con exito el puesto","Eliminacion exitosa",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No se encontraron registros para eliminar");
+                    JOptionPane.showMessageDialog(this, "No se encontraron registros para eliminar", "Eliminacion cancelada",JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch(ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());        
@@ -227,7 +227,7 @@ public class EliminarPuesto extends JPanel implements MouseListener {
         if (e.getSource()==cancelar) {
             nPuesto.setText("");
             salario.setText("");
-            JOptionPane.showMessageDialog(this,"Se ha cancelado la eliminación");
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la eliminación","Eliminacion cancelada",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
