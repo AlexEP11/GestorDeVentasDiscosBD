@@ -175,12 +175,11 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 // Establecer los valores de los parámetros en la sentencia de inserción
                 // preparedStatement.setString(1, idProveedor.getText()); Aqui ira la id del
                 // proveedor
-                preparedStatement.setString(2, idProveedor.getText());
-                preparedStatement.setString(3, nomProv.getText());
-                preparedStatement.setString(4, calle.getText());
-                preparedStatement.setInt(5, Integer.parseInt(numExt.getText()));
-                preparedStatement.setString(7, telC.getText());
-                preparedStatement.setString(8, telF.getText());
+                preparedStatement.setString(2, nomProv.getText());
+                preparedStatement.setString(3, calle.getText());
+                preparedStatement.setInt(4, Integer.parseInt(numExt.getText()));
+                preparedStatement.setString(5, telC.getText());
+                preparedStatement.setString(6, telF.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Se agregó el registro del proveedor correctamente","Registro exitosor",JOptionPane.INFORMATION_MESSAGE);

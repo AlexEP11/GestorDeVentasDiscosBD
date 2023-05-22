@@ -1,13 +1,11 @@
 package principal;
 import java.sql.*;
-
 public class SQLDatabaseConnection {
     public static Connection getConnection(){
         Connection connection = null; //se almacena la conexion para poderla retornar
         String bdname = "GestorVentasDiscos";//nombre  de la base de datos
         String user = "admin";//usuario de la base de datos
         String pass = "123456";//contraseña de usuario
-
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");//Se conecta al driver
             String connectionBD = "jdbc:sqlserver://localhost;databaseName="
@@ -23,13 +21,21 @@ public class SQLDatabaseConnection {
             // Ejecutar la sentencia de inserción
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-            connection.close();
         } catch(ClassNotFoundException e) {
             System.out.println("Error: " + e.getMessage());
         }catch(SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }catch(Exception e) {
             System.out.println("Error: " + e.getMessage());
+        }finally {
+            try {
+                // Cerrar la conexión
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException s) {
+                System.out.println("Error al cerrar la conexión: " + s.getMessage());
+            }
         }
         return connection;
     }
