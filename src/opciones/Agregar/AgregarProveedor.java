@@ -207,6 +207,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 }
             }
         }else if(e.getSource() == cancelar){
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la insercion","Agregacion cancelada",JOptionPane.INFORMATION_MESSAGE);
             limpiarValores();
         }
     }

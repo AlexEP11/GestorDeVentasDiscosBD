@@ -191,7 +191,6 @@ public class AgregarDisco extends JPanel implements MouseListener {
 
     public void obtenerIdActual() {
         int c = getRegistros();
-        System.out.println(c);
         id = transformarId(c);
         idDisco.setText(id);
     }
