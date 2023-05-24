@@ -133,8 +133,17 @@ public class AgregarPuesto extends JPanel implements MouseListener {
                     System.out.println("Error al cerrar la conexión: " + s.getMessage());
                 }
             }
+            limpiarValores();
+        }else if(e.getSource() == cancelar){
+            limpiarValores();
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la insercion","Agregacion cancelada",JOptionPane.INFORMATION_MESSAGE);
         }
         
+    }
+
+    public void limpiarValores(){
+        nPuesto.setText("");
+        salario.setText("");
     }
 
     @Override

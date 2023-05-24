@@ -178,10 +178,6 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 // Establecer los valores de los parámetros en la sentencia de inserción
                 // preparedStatement.setString(1, idProveedor.getText()); Aqui ira la id del
                 // proveedor
-<<<<<<< HEAD
-=======
-                preparedStatement.setString(1, idProveedor.getText());
->>>>>>> ed562914ebbae114d8e39ddeb3051d38b733c02e
                 preparedStatement.setString(2, nomProv.getText());
                 preparedStatement.setString(3, calle.getText());
                 preparedStatement.setInt(4, Integer.parseInt(numExt.getText()));
@@ -209,8 +205,10 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                     System.out.println("Error al cerrar la conexión: " + s.getMessage());
                 }
             }
+            limpiarValores();
         }else if(e.getSource() == cancelar){
             limpiarValores();
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la insercion","Agregacion cancelada",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
