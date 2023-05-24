@@ -57,8 +57,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
         idProveedor.setBounds(350, 57, 270, 25);
         idProveedor.setForeground(Color.GRAY);
         idProveedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
-        idProveedor.setEditable(false);
-        obtenerIdActual();
+        idProveedor.setEditable(true);
 
         // Campo Nom. Prov.
         txtNomProv.setBounds(20, 150, 120, 20);
@@ -162,6 +161,19 @@ public class AgregarProveedor extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == agregar) {
+            try {
+                int c = Integer.parseInt(idProveedor.getText());
+                if(c > 9999 || c < 0){
+                    JOptionPane.showMessageDialog(this,"Id Invalida, tiene que ser un numero menor a 9999 y mayor o igual a 0","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                    idProveedor.setText("");
+                    return;
+                }
+                id = transformarId(c);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Id Invalida, tiene que ser un numero","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                idProveedor.setText("");
+                return;
+            }
             Connection connection = null; // se almacena la conexion
             String bdname = "GestorVentasDiscos";// nombre de la base de datos
             String user = "admin";// usuario de la base de datos
@@ -178,7 +190,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 // Establecer los valores de los parámetros en la sentencia de inserción
                 // preparedStatement.setString(1, idProveedor.getText()); Aqui ira la id del
                 // proveedor
-                preparedStatement.setString(1, idProveedor.getText());
+                preparedStatement.setString(1, id);
                 preparedStatement.setString(2, nomProv.getText());
                 preparedStatement.setString(3, calle.getText());
                 preparedStatement.setInt(4, Integer.parseInt(numExt.getText()));
@@ -188,7 +200,6 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 int rowsAffected = preparedStatement.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Se agregó el registro del proveedor correctamente","Registro exitosor",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-                obtenerIdActual();
                 limpiarValores();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
@@ -212,58 +223,14 @@ public class AgregarProveedor extends JPanel implements MouseListener {
         }
     }
 
-    public void obtenerIdActual() {
-        int c = getRegistros();
-        id = transformarId(c);
-        idProveedor.setText(id);
-    }
 
     public void limpiarValores(){
+        idProveedor.setText("");
         nomProv.setText("");
         calle.setText("");
         numExt.setText("");
         telC.setText("");
         telF.setText("");
-    }
-    public int getRegistros() {
-        Connection connection = null; // se almacena la conexion
-        String bdname = "GestorVentasDiscos";// nombre de la base de datos
-        String user = "admin";// usuario de la base de datos
-        String pass = "123456";// contraseña de usuario
-        Statement statement = null;
-        ResultSet resultSet = null;
-        int ans = -1;
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
-            String connectionBD = "jdbc:sqlserver://localhost;databaseName="
-                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
-                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
-            connection = DriverManager.getConnection(connectionBD);
-            // Crear el objeto Statement
-            statement = connection.createStatement();
-            // Ejecutar la consulta
-            resultSet = statement.executeQuery("SELECT COUNT(*) as res FROM Proveedores");
-            resultSet.next();
-            ans = resultSet.getInt(1) + 1;
-
-        } catch (ClassNotFoundException s) {
-            System.out.println("Error: " + s.getMessage());
-        } catch (SQLException s) {
-            System.out.println("Error: " + s.getMessage());
-        } catch (Exception s) {
-            System.out.println("Error: " + s.getMessage());
-            
-        } finally {
-            try {
-                // Cerrar la conexión
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException s) {
-                System.out.println("Error al cerrar la conexión: " + s.getMessage());
-            }
-        }
-        return ans;
     }
 
     public String transformarId(int c){
