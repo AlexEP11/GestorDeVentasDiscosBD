@@ -190,10 +190,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 // Establecer los valores de los parámetros en la sentencia de inserción
                 // preparedStatement.setString(1, idProveedor.getText()); Aqui ira la id del
                 // proveedor
-<<<<<<< HEAD
-=======
                 preparedStatement.setString(1, id);
->>>>>>> Alejandro
                 preparedStatement.setString(2, nomProv.getText());
                 preparedStatement.setString(3, calle.getText());
                 preparedStatement.setInt(4, Integer.parseInt(numExt.getText()));
