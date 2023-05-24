@@ -35,11 +35,14 @@ public class AgregarDisco extends JPanel implements MouseListener {
 
     // Componente Formato
     JLabel txtFormato = new JLabel("Formato");
-    JTextField formato = new JTextField();
+    String[] gen = {"V", "D"};
+    JComboBox<String> formato = new JComboBox<>(gen);
 
     // Componente Fecha L.
     JLabel txtFechaL = new JLabel("Fecha L.");
-    JTextField fechaL = new JTextField();
+    JTextField fechaD = new JTextField();
+    JTextField fechaM = new JTextField();
+    JTextField fechaA = new JTextField();
 
     // Boton Agregar
     JPanel agregar = new JPanel(null);
@@ -93,9 +96,15 @@ public class AgregarDisco extends JPanel implements MouseListener {
         // Campo Fecha L
         txtFechaL.setBounds(20, 420, 120, 20);
         txtFechaL.setFont(new Font("Roboto Black", Font.BOLD, 16));
-        fechaL.setForeground(Color.GRAY);
-        fechaL.setBounds(130, 417, 270, 25);
-        fechaL.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        fechaD.setForeground(Color.GRAY);
+        fechaD.setBounds(130, 417, 89, 25);
+        fechaD.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        fechaM.setForeground(Color.GRAY);
+        fechaM.setBounds(220, 417, 89, 25);
+        fechaM.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        fechaA.setForeground(Color.GRAY);
+        fechaA.setBounds(310, 417, 89, 25);
+        fechaA.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Artista
         txtArtista.setBounds(520, 150, 120, 20);
@@ -160,7 +169,9 @@ public class AgregarDisco extends JPanel implements MouseListener {
         add(txtGenero);
 
         // Añadiendo el campo Fecha L
-        add(fechaL);
+        add(fechaD);
+        add(fechaM);
+        add(fechaA);
         add(txtFechaL);
 
         // Añadiendo el campo Artista
@@ -247,22 +258,23 @@ public class AgregarDisco extends JPanel implements MouseListener {
             String bdname = "GestorVentasDiscos";// nombre de la base de datos
             String user = "admin";// usuario de la base de datos
             String pass = "123456";// contraseña de usuario
-
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
                 String connectionBD = "jdbc:sqlserver://localhost;databaseName="
                         + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
                         + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
-                String AgregarQuery = "INSERT INTO Discos (idDisco, Genero, Formato, Artista, NAlbum, DiaL, MesL, AñoL, Exist, Cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String AgregarQuery = "INSERT INTO Discos (idDisco, Genero, Formato, Artista, NAlbum, DiaL, MesL, AñoL, Exist, Costo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 connection = DriverManager.getConnection(connectionBD);
                 PreparedStatement preparedStatement = connection.prepareStatement(AgregarQuery);
                 // Establecer los valores de los parámetros en la sentencia de inserción
                 preparedStatement.setString(1, idDisco.getText()); 
                 preparedStatement.setString(2, genero.getText());
-                preparedStatement.setString(3, formato.getText());
+                preparedStatement.setString(3, String.valueOf(formato.getSelectedItem()));
                 preparedStatement.setString(4, artista.getText());
                 preparedStatement.setString(5, nomAlbum.getText());
-                // La fecha sera automatica
+                preparedStatement.setInt(6, Integer.parseInt(fechaD.getText()));
+                preparedStatement.setInt(7, Integer.parseInt(fechaM.getText()));
+                preparedStatement.setInt(8, Integer.parseInt(fechaA.getText()));
                 preparedStatement.setInt(9, Integer.parseInt(numExt.getText()));
                 preparedStatement.setFloat(10, Float.parseFloat(costo.getText()));
                 // Ejecutar la sentencia de inserción
@@ -287,6 +299,27 @@ public class AgregarDisco extends JPanel implements MouseListener {
                     System.out.println("Error al cerrar la conexión: " + s.getMessage());
                 }
             }
+            idDisco.setText("");
+            genero.setText("");
+            artista.setText("");
+            fechaD.setText("");
+            fechaM.setText("");
+            fechaA.setText("");
+            nomAlbum.setText("");
+            numExt.setText("");
+            costo.setText("");
+        } 
+        if (e.getSource()==cancelar) {
+            idDisco.setText("");
+            genero.setText("");
+            artista.setText("");
+            fechaD.setText("");
+            fechaM.setText("");
+            fechaA.setText("");
+            nomAlbum.setText("");
+            numExt.setText("");
+            costo.setText("");
+            JOptionPane.showMessageDialog(this,"Se ha cancelado la insercion","Agregacion cancelada",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
