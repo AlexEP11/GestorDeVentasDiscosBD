@@ -245,7 +245,6 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
         apellidoM.setText("");
         apellidoP.setText("");
         nPuesto.setText("");
-        turno.setText("");
         telC.setText("");
         telF.setText("");
     }
