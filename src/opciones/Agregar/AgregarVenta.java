@@ -77,6 +77,7 @@ public class AgregarVenta extends JPanel implements MouseListener{
         idDisco.setBounds(135,197,270,25);
         idDisco.setForeground(Color.GRAY);
         idDisco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        idDisco.setBackground(Color.lightGray);
         idDisco.setEnabled(false);
 
         // Campo Cantidad
@@ -85,6 +86,7 @@ public class AgregarVenta extends JPanel implements MouseListener{
         cantidad.setBounds(135,337,270,25);
         cantidad.setForeground(Color.GRAY);
         cantidad.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        cantidad.setBackground(Color.lightGray);
         cantidad.setEnabled(false);
 
         // Campo Tabla
