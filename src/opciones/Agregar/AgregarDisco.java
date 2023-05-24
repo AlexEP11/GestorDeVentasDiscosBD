@@ -69,8 +69,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
         idDisco.setBounds(350, 57, 270, 25);
         idDisco.setForeground(Color.GRAY);
         idDisco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
-        idDisco.setEditable(false);
-        obtenerIdActual();
+        idDisco.setEditable(true);
 
         // Campo Nom. Album
         txtNomAlbum.setBounds(20, 150, 120, 20);
@@ -200,53 +199,6 @@ public class AgregarDisco extends JPanel implements MouseListener {
         setVisible(true);
     }
 
-    public void obtenerIdActual() {
-        int c = getRegistros();
-        System.out.println(c);
-        id = transformarId(c);
-        idDisco.setText(id);
-    }
-
-    public int getRegistros() {
-        Connection connection = null; // se almacena la conexion
-        String bdname = "GestorVentasDiscos";// nombre de la base de datos
-        String user = "admin";// usuario de la base de datos
-        String pass = "123456";// contraseña de usuario
-        Statement statement = null;
-        ResultSet resultSet = null;
-        int ans = -1;
-        try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
-            String connectionBD = "jdbc:sqlserver://localhost;databaseName="
-                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
-                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
-            connection = DriverManager.getConnection(connectionBD);
-            // Crear el objeto Statement
-            statement = connection.createStatement();
-            // Ejecutar la consulta
-            resultSet = statement.executeQuery("SELECT COUNT(*) as res FROM Discos");
-            resultSet.next();
-            ans = resultSet.getInt(1) + 1;
-
-        } catch (ClassNotFoundException s) {
-            System.out.println("Error: " + s.getMessage());
-        } catch (SQLException s) {
-            System.out.println("Error: " + s.getMessage());
-        } catch (Exception s) {
-            System.out.println("Error: " + s.getMessage());
-            
-        } finally {
-            try {
-                // Cerrar la conexión
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException s) {
-                System.out.println("Error al cerrar la conexión: " + s.getMessage());
-            }
-        }
-        return ans;
-    }
 
     public String transformarId(int c){
         return "D-" + String.format("%04d",c);
@@ -254,6 +206,19 @@ public class AgregarDisco extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == agregar) {
+            try {
+                int c = Integer.parseInt(idDisco.getText());
+                if(c > 9999 || c < 0){
+                    JOptionPane.showMessageDialog(this,"Id Invalida, tiene que ser un numero menor a 9999 y mayor o igual a 0","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                    idDisco.setText("");
+                    return;
+                }
+                id = transformarId(c);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,"Id Invalida, tiene que ser un numero","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                idDisco.setText("");
+                return;
+            }
             Connection connection = null; // se almacena la conexion
             String bdname = "GestorVentasDiscos";// nombre de la base de datos
             String user = "admin";// usuario de la base de datos
@@ -267,7 +232,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
                 connection = DriverManager.getConnection(connectionBD);
                 PreparedStatement preparedStatement = connection.prepareStatement(AgregarQuery);
                 // Establecer los valores de los parámetros en la sentencia de inserción
-                preparedStatement.setString(1, idDisco.getText()); 
+                preparedStatement.setString(1, id); 
                 preparedStatement.setString(2, genero.getText());
                 preparedStatement.setString(3, String.valueOf(formato.getSelectedItem()));
                 preparedStatement.setString(4, artista.getText());
@@ -282,7 +247,6 @@ public class AgregarDisco extends JPanel implements MouseListener {
                 JOptionPane.showMessageDialog(this, "Se agregó el registro del disco correctamente", "Registro exitoso",
                         JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-                obtenerIdActual();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
