@@ -146,7 +146,7 @@ public class EliminarPuesto extends JPanel implements MouseListener {
             } else {
                 // No se encontró el dato, puedes mostrar un mensaje de error o limpiar el segundo TextField
                 salario.setText("");
-                JOptionPane.showMessageDialog(this,"Error no se encontro el dato asociado a la id");
+                JOptionPane.showMessageDialog(this,"Error no se encontro el puesto solicitado");
             }
 
             } catch(ClassNotFoundException s) {

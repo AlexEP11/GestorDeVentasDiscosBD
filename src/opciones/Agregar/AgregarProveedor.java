@@ -45,6 +45,8 @@ public class AgregarProveedor extends JPanel implements MouseListener {
     JLabel imgCancelar = new JLabel();
     ImageIcon equisCancelar = new ImageIcon("./src/imagenes/cancelar.png");
 
+    //idAutomatica
+    String id = "";
     public AgregarProveedor() {
         setLayout(null);
         setBackground(Color.WHITE);
@@ -56,6 +58,7 @@ public class AgregarProveedor extends JPanel implements MouseListener {
         idProveedor.setForeground(Color.GRAY);
         idProveedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
         idProveedor.setEditable(false);
+        obtenerIdActual();
 
         // Campo Nom. Prov.
         txtNomProv.setBounds(20, 150, 120, 20);
@@ -175,6 +178,10 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 // Establecer los valores de los parámetros en la sentencia de inserción
                 // preparedStatement.setString(1, idProveedor.getText()); Aqui ira la id del
                 // proveedor
+<<<<<<< HEAD
+=======
+                preparedStatement.setString(1, idProveedor.getText());
+>>>>>>> ed562914ebbae114d8e39ddeb3051d38b733c02e
                 preparedStatement.setString(2, nomProv.getText());
                 preparedStatement.setString(3, calle.getText());
                 preparedStatement.setInt(4, Integer.parseInt(numExt.getText()));
@@ -184,6 +191,8 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                 int rowsAffected = preparedStatement.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Se agregó el registro del proveedor correctamente","Registro exitosor",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                obtenerIdActual();
+                limpiarValores();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
@@ -200,9 +209,68 @@ public class AgregarProveedor extends JPanel implements MouseListener {
                     System.out.println("Error al cerrar la conexión: " + s.getMessage());
                 }
             }
+        }else if(e.getSource() == cancelar){
+            limpiarValores();
         }
     }
 
+    public void obtenerIdActual() {
+        int c = getRegistros();
+        id = transformarId(c);
+        idProveedor.setText(id);
+    }
+
+    public void limpiarValores(){
+        nomProv.setText("");
+        calle.setText("");
+        numExt.setText("");
+        telC.setText("");
+        telF.setText("");
+    }
+    public int getRegistros() {
+        Connection connection = null; // se almacena la conexion
+        String bdname = "GestorVentasDiscos";// nombre de la base de datos
+        String user = "admin";// usuario de la base de datos
+        String pass = "123456";// contraseña de usuario
+        Statement statement = null;
+        ResultSet resultSet = null;
+        int ans = -1;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
+            String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
+            connection = DriverManager.getConnection(connectionBD);
+            // Crear el objeto Statement
+            statement = connection.createStatement();
+            // Ejecutar la consulta
+            resultSet = statement.executeQuery("SELECT COUNT(*) as res FROM Proveedores");
+            resultSet.next();
+            ans = resultSet.getInt(1) + 1;
+
+        } catch (ClassNotFoundException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (SQLException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (Exception s) {
+            System.out.println("Error: " + s.getMessage());
+            
+        } finally {
+            try {
+                // Cerrar la conexión
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException s) {
+                System.out.println("Error al cerrar la conexión: " + s.getMessage());
+            }
+        }
+        return ans;
+    }
+
+    public String transformarId(int c){
+        return "P-" + String.format("%04d",c);
+    }
     @Override
     public void mousePressed(MouseEvent e) {
 

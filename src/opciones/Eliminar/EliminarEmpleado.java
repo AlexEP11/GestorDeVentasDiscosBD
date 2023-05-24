@@ -30,7 +30,7 @@ public class EliminarEmpleado extends JPanel implements MouseListener {
     JTextField apellidoM = new JTextField();
 
     // Componente id Puesto
-    JLabel txtNPuesto = new JLabel("Id Puesto");
+    JLabel txtNPuesto = new JLabel("N. Puesto");
     JTextField nPuesto = new JTextField();
 
     // Componente Tel. F.
@@ -178,7 +178,7 @@ public class EliminarEmpleado extends JPanel implements MouseListener {
 
         // Añadiendo el campo id Puesto
         add(nPuesto);
-        add(nPuesto);
+        add(txtNPuesto);
 
         // Añadiendo el campo Tel. F.
         add(telF);

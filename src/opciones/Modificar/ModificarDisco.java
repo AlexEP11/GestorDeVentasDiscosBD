@@ -23,7 +23,7 @@ public class ModificarDisco extends JPanel implements MouseListener {
     JTextField nomAlbum = new JTextField();
 
     // Componente numExt
-    JLabel txtnumExt = new JLabel("numExt");
+    JLabel txtnumExt = new JLabel("Num. Exist");
     JTextField numExt = new JTextField();
 
     // Componente Genero

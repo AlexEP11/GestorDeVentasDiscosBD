@@ -15,7 +15,8 @@ public class AgregarVenta extends JPanel implements MouseListener{
     // Componentes id Empleado
     JLabel txtIdEmpleado = new JLabel("Id Empleado");
     JTextField idEmpleado = new JTextField();
-
+    //Variables necesarias
+    private String[] columnNames = {"IdDisco","Cantidad","Subtotal"};
     // Componente Fecha
     JLabel txtFecha = new JLabel("Fecha");
     JTextField fecha = new JTextField();
@@ -30,6 +31,7 @@ public class AgregarVenta extends JPanel implements MouseListener{
 
     // Componente Tabla
     JTable table;
+    TablaEspecialMod mtb;
 
 
     // Boton Agregar
@@ -75,6 +77,8 @@ public class AgregarVenta extends JPanel implements MouseListener{
         idDisco.setBounds(135,197,270,25);
         idDisco.setForeground(Color.GRAY);
         idDisco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        idDisco.setBackground(Color.lightGray);
+        idDisco.setEnabled(false);
 
         // Campo Cantidad
         txtCantidad.setBounds(40, 340, 120, 20);
@@ -82,9 +86,12 @@ public class AgregarVenta extends JPanel implements MouseListener{
         cantidad.setBounds(135,337,270,25);
         cantidad.setForeground(Color.GRAY);
         cantidad.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        cantidad.setBackground(Color.lightGray);
+        cantidad.setEnabled(false);
 
         // Campo Tabla
-        table = new JTable(new MyTableModel());
+        mtb = new TablaEspecialMod(columnNames);
+        table = new JTable(mtb);
         JScrollPane contenedorTabla = new JScrollPane(table);
         table.setFillsViewportHeight(true);
         table.setCellSelectionEnabled(false);
@@ -243,53 +250,5 @@ public class AgregarVenta extends JPanel implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
        
-    }
-
-    class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"IdDisco","Cantidad","Subtotal"};
-        private Object[][] data = {
-            {"D-01","2",200f},
-            {"D-02","2",300f},
-            {"D-03","4",450f}
-        };
-    
-        public int getColumnCount() {
-            return columnNames.length;
-        }
-    
-        public int getRowCount() {
-            return data.length;
-        }
-    
-        public String getColumnName(int col) {
-            return columnNames[col];
-        }
-    
-        public Object getValueAt(int row, int col) {
-            return data[row][col];
-        }
-    
-        public Class getColumnClass(int c) {
-            return getValueAt(0, c).getClass();
-        }
-    
-        /*
-         * Don't need to implement this method unless your table's
-         * editable.
-         */
-        public boolean isCellEditable(int row, int col) {
-            //Note that the data/cell address is constant,
-            //no matter where the cell appears onscreen.
-            return false;
-        }
-    
-        /*
-         * Don't need to implement this method unless your table's
-         * data can change.
-         */
-        public void setValueAt(Object value, int row, int col) {
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
-        }
     }
 }

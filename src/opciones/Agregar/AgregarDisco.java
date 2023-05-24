@@ -18,7 +18,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
     JTextField nomAlbum = new JTextField();
 
     // Componente numExt
-    JLabel txtnumExt = new JLabel("numExt");
+    JLabel txtnumExt = new JLabel("Num. Exist");
     JTextField numExt = new JTextField();
 
     // Componente Genero
@@ -37,6 +37,10 @@ public class AgregarDisco extends JPanel implements MouseListener {
     JLabel txtFormato = new JLabel("Formato");
     JTextField formato = new JTextField();
 
+    // Componente Fecha L.
+    JLabel txtFechaL = new JLabel("Fecha L.");
+    JTextField fechaL = new JTextField();
+
     // Boton Agregar
     JPanel agregar = new JPanel(null);
     JLabel txtAgregar = new JLabel("Agregar");
@@ -49,6 +53,9 @@ public class AgregarDisco extends JPanel implements MouseListener {
     JLabel imgCancelar = new JLabel();
     ImageIcon equisCancelar = new ImageIcon("./src/imagenes/cancelar.png");
 
+    //Id Automatica
+    String id = "";
+
     public AgregarDisco() {
         setLayout(null);
         setBackground(Color.WHITE);
@@ -60,6 +67,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
         idDisco.setForeground(Color.GRAY);
         idDisco.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
         idDisco.setEditable(false);
+        obtenerIdActual();
 
         // Campo Nom. Album
         txtNomAlbum.setBounds(20, 150, 120, 20);
@@ -81,6 +89,13 @@ public class AgregarDisco extends JPanel implements MouseListener {
         genero.setBounds(130, 327, 270, 25);
         genero.setForeground(Color.GRAY);
         genero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+
+        // Campo Fecha L
+        txtFechaL.setBounds(20, 420, 120, 20);
+        txtFechaL.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        fechaL.setForeground(Color.GRAY);
+        fechaL.setBounds(130, 417, 270, 25);
+        fechaL.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Artista
         txtArtista.setBounds(520, 150, 120, 20);
@@ -125,7 +140,8 @@ public class AgregarDisco extends JPanel implements MouseListener {
         txtCancelar.setFont(new Font("Roboto Black", Font.BOLD, 18));
         txtCancelar.setBounds(70, 5, 120, 50);
 
-        //////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL ///////////////////////////////////////////////////////////////////
+        //////////////////////////////////// AÑADIENDO AL PANEL PRINCIPAL
+        //////////////////////////////////// ///////////////////////////////////////////////////////////////////
 
         // Añadiendo el campo id Disco
         add(idDisco);
@@ -142,6 +158,10 @@ public class AgregarDisco extends JPanel implements MouseListener {
         // Añadiendo el campo Genero
         add(genero);
         add(txtGenero);
+
+        // Añadiendo el campo Fecha L
+        add(fechaL);
+        add(txtFechaL);
 
         // Añadiendo el campo Artista
         add(artista);
@@ -169,6 +189,57 @@ public class AgregarDisco extends JPanel implements MouseListener {
         setVisible(true);
     }
 
+    public void obtenerIdActual() {
+        int c = getRegistros();
+        System.out.println(c);
+        id = transformarId(c);
+        idDisco.setText(id);
+    }
+
+    public int getRegistros() {
+        Connection connection = null; // se almacena la conexion
+        String bdname = "GestorVentasDiscos";// nombre de la base de datos
+        String user = "admin";// usuario de la base de datos
+        String pass = "123456";// contraseña de usuario
+        Statement statement = null;
+        ResultSet resultSet = null;
+        int ans = -1;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
+            String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
+            connection = DriverManager.getConnection(connectionBD);
+            // Crear el objeto Statement
+            statement = connection.createStatement();
+            // Ejecutar la consulta
+            resultSet = statement.executeQuery("SELECT COUNT(*) as res FROM Discos");
+            resultSet.next();
+            ans = resultSet.getInt(1) + 1;
+
+        } catch (ClassNotFoundException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (SQLException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (Exception s) {
+            System.out.println("Error: " + s.getMessage());
+            
+        } finally {
+            try {
+                // Cerrar la conexión
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException s) {
+                System.out.println("Error al cerrar la conexión: " + s.getMessage());
+            }
+        }
+        return ans;
+    }
+
+    public String transformarId(int c){
+        return "D-" + String.format("%04d",c);
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == agregar) {
@@ -186,7 +257,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
                 connection = DriverManager.getConnection(connectionBD);
                 PreparedStatement preparedStatement = connection.prepareStatement(AgregarQuery);
                 // Establecer los valores de los parámetros en la sentencia de inserción
-                // preparedStatement.setString(1, idDisco.getText()); Aqui ira el id del disco
+                preparedStatement.setString(1, idDisco.getText()); 
                 preparedStatement.setString(2, genero.getText());
                 preparedStatement.setString(3, formato.getText());
                 preparedStatement.setString(4, artista.getText());
@@ -196,8 +267,10 @@ public class AgregarDisco extends JPanel implements MouseListener {
                 preparedStatement.setFloat(10, Float.parseFloat(costo.getText()));
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Se agregó el registro del disco correctamente", "Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Se agregó el registro del disco correctamente", "Registro exitoso",
+                        JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                obtenerIdActual();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {

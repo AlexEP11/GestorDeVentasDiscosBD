@@ -39,7 +39,8 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
 
     // Componente Turno
     JLabel txtTurno = new JLabel("Turno");
-    JTextField turno = new JTextField();
+    String opcs[] = {"M", "V", "N"};
+    JComboBox<String> turno = new JComboBox<>(opcs);
 
     // Boton Agregar
     JPanel agregar = new JPanel(null);
@@ -53,7 +54,8 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
     JLabel imgCancelar = new JLabel();
     ImageIcon equisCancelar = new ImageIcon("./src/imagenes/cancelar.png");
 
-
+    //IdAutomatica
+    String id = "";
     public AgregarEmpleado() {
     setLayout(null);
     setBackground(Color.WHITE);
@@ -65,6 +67,7 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
     idEmpleado.setForeground(Color.GRAY);
     idEmpleado.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
     idEmpleado.setEditable(false);
+    obtenerIdActual();
 
     // Campo Nombre
     txtNombre.setBounds(20, 150, 120, 20);
@@ -186,7 +189,65 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
     setVisible(true);
 
     }
+    public void obtenerIdActual() {
+        int c = getRegistros();
+        id = transformarId(c);
+        idEmpleado.setText(id);
+    }
 
+    public int getRegistros() {
+        Connection connection = null; // se almacena la conexion
+        String bdname = "GestorVentasDiscos";// nombre de la base de datos
+        String user = "admin";// usuario de la base de datos
+        String pass = "123456";// contraseña de usuario
+        Statement statement = null;
+        ResultSet resultSet = null;
+        int ans = -1;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
+            String connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
+            connection = DriverManager.getConnection(connectionBD);
+            // Crear el objeto Statement
+            statement = connection.createStatement();
+            // Ejecutar la consulta
+            resultSet = statement.executeQuery("SELECT COUNT(*) as res FROM Empleados");
+            resultSet.next();
+            ans = resultSet.getInt(1) + 1;
+
+        } catch (ClassNotFoundException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (SQLException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (Exception s) {
+            System.out.println("Error: " + s.getMessage());
+            
+        } finally {
+            try {
+                // Cerrar la conexión
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException s) {
+                System.out.println("Error al cerrar la conexión: " + s.getMessage());
+            }
+        }
+        return ans;
+    }
+
+    public String transformarId(int c){
+        return "E-" + String.format("%04d",c);
+    }
+
+    public void limpiarValores(){
+        nombre.setText("");
+        apellidoM.setText("");
+        apellidoP.setText("");
+        nPuesto.setText("");
+        telC.setText("");
+        telF.setText("");
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == agregar) {
@@ -209,13 +270,15 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
                 preparedStatement.setString(3, apellidoM.getText());
                 preparedStatement.setString(4, nombre.getText());
                 preparedStatement.setString(5, nPuesto.getText());
-                preparedStatement.setString(6, turno.getText());
+                preparedStatement.setString(6, String.valueOf(turno.getSelectedItem()));
                 preparedStatement.setString(7, telC.getText());
                 preparedStatement.setString(8, telF.getText());
                 // Ejecutar la sentencia de inserción
                 int rowsAffected = preparedStatement.executeUpdate();
                 JOptionPane.showMessageDialog(this,"Se agregó el registro del empleado correctamente","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                obtenerIdActual();
+                limpiarValores();
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
@@ -232,6 +295,8 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
                     System.out.println("Error al cerrar la conexión: " + s.getMessage());
                 }
             }
+        }else if(e.getSource() == cancelar){
+            limpiarValores();
         }
     }
 
