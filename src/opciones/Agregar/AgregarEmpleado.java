@@ -39,7 +39,8 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
 
     // Componente Turno
     JLabel txtTurno = new JLabel("Turno");
-    JTextField turno = new JTextField();
+    String opcs[] = {"M", "V", "N"};
+    JComboBox<String> turno = new JComboBox<>(opcs);
 
     // Boton Agregar
     JPanel agregar = new JPanel(null);
@@ -209,7 +210,7 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
                 preparedStatement.setString(3, apellidoM.getText());
                 preparedStatement.setString(4, nombre.getText());
                 preparedStatement.setString(5, nPuesto.getText());
-                preparedStatement.setString(6, turno.getText());
+                preparedStatement.setString(6, String.valueOf(turno.getSelectedItem()));
                 preparedStatement.setString(7, telC.getText());
                 preparedStatement.setString(8, telF.getText());
                 // Ejecutar la sentencia de inserción

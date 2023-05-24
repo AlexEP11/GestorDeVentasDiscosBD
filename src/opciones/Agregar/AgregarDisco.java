@@ -37,6 +37,10 @@ public class AgregarDisco extends JPanel implements MouseListener {
     JLabel txtFormato = new JLabel("Formato");
     JTextField formato = new JTextField();
 
+    // Componente Fecha L.
+    JLabel txtFechaL = new JLabel("Fecha L.");
+    JTextField fechaL = new JTextField();
+
     // Boton Agregar
     JPanel agregar = new JPanel(null);
     JLabel txtAgregar = new JLabel("Agregar");
@@ -81,6 +85,13 @@ public class AgregarDisco extends JPanel implements MouseListener {
         genero.setBounds(130, 327, 270, 25);
         genero.setForeground(Color.GRAY);
         genero.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+
+        // Campo Fecha L
+        txtFechaL.setBounds(20, 420, 120, 20);
+        txtFechaL.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        fechaL.setForeground(Color.GRAY);
+        fechaL.setBounds(130, 417, 270, 25);
+        fechaL.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Artista
         txtArtista.setBounds(520, 150, 120, 20);
@@ -142,6 +153,10 @@ public class AgregarDisco extends JPanel implements MouseListener {
         // Añadiendo el campo Genero
         add(genero);
         add(txtGenero);
+
+        // Añadiendo el campo Fecha L
+        add(fechaL);
+        add(txtFechaL);
 
         // Añadiendo el campo Artista
         add(artista);
