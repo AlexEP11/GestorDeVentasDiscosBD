@@ -4,7 +4,6 @@ import javax.swing.table.AbstractTableModel;
 public class MyTableModel extends AbstractTableModel {
     private ArrayList<Object[]> data; // Lista de datos para las filas
     private String[] columnNames; // Nombres de las columnas
-
     public MyTableModel(String[] columnNames) {
         this.columnNames = columnNames;
         data = new ArrayList<>();
@@ -62,4 +61,6 @@ public class MyTableModel extends AbstractTableModel {
         data.get(row)[col] = value;
         fireTableCellUpdated(row, col);
     }
+
+    
 }

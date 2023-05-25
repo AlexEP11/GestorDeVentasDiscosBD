@@ -10,7 +10,7 @@
 --	NAlbum varchar (20),
 --	DiaL int,
 --	MesL int,
---	AñoL int,
+--	Aï¿½oL int,
 --	Exist int,
 --	Costo float
 --)
