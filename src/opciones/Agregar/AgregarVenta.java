@@ -521,6 +521,7 @@ public class AgregarVenta extends JPanel implements MouseListener {
         cantidad.setText("");
         ventas.clear();
         mtb.actualizarDatos(ventas);
+        txtIdVenta.setText(idActual);
     }
     public void modificarDVentas(int cant, String idDisco){
         Connection connection = null; // se almacena la conexion
