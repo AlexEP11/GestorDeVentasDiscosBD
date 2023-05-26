@@ -522,6 +522,7 @@ public class AgregarVenta extends JPanel implements MouseListener {
         ventas.clear();
         mtb.actualizarDatos(ventas);
         txtIdVenta.setText("IdVenta: "+idActual);
+        actualizarFecha();
     }
     public void modificarDVentas(int cant, String idDisco){
         Connection connection = null; // se almacena la conexion
@@ -587,6 +588,15 @@ public class AgregarVenta extends JPanel implements MouseListener {
                 System.out.println("Error al cerrar la conexión: " + s.getMessage());
             }
         }
+    }
+
+    public void actualizarFecha() {
+        fechaActual = LocalDate.now();
+        int dia = fechaActual.getDayOfMonth();
+        int mes = fechaActual.getMonthValue();
+        int anio = fechaActual.getYear();
+        fechaA = String.format("%02d/%02d/%04d", dia, mes, anio);
+        txtFecha.setText("Fecha: " + fechaA);
     }
 }
 

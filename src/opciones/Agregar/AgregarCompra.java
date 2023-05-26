@@ -546,6 +546,7 @@ public class AgregarCompra extends JPanel implements MouseListener {
         compras.clear();
         mtb.actualizarDatos(compras);
         txtIdCompra.setText("IdCompra: "+idCompraActual);
+        actualizarFecha();
     }
 
     public void modificarDiscos(int cant, String idDisco){
