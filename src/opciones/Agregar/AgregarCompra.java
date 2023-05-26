@@ -209,11 +209,11 @@ public class AgregarCompra extends JPanel implements MouseListener {
                 if (checarId("idDisco", "Discos")) {
                     Object[] x = new Object[3];
                     int cant = -1;
-                    int costo = -1;
+                    float costo = -1;
                     try {
                         x[0] = idDisco.getText();
                         cant = Integer.parseInt(cantidad.getText());
-                        costo = Integer.parseInt(this.costo.getText());
+                        costo = Float.parseFloat(this.costo.getText());
                         x[1] = cant;
                         x[2] = cant * costo;
                     } catch (Exception ex) {
@@ -240,6 +240,7 @@ public class AgregarCompra extends JPanel implements MouseListener {
                         mtb.actualizarDatos(compras);
                         idDisco.setText("");
                         cantidad.setText("");
+                        this.costo.setText("");
                     }else {
                         JOptionPane.showMessageDialog(this,
                                 "Cantidad/Costo invalida, verifique que haya ingresado un numero mayor a 0 y que se tenga mas existencia que la cantidad a vender del disco",
@@ -252,7 +253,7 @@ public class AgregarCompra extends JPanel implements MouseListener {
 
             } else {
                 if (compras.size() != 0) {
-                    int total = 0;
+                    float total = 0;
                     if(agregarCompra()){
                         for (int i = 0; i < compras.size(); i++) {
                             String idDisco = (String) compras.get(i)[0];
@@ -260,6 +261,7 @@ public class AgregarCompra extends JPanel implements MouseListener {
                             float subtotal = (float) compras.get(i)[2];
                             total += subtotal;
                             agregarDetallesCompra(idDisco, cant, subtotal);
+                            modificarDiscos(cant, idDisco);
                         }
                         modificarCompra(total);
                         formatoId();
@@ -311,7 +313,7 @@ public class AgregarCompra extends JPanel implements MouseListener {
 
     public void formatoId() {
         int id = idAutomaticas();
-        idCompraActual = String.format("V-%04d", id);
+        idCompraActual = String.format("C-%04d", id);
         txtIdCompra.setText("IdCompra: " + idCompraActual);
     }
 
@@ -546,5 +548,69 @@ public class AgregarCompra extends JPanel implements MouseListener {
         txtIdCompra.setText("IdCompra: "+idCompraActual);
     }
 
-    
+    public void modificarDiscos(int cant, String idDisco){
+        Connection connection = null; // se almacena la conexion
+        String bdname = "GestorVentasDiscos";// nombre de la base de datos
+        String user = "admin";// usuario de la base de datos
+        String pass = "123456";// contraseña de usuario
+        int total = 0;
+        String connectionBD;
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
+            connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
+            Statement statement = null;
+            ResultSet resultSet = null;
+            connection = DriverManager.getConnection(connectionBD);
+            // Crear el objeto Statement
+            statement = connection.createStatement();
+            // Ejecutar la consulta
+            resultSet = statement.executeQuery("select Exist from  Discos where idDisco = '" + idDisco + "'");
+            resultSet.next();
+            total = resultSet.getInt(1);
+        } catch (ClassNotFoundException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (SQLException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (Exception s) {
+            System.out.println("Error: " + s.getMessage());
+        } finally {
+            try {
+                // Cerrar la conexión
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException s) {
+                System.out.println("Error al cerrar la conexión: " + s.getMessage());
+            }
+        }
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");// Se conecta al driver
+            connectionBD = "jdbc:sqlserver://localhost;databaseName="
+                    + bdname + ";user=" + user + ";password=" + pass + ";" + "encrypt=true; "
+                    + "trustServerCertificate=true;" + "loginTimeout=30;";// Parametros de la conexion a bd
+            String modificar = "update Discos set Exist = ? where idDisco =  '" + idDisco + "'";
+            connection = DriverManager.getConnection(connectionBD);
+            PreparedStatement preparedStatement = connection.prepareStatement(modificar);
+            preparedStatement.setFloat(1, total + cant);
+            int rowsAffected = preparedStatement.executeUpdate();
+            System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+        } catch (ClassNotFoundException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (SQLException s) {
+            System.out.println("Error: " + s.getMessage());
+        } catch (Exception s) {
+            System.out.println("Error: " + s.getMessage());
+        } finally {
+            try {
+                // Cerrar la conexión
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException s) {
+                System.out.println("Error al cerrar la conexión: " + s.getMessage());
+            }
+        }
+    }
 }

@@ -245,7 +245,7 @@ public class AgregarVenta extends JPanel implements MouseListener {
 
             } else {
                 if (ventas.size() != 0) {
-                    int total = 0;
+                    float total = 0;
                     if(agregarVenta()){
                         for (int i = 0; i < ventas.size(); i++) {
                             String idDisco = (String) ventas.get(i)[0];
