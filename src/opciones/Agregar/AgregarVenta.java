@@ -256,7 +256,7 @@ public class AgregarVenta extends JPanel implements MouseListener {
                             modificarDVentas(cant, idDisco);
                         }
                         modificarVenta(total);
-                        idAutomaticas();
+                        formatoId();
                         limpiar();
                     }else{
                         JOptionPane.showMessageDialog(this,
