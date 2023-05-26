@@ -266,6 +266,7 @@ public class Inicio extends JFrame implements MouseListener {
         txtDetallesVentas.setForeground(Color.WHITE);
         txtDetallesVentas.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtDetallesVentas.setBounds(70, 0, 180, 50);
+        
 
         // Boton salir
         imgSalir.setBounds(850, 25, 45, 45);
@@ -370,6 +371,7 @@ public class Inicio extends JFrame implements MouseListener {
         botonModificar.setVisible(false);
         botonEliminar.setVisible(false);
         botonAgregar.setVisible(true);
+        cVentas.actualizarTabla("SELECT * FROM Ventas");
         // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
