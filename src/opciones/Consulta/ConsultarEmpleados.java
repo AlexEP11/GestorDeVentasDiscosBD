@@ -25,64 +25,72 @@ public class ConsultarEmpleados extends Plantilla {
         //Botones de radio y su configuracion
         botoneso[0] = new JRadioButton("IdEmpl");
         botoneso[0].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'E-0001'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'E-0001'";
             atri = "idEmp";
         });
         botoneso[1] = new JRadioButton("Ap.Paterno");
         botoneso[1].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Ponce'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Ponce'";
             atri = "AP";
         });
         botoneso[2] = new JRadioButton("Ap.Materno");
         botoneso[2].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Villa'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Villa'";
             atri = "AM";
         });
         botoneso[3] = new JRadioButton("Nombre");
         botoneso[3].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Carlos'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Carlos'";
             atri = "NOM";
         });
         botoneso[4] = new JRadioButton("Puesto");
         botoneso[4].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Supervisor'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Supervisor'";
             atri = "NPuesto";
         });
         botoneso[5] = new JRadioButton("Turno");
         botoneso[5].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'M'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'M'";
             atri = "Turno";
         });
         botoneso[6] = new JRadioButton("Tel. Cel");
         botoneso[6].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'3411800344'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'3411800344'";
             atri = "TelEC";
         });
         botoneso[7] = new JRadioButton("Tel. Fijo");
         botoneso[7].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'3411800349'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'3411800349'";
             atri = "TelEF";

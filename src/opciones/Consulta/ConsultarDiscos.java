@@ -25,64 +25,72 @@ public class ConsultarDiscos extends Plantilla {
         //Botones de radio y su configuracion
         botoneso[0] = new JRadioButton("IdDisco");
         botoneso[0].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'D-0001'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'D-0001'";
             atri = "idDisco";
         });
         botoneso[1] = new JRadioButton("Genero");
         botoneso[1].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Rock'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Rock'";
             atri = "Genero";
         });
         botoneso[2] = new JRadioButton("Formato");
         botoneso[2].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'V'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'V'";
             atri = "Formato";
         });
         botoneso[3] = new JRadioButton("Artista");
         botoneso[3].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Rufus Du Sol'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Rufus Du Sol'";
             atri = "Artista";
         });
         botoneso[4] = new JRadioButton("NAlbum");
         botoneso[4].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Surrender'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Surrender'";
             atri = "NAlbum";
         });
         botoneso[5] = new JRadioButton("AñoL");
         botoneso[5].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'2023'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'2023'";
             atri = "AñoL";
         });
         botoneso[6] = new JRadioButton("Existencia");
         botoneso[6].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'22'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'22'";
             atri = "Exist";
         });
         botoneso[7] = new JRadioButton("Costo");
         botoneso[7].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'200'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'200'";
             atri = "Costo";

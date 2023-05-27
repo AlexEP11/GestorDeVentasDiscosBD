@@ -25,16 +25,18 @@ public class ConsultarPuestos extends Plantilla {
         //Botones de radio y su configuracion
         botones[0] = new JRadioButton("Nombre Puesto");
         botones[0].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'Supervisor'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'Supervisor'";
             atri = "NPuesto";
         });
         botones[1] = new JRadioButton("Salario");
         botones[1].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'1200'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'1200'";
             atri = "Salario";

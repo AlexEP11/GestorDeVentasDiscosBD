@@ -20,32 +20,36 @@ public class ConsultarCompra extends Plantilla {
         //Botones de radio y su configuracion
         botones[0] = new JRadioButton("IdCompra");
         botones[0].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'C-0001'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'C-0001'";
             atri = "idCompras";
         });
         botones[1] = new JRadioButton("IdProveedor");
         botones[1].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'P-0001'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'P-0001'";
             atri = "idProv";
         });
         botones[2] = new JRadioButton("Fecha Compra");
         botones[2].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'22/04/2023'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'22/04/2023'";
             atri = "FechaC";
         });
         botones[3] = new JRadioButton("Total");
         botones[3].addActionListener(e->{
-            if(!(entrada.getText().equals(hover))){
+            if((entrada.getText().equals(hover))){
                 entrada.setText("'1200'");
+                entrada.setForeground(Color.lightGray);
             }
             hover = "'1200'";
             atri = "Total";

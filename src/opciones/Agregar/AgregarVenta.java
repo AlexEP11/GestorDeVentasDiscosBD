@@ -216,13 +216,21 @@ public class AgregarVenta extends JPanel implements MouseListener {
                     if (cant <= exist && cant > 0) {
                         boolean ban = true;
                         for (int i = 0; i < ventas.size(); i++) {
-                            if ((x[0]).equals(ventas.get(i)[0]) ) {
-                                ventas.get(i)[1] = (((int) ventas.get(i)[1]) + (int) (x[1]));
-                                ventas.get(i)[2] = (((float) ventas.get(i)[2]) + (float) (x[2]));
+                            if ((x[0]).equals(ventas.get(i)[0])) {
+                                cant += (int) ventas.get(i)[1];
+                                if (cant <= exist) {
+                                    ventas.get(i)[1] = cant;
+                                    ventas.get(i)[2] = (((float) ventas.get(i)[2]) + (float) (x[2]));
+                                    JOptionPane.showMessageDialog(this,
+                                            "La cantidad y el subtotal se agregaron al registro con la idProporcionada",
+                                            "IdDisco Repetida", JOptionPane.INFORMATION_MESSAGE);
+                                } else {
+                                    JOptionPane.showMessageDialog(this,
+                                            "Cantidad invalida, verifique que haya ingresado un numero mayor a 0 y que se tenga mas existencia ("
+                                                    + exist + ") que la cantidad a vender del disco",
+                                            "Cantidad invalida", JOptionPane.ERROR_MESSAGE);
+                                }
                                 ban = false;
-                                JOptionPane.showMessageDialog(this,
-                                        "La cantidad y el subtotal se agregaron al registro con la idProporcionada",
-                                        "IdDisco Repetida", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             }
                         }
@@ -246,7 +254,7 @@ public class AgregarVenta extends JPanel implements MouseListener {
             } else {
                 if (ventas.size() != 0) {
                     float total = 0;
-                    if(agregarVenta()){
+                    if (agregarVenta()) {
                         for (int i = 0; i < ventas.size(); i++) {
                             String idDisco = (String) ventas.get(i)[0];
                             int cant = (int) ventas.get(i)[1];
@@ -258,10 +266,10 @@ public class AgregarVenta extends JPanel implements MouseListener {
                         modificarVenta(total);
                         formatoId();
                         limpiar();
-                    }else{
+                    } else {
                         JOptionPane.showMessageDialog(this,
-                            "Error desconocido, falla fatal, cancele ",
-                            "Falla fatidica", JOptionPane.ERROR_MESSAGE);
+                                "Error desconocido, falla fatal, cancele ",
+                                "Falla fatidica", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
                     JOptionPane.showMessageDialog(this,
@@ -436,7 +444,8 @@ public class AgregarVenta extends JPanel implements MouseListener {
         }
         return ans;
     }
-    public boolean agregarDetallesVenta(String idDisco,int cant, float subtotal) {
+
+    public boolean agregarDetallesVenta(String idDisco, int cant, float subtotal) {
         Connection connection = null; // se almacena la conexion
         String bdname = "GestorVentasDiscos";// nombre de la base de datos
         String user = "admin";// usuario de la base de datos
@@ -478,7 +487,8 @@ public class AgregarVenta extends JPanel implements MouseListener {
         }
         return ans;
     }
-    public void modificarVenta(float total){
+
+    public void modificarVenta(float total) {
         Connection connection = null; // se almacena la conexion
         String bdname = "GestorVentasDiscos";// nombre de la base de datos
         String user = "admin";// usuario de la base de datos
@@ -512,7 +522,8 @@ public class AgregarVenta extends JPanel implements MouseListener {
             }
         }
     }
-    public void limpiar(){
+
+    public void limpiar() {
         idEmpleado.setEditable(true);
         idDisco.setEditable(false);
         cantidad.setEditable(false);
@@ -521,10 +532,11 @@ public class AgregarVenta extends JPanel implements MouseListener {
         cantidad.setText("");
         ventas.clear();
         mtb.actualizarDatos(ventas);
-        txtIdVenta.setText("IdVenta: "+idActual);
+        txtIdVenta.setText("IdVenta: " + idActual);
         actualizarFecha();
     }
-    public void modificarDVentas(int cant, String idDisco){
+
+    public void modificarDVentas(int cant, String idDisco) {
         Connection connection = null; // se almacena la conexion
         String bdname = "GestorVentasDiscos";// nombre de la base de datos
         String user = "admin";// usuario de la base de datos
@@ -599,4 +611,3 @@ public class AgregarVenta extends JPanel implements MouseListener {
         txtFecha.setText("Fecha: " + fechaA);
     }
 }
-
