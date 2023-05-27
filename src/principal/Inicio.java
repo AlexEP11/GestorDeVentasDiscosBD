@@ -124,6 +124,8 @@ public class Inicio extends JFrame implements MouseListener {
     Color cremaP = new Color(251, 205, 131);
     Color cremaHov = new Color(242, 190, 107);
 
+    //Usuario
+    String usuario;
     public Inicio(String usuario) {
 
         setIconImage(new ImageIcon("./src/imagenes/DiscoLogo.png").getImage());
@@ -143,6 +145,7 @@ public class Inicio extends JFrame implements MouseListener {
         // Bara crema superior
         horizontalArriba.setBackground(cremaP);
         horizontalArriba.setBounds(240, 0, 1000, 100);
+        this.usuario = usuario;
 
         // Boton Agregar
         botonAgregar.setBackground(cremaP);
@@ -311,22 +314,26 @@ public class Inicio extends JFrame implements MouseListener {
         // Añadiendo el boton disco
         botonDiscos.add(imgDiscos);
         botonDiscos.add(txtDiscos);
+        verticalIzquierda.add(botonDiscos);
+
         
 
         // Añadiendo el boton empleado
         botonEmpleado.add(imgEmpleado);
         botonEmpleado.add(txtEmpleado);
+        verticalIzquierda.add(botonEmpleado);
+
         
 
         // Añadiendo el boton proveedor
         botonProveedor.add(imgProveedor);
         botonProveedor.add(txtProveedor);
-        
+        verticalIzquierda.add(botonProveedor);
 
         // Añadiendo el boton puestos
         botonPuestos.add(imgPuestos);
         botonPuestos.add(txtPuetos);
-        
+        verticalIzquierda.add(botonPuestos);
 
         // Añadiendo el boton detalles compras
         botonDetallesCompras.add(imgDetallesCompras);
@@ -373,15 +380,7 @@ public class Inicio extends JFrame implements MouseListener {
         botonAgregar.setVisible(true);
         cVentas.actualizarTabla("SELECT * FROM Ventas");
         //Ajustes de usuario
-        if(usuario.equals("admin")){
-            verticalIzquierda.add(botonDiscos);
-            verticalIzquierda.add(botonEmpleado);
-            verticalIzquierda.add(botonProveedor);
-            verticalIzquierda.add(botonPuestos);
-        }else{
-            botonDetallesVentas.setBounds(0, 260, 240, 50);
-            botonDetallesCompras.setBounds(0, 340, 240, 50);
-        }
+        
         // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
@@ -571,9 +570,15 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Compras");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonDiscos) {
-                botonModificar.setVisible(true);
-                botonEliminar.setVisible(true);
-                botonAgregar.setVisible(true);
+                if(usuario.equals("admin")){
+                    botonModificar.setVisible(true);
+                    botonEliminar.setVisible(true);
+                    botonAgregar.setVisible(true);
+                }else{
+                    botonModificar.setVisible(false);
+                    botonEliminar.setVisible(false);
+                    botonAgregar.setVisible(false);
+                }
                 botonDiscos.setBackground(Color.black);
                 cDiscos.actualizarTabla("SELECT * FROM Discos");
                 anterior = botonDiscos;
@@ -582,9 +587,15 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Discos");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonEmpleado) {
-                botonModificar.setVisible(true);
-                botonEliminar.setVisible(true);
-                botonAgregar.setVisible(true);
+                if(usuario.equals("admin")){
+                    botonModificar.setVisible(true);
+                    botonEliminar.setVisible(true);
+                    botonAgregar.setVisible(true);
+                }else{
+                    botonModificar.setVisible(false);
+                    botonEliminar.setVisible(false);
+                    botonAgregar.setVisible(false);
+                }
                 botonEmpleado.setBackground(Color.black);
                 cEmpleados.actualizarTabla("SELECT * FROM Empleados");
                 anterior = botonEmpleado;
@@ -593,9 +604,15 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Empleados");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonProveedor) {
-                botonModificar.setVisible(true);
-                botonEliminar.setVisible(true);
-                botonAgregar.setVisible(true);
+                if(usuario.equals("admin")){
+                    botonModificar.setVisible(true);
+                    botonEliminar.setVisible(true);
+                    botonAgregar.setVisible(true);
+                }else{
+                    botonModificar.setVisible(false);
+                    botonEliminar.setVisible(false);
+                    botonAgregar.setVisible(false);
+                }
                 botonProveedor.setBackground(Color.black);
                 cProveedores.actualizarTabla("SELECT * FROM Proveedores");
                 anterior = botonProveedor;
@@ -604,9 +621,15 @@ public class Inicio extends JFrame implements MouseListener {
                 clPrincipal.show(principal, "Proveedores");
                 clSecundario.show(actual, "Consulta");
             } else if (e.getSource() == botonPuestos) {
-                botonModificar.setVisible(true);
-                botonEliminar.setVisible(true);
-                botonAgregar.setVisible(true);
+                if(usuario.equals("admin")){
+                    botonModificar.setVisible(true);
+                    botonEliminar.setVisible(true);
+                    botonAgregar.setVisible(true);
+                }else{
+                    botonModificar.setVisible(false);
+                    botonEliminar.setVisible(false);
+                    botonAgregar.setVisible(false);
+                }
                 botonPuestos.setBackground(Color.black);
                 cPuestos.actualizarTabla("SELECT * FROM Puestos");
                 anterior = botonPuestos;
