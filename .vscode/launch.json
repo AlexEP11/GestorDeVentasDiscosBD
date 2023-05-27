@@ -9,6 +9,13 @@
             "name": "Login",
             "request": "launch",
             "mainClass": "principal.Login",
+            "projectName": "GestorDeVentasDiscosBD_f6dd4ce0"
+        },
+        {
+            "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "principal.Login",
             "projectName": "GestorDeVentasDiscosBD_d40bfd1d"
         },
         {
