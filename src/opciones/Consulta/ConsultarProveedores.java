@@ -17,13 +17,56 @@ public class ConsultarProveedores extends Plantilla {
     JTable table;
     public ConsultarProveedores(){
         super();
+        tablaN = "Proveedores";
         //Botones de radio y su configuracion
         botones[0] = new JRadioButton("IdProv");
+        botones[0].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'P-0001'");
+            }
+            hover = "'P-0001'";
+            atri = "IdProv";
+        });
         botones[1] = new JRadioButton("Nombre");
+        botones[1].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Francisco Villa Guerrero'");
+            }
+            hover = "'Francisco Villa Guerrero'";
+            atri = "NOM";
+        });
         botones[2] = new JRadioButton("Calle");
+        botones[2].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Quintana Roo'");
+            }
+            hover = "'Quintana Roo'";
+            atri = "Calle";
+        });
         botones[3] = new JRadioButton("NExterior");
+        botones[3].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'23'");
+            }
+            hover = "'23'";
+            atri = "NExterior";
+        });
         botones[4] = new JRadioButton("Tel. Cel");
+        botones[4].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'3311100344'");
+            }
+            hover = "'3311100344'";
+            atri = "TelPC";
+        });
         botones[5] = new JRadioButton("Tel. Fijo");
+        botones[5].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'3311100344'");
+            }
+            hover = "'3311100344'";
+            atri = "TelPF";
+        });
         opciones.setLayout(new GridLayout(6, 0, 0, 0));
         for (int i = 0; i < botones.length; i++) {
             botones[i].setText("Buscar por " + botones[i].getText());
@@ -50,9 +93,11 @@ public class ConsultarProveedores extends Plantilla {
         //Botones de limpiar y buscar
         limpiar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
         buscar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
     }
 

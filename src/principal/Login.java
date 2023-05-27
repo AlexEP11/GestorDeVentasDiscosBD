@@ -145,8 +145,10 @@ public class Login extends JFrame implements MouseListener {
         }
         
         if (e.getSource() == entrar ) {
-            new Inicio();
-            dispose();
+            if((username.getText().equals("admin") && String.valueOf(password.getPassword()).equals("admin111132"))||(username.getText().equals("empleado") && String.valueOf(password.getPassword()).equals("123456"))){
+                new Inicio(username.getText());
+                dispose();
+            }
         }
     }
 

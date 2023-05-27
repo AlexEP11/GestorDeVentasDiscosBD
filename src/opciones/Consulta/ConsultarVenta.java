@@ -17,11 +17,40 @@ public class ConsultarVenta extends Plantilla {
     JTable table;
     public ConsultarVenta(){
         super();
+        tablaN = "Ventas";
         //Botones de radio y su configuracion
         botones[0] = new JRadioButton("IdVenta");
+        botones[0].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'V-0001'");
+            }
+            hover = "'V-0001'";
+            atri = "idVenta";
+        });
         botones[1] = new JRadioButton("IdEmpleado");
+        botones[1].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'E-0001'");
+            }
+            hover = "'E-0001'";
+            atri = "idEmp";
+        });
         botones[2] = new JRadioButton("Fecha venta");
+        botones[2].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'10/04/2023'");
+            }
+            hover = "'10/04/2023'";
+            atri = "FechaV";
+        });
         botones[3] = new JRadioButton("Total");
+        botones[3].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'120'");
+            }
+            hover = "'120'";
+            atri = "Total";
+        });
         opciones.setLayout(new GridLayout(4, 0, 0, 0));
         for (int i = 0; i < botones.length; i++) {
             botones[i].setText("Buscar por " + botones[i].getText());
@@ -48,9 +77,11 @@ public class ConsultarVenta extends Plantilla {
         //Botones de limpiar y buscar
         limpiar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
         buscar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
     }
 

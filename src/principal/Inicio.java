@@ -124,7 +124,7 @@ public class Inicio extends JFrame implements MouseListener {
     Color cremaP = new Color(251, 205, 131);
     Color cremaHov = new Color(242, 190, 107);
 
-    public Inicio() {
+    public Inicio(String usuario) {
 
         setIconImage(new ImageIcon("./src/imagenes/DiscoLogo.png").getImage());
         this.setUndecorated(true);
@@ -266,6 +266,7 @@ public class Inicio extends JFrame implements MouseListener {
         txtDetallesVentas.setForeground(Color.WHITE);
         txtDetallesVentas.setFont(new Font("Roboto Black", Font.BOLD, 15));
         txtDetallesVentas.setBounds(70, 0, 180, 50);
+        
 
         // Boton salir
         imgSalir.setBounds(850, 25, 45, 45);
@@ -310,22 +311,22 @@ public class Inicio extends JFrame implements MouseListener {
         // Añadiendo el boton disco
         botonDiscos.add(imgDiscos);
         botonDiscos.add(txtDiscos);
-        verticalIzquierda.add(botonDiscos);
+        
 
         // Añadiendo el boton empleado
         botonEmpleado.add(imgEmpleado);
         botonEmpleado.add(txtEmpleado);
-        verticalIzquierda.add(botonEmpleado);
+        
 
         // Añadiendo el boton proveedor
         botonProveedor.add(imgProveedor);
         botonProveedor.add(txtProveedor);
-        verticalIzquierda.add(botonProveedor);
+        
 
         // Añadiendo el boton puestos
         botonPuestos.add(imgPuestos);
         botonPuestos.add(txtPuetos);
-        verticalIzquierda.add(botonPuestos);
+        
 
         // Añadiendo el boton detalles compras
         botonDetallesCompras.add(imgDetallesCompras);
@@ -370,6 +371,17 @@ public class Inicio extends JFrame implements MouseListener {
         botonModificar.setVisible(false);
         botonEliminar.setVisible(false);
         botonAgregar.setVisible(true);
+        cVentas.actualizarTabla("SELECT * FROM Ventas");
+        //Ajustes de usuario
+        if(usuario.equals("admin")){
+            verticalIzquierda.add(botonDiscos);
+            verticalIzquierda.add(botonEmpleado);
+            verticalIzquierda.add(botonProveedor);
+            verticalIzquierda.add(botonPuestos);
+        }else{
+            botonDetallesVentas.setBounds(0, 260, 240, 50);
+            botonDetallesCompras.setBounds(0, 340, 240, 50);
+        }
         // Ajustes necesarios
         setSize(1200, 700);
         setResizable(false);
@@ -710,7 +722,7 @@ public class Inicio extends JFrame implements MouseListener {
         }
     }
 
-    public static void main(String[] args) {
-        new Inicio();
-    }
+    // public static void main(String[] args) {
+    //     new Inicio("empleado");
+    // }
 }

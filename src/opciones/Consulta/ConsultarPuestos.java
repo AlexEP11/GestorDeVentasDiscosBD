@@ -19,11 +19,26 @@ public class ConsultarPuestos extends Plantilla {
     JTable table;
     public ConsultarPuestos(){
         super();
+        tablaN = "Puestos";
         tabla.setBounds(420, 50, 500, 500);
         opciones.setBounds(80, 50, 280, 250);
         //Botones de radio y su configuracion
         botones[0] = new JRadioButton("Nombre Puesto");
+        botones[0].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Supervisor'");
+            }
+            hover = "'Supervisor'";
+            atri = "NPuesto";
+        });
         botones[1] = new JRadioButton("Salario");
+        botones[1].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'1200'");
+            }
+            hover = "'1200'";
+            atri = "Salario";
+        });
         opciones.setLayout(new GridLayout(4, 0, 0, 0));
         for (int i = 0; i < botones.length; i++) {
             botones[i].setText("Buscar por " + botones[i].getText());
@@ -50,10 +65,14 @@ public class ConsultarPuestos extends Plantilla {
         //Botones de limpiar y buscar
         limpiar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
         buscar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
+
+        
 
     }
 

@@ -21,15 +21,72 @@ public class ConsultarEmpleados extends Plantilla {
         opciones.setBounds(40, 420, 500, 190);
         entrada.setBounds(620, 450, 250, 30);
         botones.setBounds(660, 510, 180, 60);
+        tablaN = "Empleados";
         //Botones de radio y su configuracion
         botoneso[0] = new JRadioButton("IdEmpl");
+        botoneso[0].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'E-0001'");
+            }
+            hover = "'E-0001'";
+            atri = "idEmp";
+        });
         botoneso[1] = new JRadioButton("Ap.Paterno");
+        botoneso[1].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Ponce'");
+            }
+            hover = "'Ponce'";
+            atri = "AP";
+        });
         botoneso[2] = new JRadioButton("Ap.Materno");
+        botoneso[2].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Villa'");
+            }
+            hover = "'Villa'";
+            atri = "AM";
+        });
         botoneso[3] = new JRadioButton("Nombre");
+        botoneso[3].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Carlos'");
+            }
+            hover = "'Carlos'";
+            atri = "NOM";
+        });
         botoneso[4] = new JRadioButton("Puesto");
+        botoneso[4].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'Supervisor'");
+            }
+            hover = "'Supervisor'";
+            atri = "NPuesto";
+        });
         botoneso[5] = new JRadioButton("Turno");
+        botoneso[5].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'M'");
+            }
+            hover = "'M'";
+            atri = "Turno";
+        });
         botoneso[6] = new JRadioButton("Tel. Cel");
+        botoneso[6].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'3411800344'");
+            }
+            hover = "'3411800344'";
+            atri = "TelEC";
+        });
         botoneso[7] = new JRadioButton("Tel. Fijo");
+        botoneso[7].addActionListener(e->{
+            if(!(entrada.getText().equals(hover))){
+                entrada.setText("'3411800349'");
+            }
+            hover = "'3411800349'";
+            atri = "TelEF";
+        });
         opciones.setLayout(new GridLayout(0, 3, 0, 0));
         for (int i = 0; i < botoneso.length; i++) {
             botoneso[i].setText("Buscar por " + botoneso[i].getText());
@@ -56,9 +113,11 @@ public class ConsultarEmpleados extends Plantilla {
         //Botones de limpiar y buscar
         limpiar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
         buscar.addActionListener(e->{
             actionPerformed(e);
+            actualizarTabla(sql);
         });
     }
 
