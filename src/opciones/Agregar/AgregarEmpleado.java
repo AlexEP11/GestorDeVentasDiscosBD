@@ -243,13 +243,19 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
                 preparedStatement.setString(7, telC.getText());
                 preparedStatement.setString(8, telF.getText());
                 // Ejecutar la sentencia de inserción
-                int rowsAffected = preparedStatement.executeUpdate();
-                JOptionPane.showMessageDialog(this,"Se agregó el registro del empleado correctamente","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
-                System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
-                limpiarValores();
+                if((telC.getText().equals("") || esCadenaDeNumeros(telC.getText())) && (telF.getText().equals("") || esCadenaDeNumeros(telF.getText()))){
+                    int rowsAffected = preparedStatement.executeUpdate();
+                    JOptionPane.showMessageDialog(this,"Se agregó el registro del empleado correctamente","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                    limpiarValores();
+                }else{
+                    JOptionPane.showMessageDialog(this,"Error, los numeros de telefono solo pueden contener digitos","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                }
+                
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
+                JOptionPane.showMessageDialog(this,"Error: " + s.getMessage(),"Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
                 System.out.println("Error: " + s.getMessage());
             } catch (Exception s) {
                 System.out.println("Error: " + s.getMessage());
@@ -289,6 +295,9 @@ public class AgregarEmpleado extends JPanel implements MouseListener {
         
     }
     
+    public boolean esCadenaDeNumeros(String cadena) {
+        return cadena.matches("\\d+");
+    }
 
     
 }

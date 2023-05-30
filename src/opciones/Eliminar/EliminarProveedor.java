@@ -228,6 +228,7 @@ public class EliminarProveedor extends JPanel implements MouseListener {
                 System.out.println("Error: " + s.getMessage());        
             } catch (SQLException s) {
                 JOptionPane.showMessageDialog(this,"Error al buscar registros");
+                JOptionPane.showMessageDialog(this,"Error al eliminar registros: " + s.getMessage(),"Eliminacion cancelada",JOptionPane.ERROR_MESSAGE);
             } finally {
                 // Cerrar los recursos (ResultSet, Statement y conexión) en el bloque finally
                 if (resultSet != null) {

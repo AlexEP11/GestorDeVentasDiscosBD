@@ -39,8 +39,8 @@ public class ModificarDisco extends JPanel implements MouseListener {
     JTextField costo = new JTextField();
 
     // Componente Formato
-    JLabel txtFormato = new JLabel("Formato");
-    JTextField formato = new JTextField();
+    // JLabel txtFormato = new JLabel("Formato");
+    // JTextField formato = new JTextField();
 
     // Boton Guardar
     JPanel guardar = new JPanel(null);
@@ -109,11 +109,11 @@ public class ModificarDisco extends JPanel implements MouseListener {
         costo.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo Formato
-        txtFormato.setBounds(520, 330, 120, 20);
-        txtFormato.setFont(new Font("Roboto Black", Font.BOLD, 16));
-        formato.setBounds(600, 327, 270, 25);
-        formato.setForeground(Color.GRAY);
-        formato.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
+        // txtFormato.setBounds(520, 330, 120, 20);
+        // txtFormato.setFont(new Font("Roboto Black", Font.BOLD, 16));
+        // formato.setBounds(600, 327, 270, 25);
+        // formato.setForeground(Color.GRAY);
+        // formato.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.DARK_GRAY));
 
         // Campo boton Guardar
         guardar.setBackground(cremaHov);
@@ -169,8 +169,7 @@ public class ModificarDisco extends JPanel implements MouseListener {
         add(txtCosto);
 
         // Añadiendo el campo Formato
-        add(formato);
-        add(txtFormato);
+
 
         // Añadiendo el boton Guardar (disquito)
         guardar.add(imgGuardar);
@@ -218,7 +217,6 @@ public class ModificarDisco extends JPanel implements MouseListener {
                 String datoIdDisco = resultSet.getString("idDisco");
                 String datoNomAlbum = resultSet.getString("NAlbum");
                 String datoGenero = resultSet.getString("Genero");
-                String datoFormato = resultSet.getString("Formato");
                 String datoArtista = resultSet.getString("Artista");
                 String datoExist = resultSet.getString("Exist");
                 String datoCosto = resultSet.getString("Costo");
@@ -226,7 +224,6 @@ public class ModificarDisco extends JPanel implements MouseListener {
                 idDisco.setText(datoIdDisco);
                 nomAlbum.setText(datoNomAlbum);
                 genero.setText(datoGenero);
-                formato.setText(datoFormato);
                 artista.setText(datoArtista);
                 numExt.setText(datoExist);
                 costo.setText(datoCosto);
@@ -274,31 +271,41 @@ public class ModificarDisco extends JPanel implements MouseListener {
                  connection = DriverManager.getConnection(connectionBD);
     
                 // Definir la consulta SQL con parámetros
-                String modificarSQL = "update Discos set Genero = ?, Formato = ?, Artista = ?, NAlbum = ?, Exist = ?, Costo = ? where idDisco = '"+ idDisco.getText()+"'";
+                String modificarSQL = "update Discos set Genero = ?, Artista = ?, NAlbum = ?, Exist = ?, Costo = ? where idDisco = '"+ idDisco.getText()+"'";
     
                 // Crear objeto PreparedStatement para enviar la consulta
                 stmt = connection.prepareStatement(modificarSQL);
     
                 // Establecer los valores de los parámetros
                 stmt.setString(1, genero.getText());
-                stmt.setString(2, formato.getText());
-                stmt.setString(3, artista.getText());
-                stmt.setString(4, nomAlbum.getText());
-                stmt.setInt(5, Integer.parseInt(numExt.getText()));
-                stmt.setFloat(6, Float.parseFloat(costo.getText()));
+                stmt.setString(2, artista.getText());
+                stmt.setString(3, nomAlbum.getText());
+                stmt.setInt(4, Integer.parseInt(numExt.getText()));
+                stmt.setFloat(5, Float.parseFloat(costo.getText()));
     
                 // Ejecutar la consulta y obtener el número de filas afectadas
-                int filasAfectadas = stmt.executeUpdate();
-    
-                // Verificar si se actualizaron filas correctamente
-                if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(this, "Los datos se actualizaron correctamente." , "CAMBIOS REALIZADOS",JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                JOptionPane.showMessageDialog(this, "Los datos no se actualizaron" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+                
+                if(Integer.parseInt(numExt.getText()) >= 0 && Float.parseFloat(costo.getText()) >=0){
+                    int filasAfectadas = stmt.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Se agregó el registro del disco correctamente", "Registro exitoso",
+                    JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Se agregó el registro correctamente. Filas afectadas: " + filasAfectadas);
+                }else{
+                    JOptionPane.showMessageDialog(this,"Error: verifique que el costo y numero de existencia sean positivos" ,"Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
                 }
+                // Verificar si se actualizaron filas correctamente
+                // if (filasAfectadas > 0) {
+                // JOptionPane.showMessageDialog(this, "Los datos se actualizaron correctamente." , "CAMBIOS REALIZADOS",JOptionPane.INFORMATION_MESSAGE);
+                // } else {
+                // JOptionPane.showMessageDialog(this, "Los datos no se actualizaron" , "ERROR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+                // }
             } catch (SQLException ex) {
                 System.out.println("Error al buscar registros: " + ex.getMessage());
-            } finally {
+                JOptionPane.showMessageDialog(this,"Error: " + ex.getMessage(),"Modificacion cancelada",JOptionPane.ERROR_MESSAGE);
+            } catch (Exception s) {
+                JOptionPane.showMessageDialog(this,"Error: ingrese numeros tanto en la fecha, como en el costo y la existencia","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                System.out.println("Error: " + s.getMessage());
+            }finally {
                 if (resultSet != null) {
                     try {
                         resultSet.close();
@@ -324,7 +331,7 @@ public class ModificarDisco extends JPanel implements MouseListener {
             idDisco.setText("");
             nomAlbum.setText("");
             genero.setText("");
-            formato.setText("");
+            // formato.setText("");
             artista.setText("");
             numExt.setText("");
             costo.setText("");
@@ -333,7 +340,7 @@ public class ModificarDisco extends JPanel implements MouseListener {
             idDisco.setText("");
             nomAlbum.setText("");
             genero.setText("");
-            formato.setText("");
+            // formato.setText("");
             artista.setText("");
             numExt.setText("");
             costo.setText("");

@@ -120,6 +120,7 @@ public class AgregarPuesto extends JPanel implements MouseListener {
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
+                JOptionPane.showMessageDialog(this,"Error: " + s.getMessage(),"Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
                 System.out.println("Error: " + s.getMessage());
             } catch (Exception s) {
                 System.out.println("Error: " + s.getMessage());

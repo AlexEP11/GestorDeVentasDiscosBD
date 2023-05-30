@@ -297,6 +297,7 @@ public class EliminarDisco extends JPanel implements MouseListener {
                 System.out.println("Error: " + s.getMessage());        
             } catch (SQLException s) {
                 System.out.println("Error al eliminar registros: " + s.getMessage());
+                JOptionPane.showMessageDialog(this,"Error al eliminar registros: " + s.getMessage(),"Eliminacion cancelada",JOptionPane.ERROR_MESSAGE);
             } finally {
                 try {
                     // Cerrar el Statement

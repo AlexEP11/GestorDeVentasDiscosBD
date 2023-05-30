@@ -258,6 +258,7 @@ public class ModificarEmpleado extends JPanel implements MouseListener {
             } catch(ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());        
             } catch (SQLException s) {
+                
                 System.out.println("Error al buscar registros: " + s.getMessage());
             } finally {
                 // Cerrar los recursos (ResultSet, Statement y conexión) en el bloque finally
@@ -309,16 +310,23 @@ public class ModificarEmpleado extends JPanel implements MouseListener {
                 
     
                 // Ejecutar la consulta y obtener el número de filas afectadas
-                int filasAfectadas = stmt.executeUpdate();
+                
+                if((telC.getText().equals("") || esCadenaDeNumeros(telC.getText())) && (telF.getText().equals("") || esCadenaDeNumeros(telF.getText()))){
+                    int filasAfectadas = stmt.executeUpdate();
+                    JOptionPane.showMessageDialog(this,"Se modifico el registro del empleado correctamente","Modificacion exitosa",JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Se agregó el registro correctamente. Filas afectadas: " + filasAfectadas);
+                }else{
+                    JOptionPane.showMessageDialog(this,"Error, los numeros de telefono solo pueden contener digitos","Modificacion cancelada",JOptionPane.ERROR_MESSAGE);
+                }
     
                 // Verificar si se actualizaron filas correctamente
-                if (filasAfectadas > 0) {
-                JOptionPane.showMessageDialog(this, "Los datos se actualizaron correctamente." , "CAMBIOS REALIZADOS",JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                JOptionPane.showMessageDialog(this, "Los datos no se actualizaron" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
-                }
+                // if (filasAfectadas > 0) {
+                // JOptionPane.showMessageDialog(this, "Los datos se actualizaron correctamente." , "CAMBIOS REALIZADOS",JOptionPane.INFORMATION_MESSAGE);
+                // } else {
+                // JOptionPane.showMessageDialog(this, "Los datos no se actualizaron" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+                // }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Puesto no encontrado" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error: " + ex.getMessage(),"Modificacion cancelada",JOptionPane.ERROR_MESSAGE);
             } finally {
                 if (resultSet != null) {
                     try {
@@ -384,6 +392,8 @@ public class ModificarEmpleado extends JPanel implements MouseListener {
         
     }
     
-
+    public boolean esCadenaDeNumeros(String cadena) {
+        return cadena.matches("\\d+");
+    }
     
 }

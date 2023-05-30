@@ -321,6 +321,7 @@ public class EliminarEmpleado extends JPanel implements MouseListener {
                     }
                 } catch (SQLException s) {
                     System.out.println("Error al cerrar el Statement: " + s.getMessage());
+                    JOptionPane.showMessageDialog(this,"Error al eliminar registros: " + s.getMessage(),"Eliminacion cancelada",JOptionPane.ERROR_MESSAGE);
                 }
                 try {
                     // Cerrar la conexión

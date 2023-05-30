@@ -237,21 +237,35 @@ public class AgregarDisco extends JPanel implements MouseListener {
                 preparedStatement.setString(3, String.valueOf(formato.getSelectedItem()));
                 preparedStatement.setString(4, artista.getText());
                 preparedStatement.setString(5, nomAlbum.getText());
-                preparedStatement.setInt(6, Integer.parseInt(fechaD.getText()));
-                preparedStatement.setInt(7, Integer.parseInt(fechaM.getText()));
-                preparedStatement.setInt(8, Integer.parseInt(fechaA.getText()));
+                int dia = Integer.parseInt(fechaD.getText());
+                preparedStatement.setInt(6, dia);
+                int mes = Integer.parseInt(fechaM.getText());
+                preparedStatement.setInt(7, mes);
+                int annio = Integer.parseInt(fechaA.getText());
+                preparedStatement.setInt(8, annio);
                 preparedStatement.setInt(9, Integer.parseInt(numExt.getText()));
                 preparedStatement.setFloat(10, Float.parseFloat(costo.getText()));
                 // Ejecutar la sentencia de inserción
-                int rowsAffected = preparedStatement.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Se agregó el registro del disco correctamente", "Registro exitoso",
+                if(verificarFecha(dia,mes,annio)){
+                    if(Integer.parseInt(numExt.getText()) >= 0 && Float.parseFloat(costo.getText()) >=0){
+                        int rowsAffected = preparedStatement.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Se agregó el registro del disco correctamente", "Registro exitoso",
                         JOptionPane.INFORMATION_MESSAGE);
-                System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                        System.out.println("Se agregó el registro correctamente. Filas afectadas: " + rowsAffected);
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Error: verifique que el costo y numero de existencia sean positivos" ,"Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(this,"Error: verifique la fecha" ,"Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
+                }
+                
             } catch (ClassNotFoundException s) {
                 System.out.println("Error: " + s.getMessage());
             } catch (SQLException s) {
+                JOptionPane.showMessageDialog(this,"Error: " + s.getMessage(),"Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
                 System.out.println("Error: " + s.getMessage());
             } catch (Exception s) {
+                JOptionPane.showMessageDialog(this,"Error: ingrese numeros tanto en la fecha, como en el costo y la existencia","Agregacion cancelada",JOptionPane.ERROR_MESSAGE);
                 System.out.println("Error: " + s.getMessage());
             } finally {
                 try {
@@ -307,4 +321,7 @@ public class AgregarDisco extends JPanel implements MouseListener {
 
     }
 
+    public boolean verificarFecha(int dia, int mes, int annio){
+        return (dia < 32 && dia > 0) && (mes > 0 && mes < 13) && (annio > 1700 && annio < 3000);
+    }
 }

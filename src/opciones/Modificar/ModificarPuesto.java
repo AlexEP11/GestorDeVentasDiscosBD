@@ -206,7 +206,7 @@ public class ModificarPuesto extends JPanel implements MouseListener {
                 JOptionPane.showMessageDialog(this, "Los datos no se actualizaron" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Puesto no encontrado" , "ERORR EN REALIZAR CAMBIOS",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Error: " + ex.getMessage(),"Modificacion cancelada",JOptionPane.ERROR_MESSAGE);
             } finally {
                 if (resultSet != null) {
                     try {
